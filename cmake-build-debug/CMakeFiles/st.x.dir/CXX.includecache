@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Queue.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueue.cpp
+STQueue.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueue.hpp
+../CommonFiles/Request.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueue.hpp
+iostream
+-
+../CommonFiles/Queue.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Queue.hpp
+STQueueNode.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.hpp
+
