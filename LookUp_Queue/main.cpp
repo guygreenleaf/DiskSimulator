@@ -1,6 +1,7 @@
 //
-// Created by Ali A. Kooshesh on 2020-10-21.
+// Created by yaweh on 10/26/2020.
 //
+
 #include <iostream>
 #include <fstream>
 #include <random>
@@ -8,7 +9,7 @@
 #include <unistd.h>
 #include "../CommonFiles/Request.hpp"
 #include "../EventDriver/EventNode.hpp"
-#include "PickUpQueue.hpp"
+#include "LookUpQueue.hpp"
 
 //PickUpQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {
 //
@@ -38,7 +39,7 @@
 
 
 
-PickUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
+LookUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
 
     if( argc != 2) {
         std::cout << "usage: " << argv[0] << " nameOfAnInputFile\n";
@@ -53,7 +54,7 @@ PickUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
         exit(1);
     }
 
-    auto *queue = new PickUpQueue();
+    auto *queue = new LookUpQueue();
 
     int time, track, sector;
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
@@ -67,15 +68,15 @@ PickUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
 int main(int argc, char *argv[]) {
     std::cout << "Pickup -- Main function.\n";
 
-    auto bigQueue = createPickUpQueueFromInputFile(argc, argv);
+    LookUpQueue *bigQueue = createPickUpQueueFromInputFile(argc, argv);
 
     bigQueue->print();
     Request *testReq = new Request(290, 49, 3);
     Request *test2Req = new Request(210, 62, 4);
-    bigQueue->addRequest(testReq, 0, 0);
-    bigQueue->addRequest(test2Req, 0, 0);
-    std::cout << "Testing addrequest for new request" << std::endl;
-    bigQueue->print();
+//    bigQueue->addRequest(testReq, 0, 0);
+//    bigQueue->addRequest(test2Req, 0, 0);
+//    std::cout << "Testing addrequest for new request" << std::endl;
+//    bigQueue->print();
 //
 //    Request *newReq = new Request(823, 79, 3);
 //    bigQueue->addRequest(newReq, 0, 0);
@@ -88,3 +89,4 @@ int main(int argc, char *argv[]) {
 //    bigQueue->print();
     return 0;
 }
+

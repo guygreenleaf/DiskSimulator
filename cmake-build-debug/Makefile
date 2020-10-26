@@ -143,6 +143,19 @@ fcfs.x/fast:
 .PHONY : fcfs.x/fast
 
 #=============================================================================
+# Target rules for targets named lu.x
+
+# Build rule for target.
+lu.x: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lu.x
+.PHONY : lu.x
+
+# fast build rule for target.
+lu.x/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/build
+.PHONY : lu.x/fast
+
+#=============================================================================
 # Target rules for targets named st.x
 
 # Build rule for target.
@@ -175,6 +188,7 @@ CommonFiles/Request.obj: CommonFiles/Request.cpp.obj
 # target to build an object file
 CommonFiles/Request.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\fcfs.x.dir\build.make CMakeFiles/fcfs.x.dir/CommonFiles/Request.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/CommonFiles/Request.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/CommonFiles/Request.cpp.obj
 .PHONY : CommonFiles/Request.cpp.obj
@@ -186,6 +200,7 @@ CommonFiles/Request.i: CommonFiles/Request.cpp.i
 # target to preprocess a source file
 CommonFiles/Request.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\fcfs.x.dir\build.make CMakeFiles/fcfs.x.dir/CommonFiles/Request.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/CommonFiles/Request.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/CommonFiles/Request.cpp.i
 .PHONY : CommonFiles/Request.cpp.i
@@ -197,6 +212,7 @@ CommonFiles/Request.s: CommonFiles/Request.cpp.s
 # target to generate assembly for a file
 CommonFiles/Request.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\fcfs.x.dir\build.make CMakeFiles/fcfs.x.dir/CommonFiles/Request.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/CommonFiles/Request.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/CommonFiles/Request.cpp.s
 .PHONY : CommonFiles/Request.cpp.s
@@ -308,6 +324,87 @@ FCFS_Queue/main.s: FCFS_Queue/main.cpp.s
 FCFS_Queue/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\fcfs.x.dir\build.make CMakeFiles/fcfs.x.dir/FCFS_Queue/main.cpp.s
 .PHONY : FCFS_Queue/main.cpp.s
+
+LookUp_Queue/LookUpQueue.obj: LookUp_Queue/LookUpQueue.cpp.obj
+
+.PHONY : LookUp_Queue/LookUpQueue.obj
+
+# target to build an object file
+LookUp_Queue/LookUpQueue.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueue.cpp.obj
+.PHONY : LookUp_Queue/LookUpQueue.cpp.obj
+
+LookUp_Queue/LookUpQueue.i: LookUp_Queue/LookUpQueue.cpp.i
+
+.PHONY : LookUp_Queue/LookUpQueue.i
+
+# target to preprocess a source file
+LookUp_Queue/LookUpQueue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueue.cpp.i
+.PHONY : LookUp_Queue/LookUpQueue.cpp.i
+
+LookUp_Queue/LookUpQueue.s: LookUp_Queue/LookUpQueue.cpp.s
+
+.PHONY : LookUp_Queue/LookUpQueue.s
+
+# target to generate assembly for a file
+LookUp_Queue/LookUpQueue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueue.cpp.s
+.PHONY : LookUp_Queue/LookUpQueue.cpp.s
+
+LookUp_Queue/LookUpQueueNode.obj: LookUp_Queue/LookUpQueueNode.cpp.obj
+
+.PHONY : LookUp_Queue/LookUpQueueNode.obj
+
+# target to build an object file
+LookUp_Queue/LookUpQueueNode.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueueNode.cpp.obj
+.PHONY : LookUp_Queue/LookUpQueueNode.cpp.obj
+
+LookUp_Queue/LookUpQueueNode.i: LookUp_Queue/LookUpQueueNode.cpp.i
+
+.PHONY : LookUp_Queue/LookUpQueueNode.i
+
+# target to preprocess a source file
+LookUp_Queue/LookUpQueueNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueueNode.cpp.i
+.PHONY : LookUp_Queue/LookUpQueueNode.cpp.i
+
+LookUp_Queue/LookUpQueueNode.s: LookUp_Queue/LookUpQueueNode.cpp.s
+
+.PHONY : LookUp_Queue/LookUpQueueNode.s
+
+# target to generate assembly for a file
+LookUp_Queue/LookUpQueueNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueueNode.cpp.s
+.PHONY : LookUp_Queue/LookUpQueueNode.cpp.s
+
+LookUp_Queue/main.obj: LookUp_Queue/main.cpp.obj
+
+.PHONY : LookUp_Queue/main.obj
+
+# target to build an object file
+LookUp_Queue/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/main.cpp.obj
+.PHONY : LookUp_Queue/main.cpp.obj
+
+LookUp_Queue/main.i: LookUp_Queue/main.cpp.i
+
+.PHONY : LookUp_Queue/main.i
+
+# target to preprocess a source file
+LookUp_Queue/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/main.cpp.i
+.PHONY : LookUp_Queue/main.cpp.i
+
+LookUp_Queue/main.s: LookUp_Queue/main.cpp.s
+
+.PHONY : LookUp_Queue/main.s
+
+# target to generate assembly for a file
+LookUp_Queue/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/LookUp_Queue/main.cpp.s
+.PHONY : LookUp_Queue/main.cpp.s
 
 PickUp_Queue/PickUpQueue.obj: PickUp_Queue/PickUpQueue.cpp.obj
 
@@ -480,6 +577,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... fcfs.x
+	@echo ... lu.x
 	@echo ... pu.x
 	@echo ... st.x
 	@echo ... CommonFiles/Request.obj
@@ -497,6 +595,15 @@ help:
 	@echo ... FCFS_Queue/main.obj
 	@echo ... FCFS_Queue/main.i
 	@echo ... FCFS_Queue/main.s
+	@echo ... LookUp_Queue/LookUpQueue.obj
+	@echo ... LookUp_Queue/LookUpQueue.i
+	@echo ... LookUp_Queue/LookUpQueue.s
+	@echo ... LookUp_Queue/LookUpQueueNode.obj
+	@echo ... LookUp_Queue/LookUpQueueNode.i
+	@echo ... LookUp_Queue/LookUpQueueNode.s
+	@echo ... LookUp_Queue/main.obj
+	@echo ... LookUp_Queue/main.i
+	@echo ... LookUp_Queue/main.s
 	@echo ... PickUp_Queue/PickUpQueue.obj
 	@echo ... PickUp_Queue/PickUpQueue.i
 	@echo ... PickUp_Queue/PickUpQueue.s

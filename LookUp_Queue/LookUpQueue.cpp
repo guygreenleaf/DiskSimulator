@@ -1,16 +1,15 @@
 //
-// Created by yaweh on 10/22/2020.
+// Created by yaweh on 10/26/2020.
 //
-
-#include "PickUpQueue.hpp"
+#include "LookUpQueue.hpp"
 #include "../CommonFiles/Request.hpp"
 
 
-void PickUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
+void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
 
-    PickUpQueueNode *currNode = head;
+    LookUpQueueNode *currNode = head;
 
-    PickUpQueueNode *rNode = new PickUpQueueNode(request);
+    LookUpQueueNode *rNode = new LookUpQueueNode(request);
     if( empty() ) {
         head = tail = rNode;
         cRWHeadTrack = rNode->request()->track();
@@ -66,12 +65,12 @@ void PickUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
 }
 
 //CHANGE HOW THIS BEHAVES TO HANDLE SAME TRACK REQUESTS AT ANY TIME.
-Request *PickUpQueue::getRequest() {
+Request *LookUpQueue::getRequest() {
     if( empty() ) {
         std::cout << "Calling STQueueNode::getRequest() on an empty queue. Terminating...\n";
         exit(1);
     }
-    PickUpQueueNode *stQueueNode = head;
+    LookUpQueueNode *stQueueNode = head;
     Request *request = stQueueNode->request();
     head = head->next();
     if( head == nullptr )
@@ -80,18 +79,18 @@ Request *PickUpQueue::getRequest() {
     return request;
 }
 
-bool PickUpQueue::empty() {
+bool LookUpQueue::empty() {
     return head == nullptr;
 }
 
-void PickUpQueue::print() {
+void LookUpQueue::print() {
     for(auto cur = head; cur; cur = cur->next() )
         cur->request()->print();
 }
 
-PickUpQueue::~PickUpQueue() {
+LookUpQueue::~LookUpQueue() {
     while( head != nullptr ) {
-        PickUpQueueNode *node = head;
+        LookUpQueueNode *node = head;
         head = node->next();
         delete node;
     }

@@ -73,6 +73,7 @@ CMAKE_BINARY_DIR = C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-
 
 # The main recursive "all" target.
 all: CMakeFiles/fcfs.x.dir/all
+all: CMakeFiles/lu.x.dir/all
 all: CMakeFiles/st.x.dir/all
 all: CMakeFiles/pu.x.dir/all
 
@@ -85,6 +86,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/fcfs.x.dir/clean
+clean: CMakeFiles/lu.x.dir/clean
 clean: CMakeFiles/st.x.dir/clean
 clean: CMakeFiles/pu.x.dir/clean
 
@@ -118,13 +120,40 @@ CMakeFiles/fcfs.x.dir/clean:
 .PHONY : CMakeFiles/fcfs.x.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/lu.x.dir
+
+# All Build rule for target.
+CMakeFiles/lu.x.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-debug\CMakeFiles --progress-num=7,8,9,10,11 "Built target lu.x"
+.PHONY : CMakeFiles/lu.x.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lu.x.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-debug\CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/lu.x.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/lu.x.dir/rule
+
+# Convenience name for target.
+lu.x: CMakeFiles/lu.x.dir/rule
+
+.PHONY : lu.x
+
+# clean rule for target.
+CMakeFiles/lu.x.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/clean
+.PHONY : CMakeFiles/lu.x.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/st.x.dir
 
 # All Build rule for target.
 CMakeFiles/st.x.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-debug\CMakeFiles --progress-num=12,13,14,15,16 "Built target st.x"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-debug\CMakeFiles --progress-num=17,18,19,20,21 "Built target st.x"
 .PHONY : CMakeFiles/st.x.dir/all
 
 # Build rule for subdir invocation for target.
@@ -151,7 +180,7 @@ CMakeFiles/st.x.dir/clean:
 CMakeFiles/pu.x.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-debug\CMakeFiles --progress-num=7,8,9,10,11 "Built target pu.x"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim\cmake-build-debug\CMakeFiles --progress-num=12,13,14,15,16 "Built target pu.x"
 .PHONY : CMakeFiles/pu.x.dir/all
 
 # Build rule for subdir invocation for target.
