@@ -1,15 +1,16 @@
 //
-// Created by Guy on 10/26/2020.
+// Created by yaweh on 10/26/2020.
 //
-#include "LookUpQueue.hpp"
+
+#include "CLookUpQueue.hpp"
 #include "../CommonFiles/Request.hpp"
 
 
-void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
+void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
 
-    LookUpQueueNode *currNode = head;
+    CLookUpQueueNode *currNode = head;
 
-    LookUpQueueNode *rNode = new LookUpQueueNode(request);
+    CLookUpQueueNode *rNode = new CLookUpQueueNode(request);
 
     if( empty() ) {
         head = tail = rNode;
@@ -41,9 +42,9 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                 } else if (currNode->next()->request()->track() <= rNode->request()->track() &&
                            currNode->request()->track() > rNode->request()->track()) {
                     if(currNode->request()->track() == rNode->request()->track()){
-                       currNode->next(rNode);
-                       rNode->next(currNode->next());
-                       break;
+                        currNode->next(rNode);
+                        rNode->next(currNode->next());
+                        break;
                     }
                     rNode->next(currNode->next());
                     currNode->next(rNode);
@@ -59,21 +60,21 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
         }
 
         if(head != nullptr && head == tail){
-              currNode->next(rNode);
-              head = currNode;
-              tail = rNode;
+            currNode->next(rNode);
+            head = currNode;
+            tail = rNode;
         }
     }
 }
 
 
 //CHANGE HOW THIS BEHAVES TO HANDLE SAME TRACK REQUESTS AT ANY TIME.
-Request *LookUpQueue::getRequest() {
+Request *CLookUpQueue::getRequest() {
     if( empty() ) {
         std::cout << "Calling STQueueNode::getRequest() on an empty queue. Terminating...\n";
         exit(1);
     }
-    LookUpQueueNode *stQueueNode = head;
+    CLookUpQueueNode *stQueueNode = head;
     Request *request = stQueueNode->request();
     head = head->next();
     if( head == nullptr )
@@ -82,18 +83,18 @@ Request *LookUpQueue::getRequest() {
     return request;
 }
 
-bool LookUpQueue::empty() {
+bool CLookUpQueue::empty() {
     return head == nullptr;
 }
 
-void LookUpQueue::print() {
+void CLookUpQueue::print() {
     for(auto cur = head; cur; cur = cur->next() )
         cur->request()->print();
 }
 
-LookUpQueue::~LookUpQueue() {
+CLookUpQueue::~CLookUpQueue() {
     while( head != nullptr ) {
-        LookUpQueueNode *node = head;
+        CLookUpQueueNode *node = head;
         head = node->next();
         delete node;
     }

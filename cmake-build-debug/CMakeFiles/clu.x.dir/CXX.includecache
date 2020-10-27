@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.cpp
+CLookUpQueueNode.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.hpp
+

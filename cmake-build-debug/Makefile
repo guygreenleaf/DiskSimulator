@@ -181,6 +181,100 @@ pu.x/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/build
 .PHONY : pu.x/fast
 
+#=============================================================================
+# Target rules for targets named clu.x
+
+# Build rule for target.
+clu.x: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 clu.x
+.PHONY : clu.x
+
+# fast build rule for target.
+clu.x/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/build
+.PHONY : clu.x/fast
+
+CLookUp_Queue/CLookUpQueue.obj: CLookUp_Queue/CLookUpQueue.cpp.obj
+
+.PHONY : CLookUp_Queue/CLookUpQueue.obj
+
+# target to build an object file
+CLookUp_Queue/CLookUpQueue.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueue.cpp.obj
+.PHONY : CLookUp_Queue/CLookUpQueue.cpp.obj
+
+CLookUp_Queue/CLookUpQueue.i: CLookUp_Queue/CLookUpQueue.cpp.i
+
+.PHONY : CLookUp_Queue/CLookUpQueue.i
+
+# target to preprocess a source file
+CLookUp_Queue/CLookUpQueue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueue.cpp.i
+.PHONY : CLookUp_Queue/CLookUpQueue.cpp.i
+
+CLookUp_Queue/CLookUpQueue.s: CLookUp_Queue/CLookUpQueue.cpp.s
+
+.PHONY : CLookUp_Queue/CLookUpQueue.s
+
+# target to generate assembly for a file
+CLookUp_Queue/CLookUpQueue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueue.cpp.s
+.PHONY : CLookUp_Queue/CLookUpQueue.cpp.s
+
+CLookUp_Queue/CLookUpQueueNode.obj: CLookUp_Queue/CLookUpQueueNode.cpp.obj
+
+.PHONY : CLookUp_Queue/CLookUpQueueNode.obj
+
+# target to build an object file
+CLookUp_Queue/CLookUpQueueNode.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueueNode.cpp.obj
+.PHONY : CLookUp_Queue/CLookUpQueueNode.cpp.obj
+
+CLookUp_Queue/CLookUpQueueNode.i: CLookUp_Queue/CLookUpQueueNode.cpp.i
+
+.PHONY : CLookUp_Queue/CLookUpQueueNode.i
+
+# target to preprocess a source file
+CLookUp_Queue/CLookUpQueueNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueueNode.cpp.i
+.PHONY : CLookUp_Queue/CLookUpQueueNode.cpp.i
+
+CLookUp_Queue/CLookUpQueueNode.s: CLookUp_Queue/CLookUpQueueNode.cpp.s
+
+.PHONY : CLookUp_Queue/CLookUpQueueNode.s
+
+# target to generate assembly for a file
+CLookUp_Queue/CLookUpQueueNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueueNode.cpp.s
+.PHONY : CLookUp_Queue/CLookUpQueueNode.cpp.s
+
+CLookUp_Queue/main.obj: CLookUp_Queue/main.cpp.obj
+
+.PHONY : CLookUp_Queue/main.obj
+
+# target to build an object file
+CLookUp_Queue/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/main.cpp.obj
+.PHONY : CLookUp_Queue/main.cpp.obj
+
+CLookUp_Queue/main.i: CLookUp_Queue/main.cpp.i
+
+.PHONY : CLookUp_Queue/main.i
+
+# target to preprocess a source file
+CLookUp_Queue/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/main.cpp.i
+.PHONY : CLookUp_Queue/main.cpp.i
+
+CLookUp_Queue/main.s: CLookUp_Queue/main.cpp.s
+
+.PHONY : CLookUp_Queue/main.s
+
+# target to generate assembly for a file
+CLookUp_Queue/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CLookUp_Queue/main.cpp.s
+.PHONY : CLookUp_Queue/main.cpp.s
+
 CommonFiles/Request.obj: CommonFiles/Request.cpp.obj
 
 .PHONY : CommonFiles/Request.obj
@@ -191,6 +285,7 @@ CommonFiles/Request.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/CommonFiles/Request.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/CommonFiles/Request.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CommonFiles/Request.cpp.obj
 .PHONY : CommonFiles/Request.cpp.obj
 
 CommonFiles/Request.i: CommonFiles/Request.cpp.i
@@ -203,6 +298,7 @@ CommonFiles/Request.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/CommonFiles/Request.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/CommonFiles/Request.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CommonFiles/Request.cpp.i
 .PHONY : CommonFiles/Request.cpp.i
 
 CommonFiles/Request.s: CommonFiles/Request.cpp.s
@@ -215,6 +311,7 @@ CommonFiles/Request.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lu.x.dir\build.make CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\st.x.dir\build.make CMakeFiles/st.x.dir/CommonFiles/Request.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pu.x.dir\build.make CMakeFiles/pu.x.dir/CommonFiles/Request.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\clu.x.dir\build.make CMakeFiles/clu.x.dir/CommonFiles/Request.cpp.s
 .PHONY : CommonFiles/Request.cpp.s
 
 EventDriver/EventNode.obj: EventDriver/EventNode.cpp.obj
@@ -576,10 +673,20 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... clu.x
 	@echo ... fcfs.x
 	@echo ... lu.x
 	@echo ... pu.x
 	@echo ... st.x
+	@echo ... CLookUp_Queue/CLookUpQueue.obj
+	@echo ... CLookUp_Queue/CLookUpQueue.i
+	@echo ... CLookUp_Queue/CLookUpQueue.s
+	@echo ... CLookUp_Queue/CLookUpQueueNode.obj
+	@echo ... CLookUp_Queue/CLookUpQueueNode.i
+	@echo ... CLookUp_Queue/CLookUpQueueNode.s
+	@echo ... CLookUp_Queue/main.obj
+	@echo ... CLookUp_Queue/main.i
+	@echo ... CLookUp_Queue/main.s
 	@echo ... CommonFiles/Request.obj
 	@echo ... CommonFiles/Request.i
 	@echo ... CommonFiles/Request.s
