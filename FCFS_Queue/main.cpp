@@ -25,9 +25,11 @@ FCFSQueue *createFCFSQueueFromInputFile( int argc, char *argv[] ) {
     auto *queue = new FCFSQueue();
 
     int time, track, sector;
+    int currTrack = 0;
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
-        queue->addRequest(request, 0, 0);
+        queue->addRequest(request, currTrack, 0);
+        currTrack = track;
     }
 
     return queue;
