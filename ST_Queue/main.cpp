@@ -48,6 +48,9 @@ int main(int argc, char *argv[]) {
     bigQueue->print();
     bigQueue->getRequest();
     bigQueue->getRequest();
+    bigQueue->addRequest(newReq, 79, 0);
+    std::cout << "test print" << std::endl;
+    bigQueue->print();
     bigQueue->getRequest();
     std::cout << "test print" << std::endl;
     bigQueue->print();

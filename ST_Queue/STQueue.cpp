@@ -24,6 +24,11 @@ void STQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) 
         head = tail = rNode;
     } else {
         while(currNode != tail ) {
+            if(cRWHeadTrack == rNode->request()->track()){
+                rNode->next(currNode);
+                head = rNode;
+                break;
+            }
             if (rNode->request()->track() != currNode->next()->request()->track()  && rNode->request()->track() == currNode->request()->track()) {
                 rNode->next(currNode->next());
                 currNode->next(rNode);
