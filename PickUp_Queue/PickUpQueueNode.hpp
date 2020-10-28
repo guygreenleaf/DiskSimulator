@@ -16,6 +16,7 @@ public:
 
 private:
     PickUpQueueNode *_next;
+    PickUpQueueNode *_prev;
     Request *_request;
 };
 

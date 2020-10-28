@@ -6,60 +6,60 @@
 #include "../CommonFiles/Request.hpp"
 
 
+bool inRange(int low, int high, int x)
+{
+    return  ((x-low) <= (high-low));
+}
+
 void PickUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
 
     PickUpQueueNode *currNode = head;
 
     PickUpQueueNode *rNode = new PickUpQueueNode(request);
+    int reqTrack = rNode->request()->track();
     if( empty() ) {
         head = tail = rNode;
-        cRWHeadTrack = rNode->request()->track();
     } else {
         while(currNode != tail){
+            if(inRange()){
+                if(reqTrack >= currNode->request()->track()){
 
-            cRWHeadTrack = currNode->request()->track();
-            if(cRWHeadTrack == rNode->request()->track() && currNode->next()->request()->track() != rNode->request()->track()){
-                rNode->next(currNode->next());
-                currNode->next(rNode);
-                break;
+                }
             }
-            else if(/**cRWHeadTrack < rNode->request()->track() &&**/  currNode->request()->track() == rNode ->request()->track() && rNode->request()->track() == currNode->next()->request()->track()){
-                currNode = currNode->next();
-            }
-            else if (rNode->request()->track() < currNode->request()->track() && currNode == head){
-                rNode->next(currNode);
-                head = rNode;
-                break;
-            }
+            else if(reqTrack < cRWHeadTrack){
 
-            else{
-                if(rNode->request()->track() > currNode->request()->track() && rNode->request()->track() < currNode->next()->request()->track()){
-                    rNode->next(currNode->next());
-                    currNode->next(rNode);
-                    break;
-                }
-                if(rNode->request()->track() > currNode->request()->track()){
-                    currNode = currNode->next();
-                }
             }
         }
 
         if(head != tail && currNode == tail){
-            tail->next(rNode);
-            tail = tail->next();
+
         }
 
         if(head != nullptr && head == tail){
-            cRWHeadTrack = currNode->request()->track();
-            if(rNode->request()->track() < cRWHeadTrack){
-                rNode->next(currNode);
-                head = rNode;
-                tail = currNode;
+            if(reqTrack >= cRWHeadTrack){
+                if(reqTrack >= currNode->request()->track()){
+                    currNode->next(rNode);
+                    head = currNode;
+                    tail = rNode;
+                }
+                else{
+                    rNode->next(currNode);
+                    head = rNode;
+                    tail = currNode;
+                }
+
             }
-            else {
-                head = currNode;
-                tail = rNode;
-                head->next(tail);
+            else if(reqTrack < cRWHeadTrack){
+                if(reqTrack < currNode->request()->track()){
+                    currNode->next(rNode);
+                    head = currNode;
+                    tail = rNode;
+                }
+                else{
+                    rNode->next(currNode);
+                    head = rNode;
+                    tail = currNode;
+                }
             }
         }
     }
