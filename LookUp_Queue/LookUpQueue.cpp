@@ -25,10 +25,16 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                     break;
                 }
                 if(reqTrack > currNode->request()->track() && reqTrack > currNode->next()->request()->track()){
-//                    if(currNode->next()->request()->track() > cRWHeadTrack){
+                    if(currNode->next()->request()->track() <= cRWHeadTrack){
                         rNode->next(currNode->next());
                         currNode->next(rNode);
                         break;
+                    }
+                    else
+                        currNode = currNode->next();
+//                                                                   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\rNode->next(currNode->next());
+//                                                                     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\currNode->next(rNode);
+//                                                                       \\\\\\\\\\\\\\\\\\\\\\\\\\\\\break;
 //                    }
 //                    if(currNode->next()->request()->track() <= cRWHeadTrack){
 //
