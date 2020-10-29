@@ -32,17 +32,6 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                     }
                     else
                         currNode = currNode->next();
-//                                                                   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\rNode->next(currNode->next());
-//                                                                     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\currNode->next(rNode);
-//                                                                       \\\\\\\\\\\\\\\\\\\\\\\\\\\\\break;
-//                    }
-//                    if(currNode->next()->request()->track() <= cRWHeadTrack){
-//
-//                    }
-//                    else {
-//                        currNode = currNode->next();
-//                    }
-
                 }
                 if(reqTrack > cRWHeadTrack && reqTrack < currNode->request()->track()){
                     rNode->next(head);
@@ -51,7 +40,6 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                 }
 
             }
-
 
             if(reqTrack < cRWHeadTrack){
                 if(reqTrack > currNode->next()->request()->track()){
@@ -64,7 +52,6 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                 }
 
             }
-
 
             if(reqTrack == cRWHeadTrack){
                 rNode->next(head);
@@ -80,7 +67,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
             }
             else{
                 currNode->next(rNode);
-                rNode->next(tail);
+                tail = rNode;
             }
         }
 
