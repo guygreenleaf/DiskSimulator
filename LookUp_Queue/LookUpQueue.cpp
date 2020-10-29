@@ -17,7 +17,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
     } else {
         while (currNode != tail) {
             //To be used in Phase 2
-            cRWHeadTrack = currNode->request()->track();
+//            cRWHeadTrack = currNode->request()->track();
 
             if (rNode->request()->track() > currNode->request()->track()) {
                 if (currNode->next() == nullptr) {
