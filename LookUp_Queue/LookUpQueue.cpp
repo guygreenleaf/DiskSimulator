@@ -44,6 +44,11 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
 //                    }
 
                 }
+                if(reqTrack > cRWHeadTrack && reqTrack < currNode->request()->track()){
+                    rNode->next(head);
+                    head = rNode;
+                    break;
+                }
 
             }
 
@@ -64,6 +69,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
             if(reqTrack == cRWHeadTrack){
                 rNode->next(head);
                 head = rNode;
+                break;
             }
         }
 
