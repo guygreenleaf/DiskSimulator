@@ -194,9 +194,13 @@ PickUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
 
     int time, track, sector;
     int headPos = 79;
+    int testHeadPosZero = 0;
+    int testHeadPosOverMax = 98;
+    int testHeadPosMovingFromStart = 79;
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
-        queue->addRequest(request, headPos, 0);
+        queue->addRequest(request, testHeadPosOverMax, 0);
+        testHeadPosMovingFromStart = track;
     }
 
     return queue;

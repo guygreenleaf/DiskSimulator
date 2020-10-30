@@ -18,21 +18,45 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
 
     } else {
         while (currNode != tail) {
-            if(reqTrack > cRWHeadTrack){
-                if(currNode->request()->track() > cRWHeadTrack && currNode->next()->request()->track() > cRWHeadTrack){
-                    if(reqTrack > currNode->request()->track() && reqTrack <= currNode->next()->request()->track()){
+            if (reqTrack > cRWHeadTrack) {
+                if(currNode == head && currNode->request()->track() < cRWHeadTrack){
+                    rNode->next(head);
+                    head = rNode;
+                    break;
+                }
+                if (currNode->request()->track() > cRWHeadTrack &&
+                    currNode->next()->request()->track() > cRWHeadTrack) {
+                    if (reqTrack > currNode->request()->track() && reqTrack <= currNode->next()->request()->track()) {
                         rNode->next(currNode->next());
                         currNode->next(rNode);
                         break;
                     }
-                    else
-                        currNode=currNode->next();
-                }
-                else{
-                    if(reqTrack > cRWHeadTrack && reqTrack <= head->request()->track()){
+                    if(reqTrack < currNode->request()->track()){
+                        if(currNode == head){
+                            rNode->next(currNode);
+                            head = rNode;
+                            break;
+                        }
+                        else{
+                            rNode->next(currNode->next());
+                            currNode->next(rNode);
+                            break;
+                        }
+
+                    }else {
+                        currNode = currNode->next();
+                        continue;
+                    }
+
+                } else {
+                    if (reqTrack > cRWHeadTrack && reqTrack <= head->request()->track()) {
                         rNode->next(head);
                         head = rNode;
                         break;
+                    }
+                    if (currNode->next()->request()->track() > cRWHeadTrack){
+                        currNode = currNode->next();
+                        continue;
                     }
                     else {
                         rNode->next(currNode->next());
@@ -42,21 +66,63 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
                 }
             }
 
-            if(reqTrack < cRWHeadTrack){
-                if(reqTrack < currNode->request()->track() && reqTrack >= currNode->next()->request()->track()){
+            if (reqTrack <= cRWHeadTrack) {
+                if(head == currNode && currNode->request()->track() < cRWHeadTrack){
+                    if(reqTrack <= currNode->request()->track()){
+                        rNode->next(currNode);
+                        head = rNode;
+                        break;
+
+                    }
+
+                }
+                if (currNode->request()->track() >= cRWHeadTrack) {
+                    if (currNode->next()->request()->track() < cRWHeadTrack && reqTrack < currNode->request()->track() && currNode->next()->request()->track() > reqTrack) {
+                        rNode->next(currNode->next());
+                        currNode->next(rNode);
+                        break;
+                    }else {
+                        if (reqTrack > currNode->request()->track() &&
+                            reqTrack <= currNode->next()->request()->track()) {
+                            rNode->next(currNode->next());
+                            currNode->next(rNode);
+                            break;
+                        }
+                        else if(currNode == head && reqTrack <= head->request()->track() && reqTrack >= cRWHeadTrack){
+                            rNode->next(currNode);
+                            head=rNode;
+                            break;
+                        }
+//
+//                        else
+//                            currNode = currNode->next();
+                    }
+                }
+                if (reqTrack < currNode->next()->request()->track() && reqTrack >= currNode->request()->track()){
                     rNode->next(currNode->next());
                     currNode->next(rNode);
                     break;
                 }
-                else
-                    currNode = currNode->next();
-            }
-            if(reqTrack == cRWHeadTrack){
+
+            if (reqTrack == cRWHeadTrack) {
                 rNode->next(head);
                 head = rNode;
                 break;
 
             }
+
+
+        }
+            if(head == currNode && tail == head->next() ){
+                if(reqTrack > currNode->request()->track() && reqTrack <= currNode->next()->request()->track()){
+                    rNode->next(currNode->next());
+                    currNode->next(rNode);
+                    break;
+                }
+            }
+//            if(reqTrack > currNode->request()->track()){
+                currNode = currNode->next();
+//            }
         }
 
         if (head != tail && currNode == tail) {
@@ -79,7 +145,13 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
             }
 
             if(reqTrack <= cRWHeadTrack){
-                if(reqTrack > currNode->request()->track()){
+                if(currNode->request()->track() <= cRWHeadTrack){
+                    rNode->next(currNode);
+                    head = rNode;
+                    tail = currNode;
+
+                }
+                else if(reqTrack > currNode->request()->track()){
                     rNode->next(currNode);
                     head = rNode;
                     tail = currNode;
@@ -89,7 +161,6 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
                     head = currNode;
                     tail = rNode;
                 }
-
             }
         }
     }

@@ -70,9 +70,7 @@ void PickUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                     else
                         currNode = currNode->next();
                 }
-
             }
-
         }
 
         if(head != tail && currNode == tail){

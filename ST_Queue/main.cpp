@@ -28,9 +28,16 @@ STQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {
     auto *queue = new STQueue();
 
     int time, track, sector;
+
+    //Test cases for setting the read/write head at different locations
+    int headPos = 79;
+    int testHeadPosZero = 0;
+    int testHeadPosOverMax = 98;
+    int testHeadPosMovingFromStart = 79;
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
-        queue->addRequest(request, 0, 0);
+        queue->addRequest(request, headPos, 0);
+        testHeadPosMovingFromStart = track;
     }
 
     return queue;
@@ -42,17 +49,17 @@ int main(int argc, char *argv[]) {
     auto bigQueue = createSTQueueFromInputFile(argc, argv);
 
     bigQueue->print();
-    Request *newReq = new Request(823, 79, 3);
-    bigQueue->addRequest(newReq, 0, 0);
-    std::cout << "new request added" << std::endl;
-    bigQueue->print();
-    bigQueue->getRequest();
-    bigQueue->getRequest();
-    bigQueue->addRequest(newReq, 79, 0);
-    std::cout << "test print" << std::endl;
-    bigQueue->print();
-    bigQueue->getRequest();
-    std::cout << "test print" << std::endl;
-    bigQueue->print();
+//    Request *newReq = new Request(823, 79, 3);
+//    bigQueue->addRequest(newReq, 0, 0);
+//    std::cout << "new request added" << std::endl;
+//    bigQueue->print();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->addRequest(newReq, 79, 0);
+//    std::cout << "test print" << std::endl;
+//    bigQueue->print();
+//    bigQueue->getRequest();
+//    std::cout << "test print" << std::endl;
+//    bigQueue->print();
     return 0;
 }
