@@ -193,13 +193,10 @@ PickUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
     PickUpQueue *queue = new PickUpQueue();
 
     int time, track, sector;
-    int headPos = 0;
+    int headPos = 79;
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
         queue->addRequest(request, headPos, 0);
-        headPos = track;
-
-
     }
 
     return queue;

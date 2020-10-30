@@ -110,7 +110,6 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                         tail = currNode;
                     }
                 }
-
             }
             if(reqTrack == cRWHeadTrack){
                 currNode->next(rNode);

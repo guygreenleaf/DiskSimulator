@@ -11,46 +11,51 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
     CLookUpQueueNode *currNode = head;
 
     CLookUpQueueNode *rNode = new CLookUpQueueNode(request);
+    int reqTrack = rNode->request()->track();
 
     if( empty() ) {
         head = tail = rNode;
 
     } else {
         while (currNode != tail) {
-            //To be used in Phase 2
-            cRWHeadTrack = currNode->request()->track();
+            if(reqTrack > cRWHeadTrack){
+                if(currNode->request()->track() > cRWHeadTrack && currNode->next()->request()->track() > cRWHeadTrack){
+                    if(reqTrack > currNode->request()->track() && reqTrack <= currNode->next()->request()->track()){
+                        rNode->next(currNode->next());
+                        currNode->next(rNode);
+                        break;
+                    }
+                    else
+                        currNode=currNode->next();
+                }
+                else{
+                    if(reqTrack > cRWHeadTrack && reqTrack <= head->request()->track()){
+                        rNode->next(head);
+                        head = rNode;
+                        break;
+                    }
+                    else {
+                        rNode->next(currNode->next());
+                        currNode->next(rNode);
+                        break;
+                    }
+                }
+            }
 
-            if (rNode->request()->track() > currNode->request()->track()) {
-                if (currNode->next() == nullptr) {
-                    currNode->next(rNode);
-                    tail = rNode;
-                    break;
-                } else if (currNode->next()->request()->track() > rNode->request()->track()) {
-                    rNode->next(currNode->next());
-                    currNode->next(rNode);
-                    break;
-                } else if (currNode->next() != nullptr) {
+            if(reqTrack < cRWHeadTrack){
+                if(reqTrack < currNode->request()->track() && reqTrack >= currNode->next()->request()->track()){
                     rNode->next(currNode->next());
                     currNode->next(rNode);
                     break;
                 }
-            } else if (rNode->request()->track() <= currNode->request()->track()) {
-                if (currNode->next() == nullptr) {
-                    currNode->next(rNode);
-                    tail = rNode;
-                    break;
-                } else if (currNode->next()->request()->track() <= rNode->request()->track() &&
-                           currNode->request()->track() > rNode->request()->track()) {
-                    if(currNode->request()->track() == rNode->request()->track()){
-                        currNode->next(rNode);
-                        rNode->next(currNode->next());
-                        break;
-                    }
-                    rNode->next(currNode->next());
-                    currNode->next(rNode);
-                    break;
-                } else
+                else
                     currNode = currNode->next();
+            }
+            if(reqTrack == cRWHeadTrack){
+                rNode->next(head);
+                head = rNode;
+                break;
+
             }
         }
 
@@ -60,9 +65,32 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
         }
 
         if(head != nullptr && head == tail){
-            currNode->next(rNode);
-            head = currNode;
-            tail = rNode;
+            if(reqTrack > cRWHeadTrack){
+                if(reqTrack < currNode->request()->track()){
+                    rNode->next(currNode);
+                    head = rNode;
+                    tail = currNode;
+                }
+                else{
+                    currNode->next(rNode);
+                    head = currNode;
+                    tail = rNode;
+                }
+            }
+
+            if(reqTrack <= cRWHeadTrack){
+                if(reqTrack > currNode->request()->track()){
+                    rNode->next(currNode);
+                    head = rNode;
+                    tail = currNode;
+                }
+                else{
+                    currNode->next(rNode);
+                    head = currNode;
+                    tail = rNode;
+                }
+
+            }
         }
     }
 }

@@ -6,9 +6,23 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.cpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueue.cpp
+CLookUpQueue.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueue.hpp
+../CommonFiles/Request.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueue.hpp
+iostream
+-
+../CommonFiles/Queue.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Queue.hpp
 CLookUpQueueNode.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.hpp
 
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Queue.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.hpp
 
