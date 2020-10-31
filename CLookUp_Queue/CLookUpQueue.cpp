@@ -58,7 +58,7 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
                         currNode = currNode->next();
                         continue;
                     }
-                    else {
+                    else if (currNode->next()->request()->track() != currNode->request()->track()) {
                         rNode->next(currNode->next());
                         currNode->next(rNode);
                         break;

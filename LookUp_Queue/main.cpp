@@ -57,7 +57,7 @@ LookUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
     auto *queue = new LookUpQueue();
 
     int time, track, sector;
-    int currTrack = 100;
+    int currTrack = 95;
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
         queue->addRequest(request, currTrack, 0);
@@ -67,7 +67,7 @@ LookUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
 }
 
 int main(int argc, char *argv[]) {
-    std::cout << "Pickup -- Main function.\n";
+    std::cout << "Lookup -- Main function.\n";
 
     LookUpQueue *bigQueue = createPickUpQueueFromInputFile(argc, argv);
 

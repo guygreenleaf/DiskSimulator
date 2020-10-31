@@ -57,7 +57,7 @@ CLookUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
     auto *queue = new CLookUpQueue();
 
     int time, track, sector;
-    int currTrack = 79;
+    int currTrack = 42;
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
         queue->addRequest(request, currTrack, 0);

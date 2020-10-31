@@ -25,7 +25,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                     break;
                 }
                 if(reqTrack > currNode->request()->track() && reqTrack > currNode->next()->request()->track()){
-                    if(currNode->next()->request()->track() <= cRWHeadTrack){
+                    if(currNode->next()->request()->track() <= cRWHeadTrack && currNode->next()->request()->track() != currNode->request()->track()){
                         if(currNode == head && currNode->next()->request()->track() > reqTrack){
                             rNode->next(currNode);
                             head = rNode;
@@ -50,13 +50,30 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                     }
                     else
                         currNode = currNode->next();
+
+                    if(currNode == tail && reqTrack >= currNode->request()->track()){
+                        currNode->next(rNode);
+                        tail = rNode;
+                        break;
+                    }
                 }
                 if(reqTrack > cRWHeadTrack && reqTrack < currNode->request()->track()){
                     rNode->next(head);
                     head = rNode;
                     break;
                 }
-
+                if(reqTrack > currNode->request()->track() && reqTrack <= currNode->next()->request()->track()){
+                    if(currNode->next()->request()->track() == reqTrack){
+                        rNode->next(currNode->next()->next());
+                        currNode->next()->next(rNode);
+                        break;
+                    }
+                    else {
+                        rNode->next(currNode->next());
+                        currNode->next(rNode);
+                        break;
+                    }
+                }
             }
 
             if(reqTrack < cRWHeadTrack){
@@ -79,6 +96,11 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
             if(reqTrack == cRWHeadTrack){
                 rNode->next(head);
                 head = rNode;
+                break;
+            }
+            if(reqTrack == currNode->request()->track()){
+                rNode->next(currNode->next());
+                currNode->next(rNode);
                 break;
             }
         }
