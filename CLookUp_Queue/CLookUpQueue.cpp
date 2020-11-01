@@ -43,7 +43,13 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
                             break;
                         }
 
-                    }else {
+
+                    }
+                    if(reqTrack == currNode->request()->track() && currNode == head) {
+                        rNode->next(currNode->next());
+                        currNode->next(rNode);
+                        break;
+                    }else{
                         currNode = currNode->next();
                         continue;
                     }
@@ -119,6 +125,11 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
                     currNode->next(rNode);
                     break;
                 }
+            }
+            if(reqTrack == currNode->request()->track() && currNode == head){
+                rNode->next(currNode->next());
+                currNode->next(rNode);
+                break;
             }
 //            if(reqTrack > currNode->request()->track()){
                 currNode = currNode->next();

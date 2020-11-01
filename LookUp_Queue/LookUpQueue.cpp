@@ -171,7 +171,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
 }
 
 
-//CHANGE HOW THIS BEHAVES TO HANDLE SAME TRACK REQUESTS AT ANY TIME.
+
 Request *LookUpQueue::getRequest() {
     if( empty() ) {
         std::cout << "Calling STQueueNode::getRequest() on an empty queue. Terminating...\n";

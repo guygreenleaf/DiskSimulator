@@ -1,3 +1,1 @@
-"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\clu.x.dir/objects.a
-C:\PROGRA~1\MINGW-~1\mingw64\bin\ar.exe cr CMakeFiles\clu.x.dir/objects.a @CMakeFiles\clu.x.dir\objects1.rsp
-C:\PROGRA~1\MINGW-~1\mingw64\bin\G__~1.EXE -g   -Wl,--whole-archive CMakeFiles\clu.x.dir/objects.a -Wl,--no-whole-archive  -o clu.x.exe -Wl,--out-implib,libclu.x.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\clu.x.dir\linklibs.rsp
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/clu.x.dir/CLookUp_Queue/main.cpp.o CMakeFiles/clu.x.dir/CommonFiles/Request.cpp.o CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueue.cpp.o CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueueNode.cpp.o  -o clu.x 

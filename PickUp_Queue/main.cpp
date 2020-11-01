@@ -214,16 +214,16 @@ int main(int argc, char *argv[]) {
     bigQueue->print();
     std::cout << "_----------------------------------------" << std::endl;
 
-    PickUpQueue *randQueue = createPickUpQueueFromRandomValues(6, 6);
-    randQueue->print();
+//    PickUpQueue *randQueue = createPickUpQueueFromRandomValues(6, 6);
+//    randQueue->print();
 
-//    Request *testReq = new Request(290, 49, 3);
-//    Request *test2Req = new Request(210, 62, 4);
-//    bigQueue->addRequest(testReq, 0, 0);
-//    bigQueue->addRequest(test2Req, 0, 0);
-//    std::cout << "Testing addrequest for new request" << std::endl;
-//    bigQueue->print();
-//
+    Request *testReq = new Request(290, 1, 3);
+    Request *test2Req = new Request(210, 62, 4);
+    bigQueue->addRequest(testReq, 70, 0);
+    bigQueue->addRequest(test2Req, 0, 0);
+    std::cout << "Testing addrequest for new request" << std::endl;
+    bigQueue->print();
+
 //    Request *newReq = new Request(823, 79, 3);
 //    bigQueue->addRequest(newReq, 0, 0);
 //    std::cout << "new request added" << std::endl;

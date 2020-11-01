@@ -1,4 +1,18 @@
-"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\yaweh\Desktop\SSU\Courses\CS315\DiskSim
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/guygreenleaf/Desktop/SSU/cs315/DiskSim
+-- The C compiler identification is AppleClang 11.0.0.11000033
+-- The CXX compiler identification is AppleClang 11.0.0.11000033
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug
+-- Build files have been written to: /Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug
