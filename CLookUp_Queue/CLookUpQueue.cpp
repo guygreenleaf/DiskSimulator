@@ -172,52 +172,76 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
 
             }
         }
+
+            //If we're at the head of the queue AND the tail is next, meaning only 2 elements in the queue,
+            //Check the following:
             if(head == currNode && tail == head->next() ){
+                //If the request track is greater than the current node's request track AND the request track is less than
+                //or equal too the next node's track in the queue,
+                //set the request node's next to the next node in the queue and then set the current nodes next to the request node
+                //then break.
                 if(reqTrack > currNode->request()->track() && reqTrack <= currNode->next()->request()->track()){
                     rNode->next(currNode->next());
                     currNode->next(rNode);
                     break;
                 }
             }
+            //If the request track is equal to the current node's track and the current node is the head,
+            //set the request node's next to the next node in the queue and then set the current nodes next to the request node
+            //then break.
             if(reqTrack == currNode->request()->track() && currNode == head){
                 rNode->next(currNode->next());
                 currNode->next(rNode);
                 break;
             }
+            //Otherwise, if all other cases fail, go to the next node and evaluate again.
                 currNode = currNode->next();
         }
 
+        //If we reach this point, we've either hit the tail or there's only one element in the queue.
+        //If the head is not equal to the tail and the current node IS the tail,
+        // set the incoming request to the tail.
         if (head != tail && currNode == tail) {
             tail->next(rNode);
             tail = tail->next();
         }
 
+        //If the head isn't a nullptr AND the head is the tail, meaning only one node in the queue, check the following:
         if(head != nullptr && head == tail){
+            //If the request track is greater than the r/w head:
             if(reqTrack > cRWHeadTrack){
+                //If the request track is less than the current node's request track, set the request node as the head
+                //and the current node as the tail
                 if(reqTrack < currNode->request()->track()){
                     rNode->next(currNode);
                     head = rNode;
                     tail = currNode;
                 }
+                //Otherwise do the opposite operation.
                 else{
                     currNode->next(rNode);
                     head = currNode;
                     tail = rNode;
                 }
             }
-
+            //If the request track is LESS than or equal to the r/w head at this point, do the following:
             if(reqTrack <= cRWHeadTrack){
+                //If the current node's track is less than or equal to the r/w head, set the request node as the head
+                //and the current node as the tail.
                 if(currNode->request()->track() <= cRWHeadTrack){
                     rNode->next(currNode);
                     head = rNode;
                     tail = currNode;
 
                 }
+                //Else, if the request track is greater than the current node's track, also set the request node
+                //as the head and the current node as the tail
                 else if(reqTrack > currNode->request()->track()){
                     rNode->next(currNode);
                     head = rNode;
                     tail = currNode;
                 }
+                //In all other cases, set the request node as the tail and the current node as the head.
                 else{
                     currNode->next(rNode);
                     head = currNode;
@@ -229,7 +253,7 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
 }
 
 
-//CHANGE HOW THIS BEHAVES TO HANDLE SAME TRACK REQUESTS AT ANY TIME.
+
 Request *CLookUpQueue::getRequest() {
     if( empty() ) {
         std::cout << "Calling STQueueNode::getRequest() on an empty queue. Terminating...\n";

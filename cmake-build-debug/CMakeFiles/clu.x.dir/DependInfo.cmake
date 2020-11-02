@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueue.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueue.cpp.obj"
-  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueueNode.cpp.obj"
-  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/main.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CLookUp_Queue/main.cpp.obj"
-  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CommonFiles/Request.cpp.obj"
+  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/CLookUp_Queue/CLookUpQueue.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueue.cpp.o"
+  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/CLookUp_Queue/CLookUpQueueNode.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CLookUp_Queue/CLookUpQueueNode.cpp.o"
+  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/CLookUp_Queue/main.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CLookUp_Queue/main.cpp.o"
+  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/CommonFiles/Request.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/clu.x.dir/CommonFiles/Request.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
