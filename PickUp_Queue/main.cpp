@@ -158,7 +158,7 @@ int main(int argc, char *argv[]) {
     Request *test2Req = new Request(210, 62, 4);
     bigQueue->addRequest(testReq, 70, 0);
     bigQueue->addRequest(test2Req, 0, 0);
-    std::cout << "Testing addrequest for new request" << std::endl;
+    std::cout << "Testing addrequest for new request, 1 should be at the end and 62 at the front" << std::endl;
     bigQueue->print();
 
 //    Request *newReq = new Request(823, 79, 3);
