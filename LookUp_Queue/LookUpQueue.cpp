@@ -23,7 +23,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
             if(reqTrack > cRWHeadTrack){
                 //If the request track is bigger than the current node's request track AND the request track
                 //is less than the next request,
-                //Set the request node to the next node in the queue and then set the current nodes next to the request node
+                //Set the request node's next to the next node in the queue and then set the current nodes next to the request node
                 //Then break.
                 if(reqTrack > currNode->request()->track() && reqTrack < currNode->next()->request()->track()){
                     rNode->next(currNode->next());
@@ -52,7 +52,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                         }
 
                         //Otherwise,
-                        //Set the request node to the next node in the queue and then set the current nodes next to the request node
+                        //Set the request node's next to the next node in the queue and then set the current nodes next to the request node
                         //Then break.
                         else {
                             rNode->next(currNode->next());
@@ -86,7 +86,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                 //to the next node's track, do one of the following:
                 if(reqTrack > currNode->request()->track() && reqTrack <= currNode->next()->request()->track()){
                     //If the current node's next track equals the request track,
-                    //Set the request node to the node two spaces down the queue and then set the current node's next so that its
+                    //Set the request node's next to the node two spaces down the queue and then set the current node's next so that its
                     //next is the rNode.  I.E. checking two spaces ahead and inserting if equal.
                     //then break. This is done to maintain the same sort of structure that ST queue holds.
                     if(currNode->next()->request()->track() == reqTrack){
@@ -95,7 +95,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                         break;
                     }
                     //Otherwise,
-                    //Set the request node to the next node in the queue and then set the current nodes next to the request node
+                    //Set the request node's next to the next node in the queue and then set the current nodes next to the request node
                     //Then break.
                     else {
                         rNode->next(currNode->next());
@@ -117,7 +117,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                     break;
                 }
                 //If the request track is bigger than the current node's NEXT track,
-                //Set the request node to the next node in the queue and then set the current nodes next to the request node
+                //Set the request node's next to the next node in the queue and then set the current nodes next to the request node
                 //Then break.
                 if(reqTrack > currNode->next()->request()->track()){
                     rNode->next(currNode->next());
@@ -138,7 +138,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                 break;
             }
             //If the request track is equal to the current node's track,
-            //Set the request node to the next node in the queue and then set the current nodes next to the request node
+            //Set the request node's next to the next node in the queue and then set the current nodes next to the request node
             //Then break.
             if(reqTrack == currNode->request()->track()){
                 rNode->next(currNode->next());
