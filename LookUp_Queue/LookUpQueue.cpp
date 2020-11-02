@@ -1,5 +1,5 @@
 //
-// Created by Guy on 10/26/2020.
+// Created by Guy Greenleaf on 10/26/2020.
 //
 #include "LookUpQueue.hpp"
 #include "../CommonFiles/Request.hpp"
@@ -36,11 +36,6 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                             head = rNode;
                             break;
                         }
-//                        else if(currNode == head && currNode->request()->track() < reqTrack && currNode->next()->request()->track() < reqTrack){
-//                            rNode->next(currNode->next());
-//                            currNode->next(rNode);
-//                            break;
-//                        }
 
                         else {
                             rNode->next(currNode->next());
@@ -48,6 +43,7 @@ void LookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSect
                             break;
                         }
                     }
+
                     else
                         currNode = currNode->next();
 
@@ -179,11 +175,22 @@ Request *LookUpQueue::getRequest() {
     }
     LookUpQueueNode *stQueueNode = head;
     Request *request = stQueueNode->request();
+    rwHead = request->track();
     head = head->next();
     if( head == nullptr )
         tail = nullptr;
     delete stQueueNode;
     return request;
+}
+
+//Used in testing
+int LookUpQueue::currHead(){
+    return rwHead;
+}
+
+//Used in testing
+void LookUpQueue::changeRwHead(int track){
+    rwHead = track;
 }
 
 bool LookUpQueue::empty() {

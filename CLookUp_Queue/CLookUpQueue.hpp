@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 10/26/2020.
+// Created by Guy Greenleaf on 10/26/2020.
 //
 
 #ifndef DISKSIM_X_CLOOKUPQUEUE_HPP
@@ -19,12 +19,16 @@ public:
     virtual void addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector);
 
     virtual Request *getRequest();
+
+    int currHead();
+    void changeRwHead(int track);
     virtual bool empty();
     virtual void print();
     virtual ~CLookUpQueue();
 
 private:
     CLookUpQueueNode *head, *tail;
+    int rwHead;
 };
 
 

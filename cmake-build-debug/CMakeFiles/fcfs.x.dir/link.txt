@@ -1,1 +1,3 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/fcfs.x.dir/FCFS_Queue/main.cpp.o CMakeFiles/fcfs.x.dir/FCFS_Queue/FCFSQueue.cpp.o CMakeFiles/fcfs.x.dir/FCFS_Queue/FCFSQueueNode.cpp.o CMakeFiles/fcfs.x.dir/CommonFiles/Request.cpp.o CMakeFiles/fcfs.x.dir/EventDriver/EventNode.cpp.o  -o fcfs.x 
+"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\fcfs.x.dir/objects.a
+C:\PROGRA~1\MINGW-~1\mingw64\bin\ar.exe cr CMakeFiles\fcfs.x.dir/objects.a @CMakeFiles\fcfs.x.dir\objects1.rsp
+C:\PROGRA~1\MINGW-~1\mingw64\bin\G__~1.EXE -g   -Wl,--whole-archive CMakeFiles\fcfs.x.dir/objects.a -Wl,--no-whole-archive  -o fcfs.x.exe -Wl,--out-implib,libfcfs.x.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\fcfs.x.dir\linklibs.rsp

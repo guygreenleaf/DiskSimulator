@@ -30,6 +30,7 @@ STQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {
     int time, track, sector;
 
     //Test cases for setting the read/write head at different locations
+    //Can also use the changeRWHead function for simulations
     int headPos = 79;
     int testHeadPosZero = 0;
     int testHeadPosOverMax = 98;
@@ -37,6 +38,8 @@ STQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
         queue->addRequest(request, headPos, 0);
+        //Simulate the head moving for each request. Can set the second parameter in addRequest to
+        //testHeadPosMovingFromStart in order to achieve this.
         testHeadPosMovingFromStart = track;
     }
 
@@ -49,6 +52,8 @@ int main(int argc, char *argv[]) {
     auto bigQueue = createSTQueueFromInputFile(argc, argv);
 
     bigQueue->print();
+    //Further test cases
+
 //    Request *newReq = new Request(823, 79, 3);
 //    bigQueue->addRequest(newReq, 0, 0);
 //    std::cout << "new request added" << std::endl;

@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 10/26/2020.
+// Created by Guy Greenleaf on 10/26/2020.
 //
 
 #include "CLookUpQueue.hpp"
@@ -186,11 +186,23 @@ Request *CLookUpQueue::getRequest() {
     }
     CLookUpQueueNode *stQueueNode = head;
     Request *request = stQueueNode->request();
+    //Set the track to rwhead since that's where we now are.
+    rwHead = request->track();
     head = head->next();
     if( head == nullptr )
         tail = nullptr;
     delete stQueueNode;
     return request;
+}
+
+//Used in testing
+int CLookUpQueue::currHead(){
+    return rwHead;
+}
+
+//Used in testing
+void CLookUpQueue::changeRwHead(int track){
+    rwHead = track;
 }
 
 bool CLookUpQueue::empty() {

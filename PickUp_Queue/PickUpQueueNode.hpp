@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 10/22/2020.
+// Created by Guy Greenleaf on 10/22/2020.
 //
 
 #ifndef DISKSIM_X_PICKUPQUEUENODE_HPP

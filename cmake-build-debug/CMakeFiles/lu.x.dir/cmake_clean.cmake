@@ -1,9 +1,11 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.o"
-  "CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueue.cpp.o"
-  "CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueueNode.cpp.o"
-  "CMakeFiles/lu.x.dir/LookUp_Queue/main.cpp.o"
-  "lu.x"
+  "CMakeFiles/lu.x.dir/CommonFiles/Request.cpp.obj"
+  "CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueue.cpp.obj"
+  "CMakeFiles/lu.x.dir/LookUp_Queue/LookUpQueueNode.cpp.obj"
+  "CMakeFiles/lu.x.dir/LookUp_Queue/main.cpp.obj"
+  "liblu.x.dll.a"
+  "lu.x.exe"
+  "lu.x.exe.manifest"
   "lu.x.pdb"
 )
 

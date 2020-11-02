@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 10/26/2020.
+// Created by Guy Greenleaf on 10/26/2020.
 //
 #include "CLookUpQueueNode.hpp"
 

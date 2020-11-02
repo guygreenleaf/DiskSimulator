@@ -11,35 +11,9 @@
 #include "../EventDriver/EventNode.hpp"
 #include "CLookUpQueue.hpp"
 
-//PickUpQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {
-//
-//    if( argc != 2) {
-//        std::cout << "usage: " << argv[0] << " nameOfAnInputFile\n";
-//        exit(1);
-//    }
-//
-//    std::ifstream inputStream;
-//    inputStream.open(argv[1], std::ios::in);
-//    if( ! inputStream.is_open()) {
-//        std::cout << "Unable top open " << argv[1] << ". Terminating...";
-//        perror("Error when attempting to open the input file.");
-//        exit(1);
-//    }
-//
-//    auto *queue = new PickUpQueue();
-//
-//    int time, track, sector;
-//    while(inputStream >> time && inputStream >> track && inputStream >> sector) {
-//        auto *request = new Request(time, track, sector);
-//        queue->addRequest(request, 0, 0);
-//    }
-//
-//    return queue;
-//}
 
 
-
-CLookUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
+CLookUpQueue *createCLookUpQueueFromInputFile( int argc, char *argv[] ) {
 
     if( argc != 2) {
         std::cout << "usage: " << argv[0] << " nameOfAnInputFile\n";
@@ -69,7 +43,7 @@ CLookUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
 int main(int argc, char *argv[]) {
     std::cout << "Pickup -- Main function.\n";
 
-    CLookUpQueue *bigQueue = createPickUpQueueFromInputFile(argc, argv);
+    CLookUpQueue *bigQueue = createCLookUpQueueFromInputFile(argc, argv);
 
     bigQueue->print();
 //    Request *testReq = new Request(290, 49, 3);

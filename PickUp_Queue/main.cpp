@@ -10,31 +10,7 @@
 #include "../EventDriver/EventNode.hpp"
 #include "PickUpQueue.hpp"
 
-//PickUpQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {
-//
-//    if( argc != 2) {
-//        std::cout << "usage: " << argv[0] << " nameOfAnInputFile\n";
-//        exit(1);
-//    }
-//
-//    std::ifstream inputStream;
-//    inputStream.open(argv[1], std::ios::in);
-//    if( ! inputStream.is_open()) {
-//        std::cout << "Unable top open " << argv[1] << ". Terminating...";
-//        perror("Error when attempting to open the input file.");
-//        exit(1);
-//    }
-//
-//    auto *queue = new PickUpQueue();
-//
-//    int time, track, sector;
-//    while(inputStream >> time && inputStream >> track && inputStream >> sector) {
-//        auto *request = new Request(time, track, sector);
-//        queue->addRequest(request, 0, 0);
-//    }
-//
-//    return queue;
-//}
+
 
 
 
@@ -67,46 +43,6 @@ const int ACTION_RANGE = 10;
 
 
 PickUpQueue *createPickUpQueueFromRandomValues(int numRequestsToGenerate, int numTestsToRun) {
-    // This function runs numTestsToRun to test the FCFS queue. Each test consists of one
-    // of the following operations:
-    //
-    //   1. adding a random request to the queue.
-    //   2. removing (and deleting) a request from the queue.
-    //   3. determining if the queue is empty or not.
-
-    // numRequestsToGenerate provides a limit on the number of requests to be generated.
-    // You can force the queue to become empty by setting the value of numTestsToRun
-    // far greater than numRequestsToGenerate. Setting numRequestsToGenerate greater
-    // than numTestsToRun will keep many requests in the queue.
-
-    // Once all tests are run, the queue gets emptied, if it is not already empty.
-
-    // FCFS is a simple queue and as a result, testing whether it organizes the requests
-    // correctly or not is simple. To that end, we keep track of the timestamp of
-    // the last request that we remove from the queue. Every time that we remove
-    // a request from the queue, we expect its timestamp to be larger than that of
-    // the previous one. If that relationship doesn't hold, we print an error message.
-
-    // We use enum Action to give weight to each of the three operations that
-    // we perform to test the queue. To perform a test, we draw a random number between
-    // 0 and 9 and depending on how its value relates to the range of values that enum
-    // Action provides and run a test accordingly.
-    //
-    // For example, currently, the value of GET_A_REQUEST of enum Action is 5. That means
-    // we will add a request to the queue, if the value that the random number that we
-    // generate is greater than or equal to ADD_A_REQUEST (which is zero) and less
-    // than GET_A_REQUEST (which is 5). Therefore, the weight of adding a request is
-    // 5/10 = 1/2 (we have 10 values in the interval of 0 and 9.) That is, 50 percent
-    // of the times we add a request to the queue. On the other hand, 40% of the times
-    // we remove a request from the queue and 10% of the times we inspect the queue to
-    // determine if it is empty or not.
-
-    // Please note that numTestsToGenerate bounds the number of requests that we
-    // generate. Therefore, we will skip generating requests if we ever reach this
-    // value.
-
-    // This is a long function, however breaking it up into more functions would require
-    // many arguments to be passed to helper functions. That is a trade off.
 
     auto *queue = new PickUpQueue();
     srand(getpid());
@@ -197,6 +133,7 @@ PickUpQueue *createPickUpQueueFromInputFile( int argc, char *argv[] ) {
     int testHeadPosZero = 0;
     int testHeadPosOverMax = 98;
     int testHeadPosMovingFromStart = 79;
+
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
         queue->addRequest(request, headPos, 0);
