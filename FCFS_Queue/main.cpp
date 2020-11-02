@@ -183,21 +183,21 @@ int main(int argc, char *argv[]) {
         queue->print();
     }
     else {
-        std::cout << "IM GUNNA GENERATEEEEEE" << std::endl;
+        std::cout << "Generating requests from input file" << std::endl;
         queue = createFCFSQueueFromInputFile(argc, argv);
-        std::cout << "IM FUCKIN PRINTIN " << std::endl;
+        std::cout << "Printing queue " << std::endl;
         queue->print();
-        std::cout << "time to test it! here comes some requests" << std::endl;
-
-        queue->getRequest();
-        std::cout << "IM FUCKIN PRINTIN NOOOO" << std::endl;
-        queue->print();
-        queue->getRequest();
-        std::cout << "IM FUCKIN PRINTIN NOOOO" << std::endl;
-        queue->print();
-        queue->getRequest();
-        std::cout << "IM FUCKIN PRINTIN NOOOO" << std::endl;
-        queue->print();
+//        std::cout << "testing getrequest" << std::endl;
+//
+//        queue->getRequest();
+//        std::cout << "getrequest called, now printing again to verify functionality." << std::endl;
+//        queue->print();
+//        queue->getRequest();
+//        std::cout << "getrequest called, now printing again to verify functionality." << std::endl;
+//        queue->print();
+//        queue->getRequest();
+//        std::cout << "getrequest called, now printing again to verify functionality." << std::endl;
+//        queue->print();
     }
 
 //    queue->print();

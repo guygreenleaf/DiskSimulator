@@ -5,14 +5,26 @@
 #include "CLookUpQueue.hpp"
 #include "../CommonFiles/Request.hpp"
 
-//According to the project pdf and the way tracks are laid out,
+//According to the project pdf and the way tracks are laid out according to the pdf,
 //the objective of this queue is to have the requests only serviced on
 //INWARD sweeps. From the pdf directly: "...,requests are only serviced on the
 //inward sweeps (the outward sweeps just return to the outer most request.)"
 //According to the picture provided in the pdf, track 1 is on the outermost track, meaning
 //this function will sweep in increasing order to the furthest inward track from the r/w head,
-//then return to the outer most request and travel back up to the request closest but less than
-//the first request that was serviced.
+//then return to the outer most request without picking things up and travel back up to the request closest but less than
+//the first request that was serviced, grabbing every incoming request on the way back up.
+
+//Example:
+//  RW head at 50
+//  Queue Currently contains:  52, 65, 79
+//  Request comes in at track 55
+//  55 is bigger than the r/w head and in between 52 and 65 (it's on the way up from 52 to 65)
+//  Queue now contains: 52, 55, 65, 79
+//  Request comes in at track 9 and another comes in at track 12 , and then a third at track 48
+//  Queue now contains: 52, 55, 65, 79, 9, 12, 48
+//  This is because we "jump" back down to 9 after reaching the highest request track (79),
+//  and then move back up towards 52 on subsequent requests
+//  where tracks are less than the r/w head.
 
 void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
 

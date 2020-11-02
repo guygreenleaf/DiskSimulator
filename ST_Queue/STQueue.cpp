@@ -6,7 +6,7 @@
 #include "../CommonFiles/Request.hpp"
 
 //For the purpose of this project, throughout comments I'll be referring to requests in the queue and requests coming
-//in as "nodes."  This is the simplest of the 4.
+//in as "nodes."  This is the simplest of the 4 implementations.
 void STQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
     //Create pointer to head
     STQueueNode *currNode = head;

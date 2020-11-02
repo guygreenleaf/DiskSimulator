@@ -33,9 +33,15 @@ LookUpQueue *createLookUpQueueFromInputFile( int argc, char *argv[] ) {
 
     int time, track, sector;
     int currTrack = 95;
+    int testHeadPosZero = 0;
+    int testHeadPosOverMax = 98;
+    int testHeadPosMovingFromStart = 79;
+
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
         queue->addRequest(request, currTrack, 0);
+        //Optional r/w head simulation
+        testHeadPosMovingFromStart = track;
     }
 
     return queue;
@@ -51,9 +57,10 @@ int main(int argc, char *argv[]) {
     Request *test2Req = new Request(210, 62, 4);
     bigQueue->addRequest(testReq, 95, 0);
     bigQueue->addRequest(test2Req, 95, 0);
-    std::cout << "Testing addrequest for new request" << std::endl;
+    std::cout << "Testing addrequest for new requests" << std::endl;
     bigQueue->print();
-        //Further testing
+
+    //Further testing
 //    Request *newReq = new Request(823, 79, 3);
 //    bigQueue->addRequest(newReq, 0, 0);
 //    std::cout << "new request added" << std::endl;
@@ -63,6 +70,7 @@ int main(int argc, char *argv[]) {
 //    bigQueue->getRequest();
 //    std::cout << "test print" << std::endl;
 //    bigQueue->print();
+
     return 0;
 }
 

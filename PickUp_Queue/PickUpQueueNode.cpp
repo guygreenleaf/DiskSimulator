@@ -16,7 +16,6 @@ void PickUpQueueNode::next(PickUpQueueNode *node) {
 }
 
 
-
 Request *PickUpQueueNode::request() {
     return _request;
 }

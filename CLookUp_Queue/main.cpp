@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 10/26/2020.
+// Created by Guy Greenleaf on 10/26/2020.
 //
 
 #include <iostream>
@@ -23,7 +23,7 @@ CLookUpQueue *createCLookUpQueueFromInputFile( int argc, char *argv[] ) {
     std::ifstream inputStream;
     inputStream.open(argv[1], std::ios::in);
     if( ! inputStream.is_open()) {
-        std::cout << "Unable top open " << argv[1] << ". Terminating...";
+        std::cout << "Unable to open " << argv[1] << ". Terminating...";
         perror("Error when attempting to open the input file.");
         exit(1);
     }
@@ -32,16 +32,22 @@ CLookUpQueue *createCLookUpQueueFromInputFile( int argc, char *argv[] ) {
 
     int time, track, sector;
     int currTrack = 42;
+    int testHeadPosZero = 0;
+    int testHeadPosOverMax = 98;
+    int testHeadPosMovingFromStart = 79;
+
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
         queue->addRequest(request, currTrack, 0);
+        //Used in testing to simulate r/w head movement
+        testHeadPosMovingFromStart = track;
     }
 
     return queue;
 }
 
 int main(int argc, char *argv[]) {
-    std::cout << "Pickup -- Main function.\n";
+    std::cout << "CLOOK -- Main function.\n";
 
     CLookUpQueue *bigQueue = createCLookUpQueueFromInputFile(argc, argv);
 
