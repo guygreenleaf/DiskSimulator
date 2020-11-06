@@ -13,6 +13,7 @@
 //this function will sweep in increasing order to the furthest inward track from the r/w head,
 //then return to the outer most request without picking things up and travel back up to the request closest but less than
 //the first request that was serviced, grabbing every incoming request on the way back up.
+//This can also be done with TWO queues, and I realized this
 
 //Example:
 //  RW head at 50
