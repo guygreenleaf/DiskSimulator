@@ -31,7 +31,7 @@ STQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {
 
     //Test cases for setting the read/write head at different locations
     //Can also use the changeRWHead function for simulations
-    int headPos = 79;
+    int headPos = 50;
     int testHeadPosZero = 0;
     int testHeadPosOverMax = 98;
     int testHeadPosMovingFromStart = 79;

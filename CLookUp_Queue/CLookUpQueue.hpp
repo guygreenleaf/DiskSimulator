@@ -14,12 +14,12 @@ class Request;
 class CLookUpQueue: public Queue {
 
 public:
-    CLookUpQueue(): head(nullptr), tail(nullptr) {}
+    CLookUpQueue();
 
     virtual void addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector);
-
+    bool aboveOrBelow(Request *request, int cRWHeadTrack);
     virtual Request *getRequest();
-
+    void addToAbove(Request *request, int cRWHeadTrack);
     int currHead();
     void changeRwHead(int track);
     virtual bool empty();
@@ -27,7 +27,7 @@ public:
     virtual ~CLookUpQueue();
 
 private:
-    CLookUpQueueNode *head, *tail;
+    CLookUpQueueNode *aboveHead, *aboveTail, *belowHead, *belowTail;
     int rwHead;
 };
 

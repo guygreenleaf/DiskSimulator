@@ -31,7 +31,7 @@ CLookUpQueue *createCLookUpQueueFromInputFile( int argc, char *argv[] ) {
     auto *queue = new CLookUpQueue();
 
     int time, track, sector;
-    int currTrack = 42;
+    int currTrack = 50;
     int testHeadPosZero = 0;
     int testHeadPosOverMax = 98;
     int testHeadPosMovingFromStart = 79;
