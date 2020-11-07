@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\fcfs.x.dir/objects.a
+C:\PROGRA~1\MINGW-~1\mingw64\bin\ar.exe cr CMakeFiles\fcfs.x.dir/objects.a @CMakeFiles\fcfs.x.dir\objects1.rsp
+C:\PROGRA~1\MINGW-~1\mingw64\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\fcfs.x.dir/objects.a -Wl,--no-whole-archive -o fcfs.x.exe -Wl,--out-implib,libfcfs.x.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\fcfs.x.dir\linklibs.rsp

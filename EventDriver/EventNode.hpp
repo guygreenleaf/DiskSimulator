@@ -42,4 +42,5 @@ private:
     DiskDoneEvent *ddoneEvent;
     bool isTimer, isRequest, isDDone;
 };
+
 #endif

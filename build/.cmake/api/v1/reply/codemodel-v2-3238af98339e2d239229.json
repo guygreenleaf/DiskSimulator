@@ -1,0 +1,95 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "DiskSim.x",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "clu.x::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-clu.x-Debug-06fde7fe0c90f03a5b6d.json",
+					"name" : "clu.x",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "fcfs.x::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-fcfs.x-Debug-1c5a35eda69baf23c912.json",
+					"name" : "fcfs.x",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lu.x::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lu.x-Debug-8fa470aa62ef4e86ffb0.json",
+					"name" : "lu.x",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pu.x::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pu.x-Debug-cb12469a47c03a73c83c.json",
+					"name" : "pu.x",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "st.x::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-st.x-Debug-c7b45f46d64714cbd570.json",
+					"name" : "st.x",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+		"source" : "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

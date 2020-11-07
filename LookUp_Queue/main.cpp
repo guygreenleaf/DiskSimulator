@@ -39,7 +39,7 @@ LookUpQueue *createLookUpQueueFromInputFile( int argc, char *argv[] ) {
 
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
-        queue->addRequest(request, currTrack, 0);
+        queue->addRequest(request, 50, 0);
         //Optional r/w head simulation
         testHeadPosMovingFromStart = track;
     }

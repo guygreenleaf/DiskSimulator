@@ -13,7 +13,8 @@
 //this function will sweep in increasing order to the furthest inward track from the r/w head,
 //then return to the outer most request without picking things up and travel back up to the request closest but less than
 //the first request that was serviced, grabbing every incoming request on the way back up.
-//This can also be done with TWO queues, and I realized this
+//This can be done with TWO queues, and I realized this after my initial submission, where in the first
+//"draft" I was using a very long (200+ line) addRequest function that was a mess of if-else and while loops.
 
 //Example:
 //  RW head at 50
@@ -29,80 +30,107 @@
 
 
 CLookUpQueue::CLookUpQueue() {
-    //Linked list for above the rwhead
+    //Linkedlist for above the rwhead
         aboveHead = nullptr;
-        aboveTail = nullptr;
 
-        //Linked list for below the rwhead
+        //Linkedlist for below the rwhead
         belowHead = nullptr;
-        belowTail = nullptr;
+
 }
 
-bool CLookUpQueue::aboveOrBelow(Request *request, int cRWHeadTrack){
-    if(request->track() >= cRWHeadTrack){
-        return true;
+CLookUpQueueNode *CLookUpQueue::addToOrderedList(CLookUpQueueNode *listNode, Request *req){
+
+    //request to be inserted
+    CLookUpQueueNode *rNode = new CLookUpQueueNode(req);
+    //Keep track of the current head of the list
+    CLookUpQueueNode *currHead = listNode;
+    //Use a pointer to traverse the list
+    CLookUpQueueNode *currNode = listNode;
+
+    //If the head is null, make the incoming request the head
+    if(currHead == nullptr){
+        currHead = rNode;
     }
-    return false;
+    else {
+        while (currNode->next() != nullptr) {
+            if (currNode->request()->track() <= rNode->request()->track() && currNode->next()->request()->track() >= rNode->request()->track()) {
+                rNode->next(currNode->next());
+                currNode->next(rNode);
+                break;
+            }
+            if (currNode == currHead && rNode->request()->track() < currHead->request()->track()) {
+                rNode->next(currHead);
+                currHead = rNode;
+                break;
+            }
+            if(rNode->request()->track() == currNode->request()->track()){
+                rNode->next(currNode->next());
+                currNode->next(rNode);
+                break;
+            }
+            currNode = currNode->next();
+        }
+
+        if (currNode->next() == nullptr && currNode == currHead) {
+            if (currNode->request()->track() > req->track()) {
+                rNode->next(currNode);
+                currHead = rNode;
+                return currHead;
+            } else
+                currNode->next(rNode);
+
+        }
+        if (currNode->next() == nullptr) {
+            currNode->next(rNode);
+        }
+    }
+    return currHead;
 }
 
-void CLookUpQueue::addToAbove(Request *request, int cRWHeadTrack){
-    if()
-}
 
 void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
-
-    CLookUpQueueNode *rNode = new CLookUpQueueNode(request);
-
-    if(aboveOrBelow(request, cRWHeadTrack)){
-        if(empty()){
-             aboveHead = aboveTail = rNode;
-        }
-        else if(aboveHead == aboveTail){
-            if(request->track() > aboveHead->request()->track()){
-                aboveHead->next(rNode);
-                aboveTail = rNode;
-            }
-        }
-        else{
-            addToAbove(request, cRWHeadTrack);
-        }
+    //Check if the request is greater than or equal to the rwhead. 
+    //If it is, add to the aboveHead list
+    //Otherwise, add it to the belowHead list.
+    if(cRWHeadTrack <= request->track()){
+        aboveHead = addToOrderedList(aboveHead, request);
     }
-
-    else{
-        if(empty()){
-            belowHead = belowTail = rNode;
-        }
-    }
+    else
+        belowHead = addToOrderedList(belowHead, request);
 }
 
 
 
 Request *CLookUpQueue::getRequest() {
-    if( empty() ) {
-        std::cout << "Calling STQueueNode::getRequest() on an empty queue. Terminating...\n";
+
+    if( aboveHead == nullptr ) {
+        if(belowHead != nullptr) {
+            aboveHead = nullptr;
+            CLookUpQueueNode *belowNode = belowHead;
+            Request *belowRequest = belowNode->request();
+            belowHead = belowHead->next();
+            rwHead = belowRequest->track();
+            delete belowNode;
+            return belowRequest;
+        }
+        else {
+            std::cout << "Attempted to getrequest on empty queue. Terminating..." << std::endl;
+            exit(1);
+        }
+
+    }
+    else if(aboveHead != nullptr) {
+        CLookUpQueueNode *aboveNode = aboveHead;
+        Request *request = aboveNode->request();
+        aboveHead = aboveHead->next();
+        rwHead = request->track();
+        delete aboveNode;
+        return request;
+    }
+    else{
+        std::cout << "Attempted to getrequest on empty queue. Terminating..." <<std::endl;
         exit(1);
     }
-    CLookUpQueueNode *aboveNode = aboveHead;
-    Request *request = aboveNode->request();
-
-    CLookUpQueueNode *belowNode = belowHead;
-    Request *belowRequest = belowNode->request();
-    //Set the track to rwhead since that's where we now are.
-
-    aboveHead = aboveHead->next();
-    if( aboveHead == nullptr ) {
-        if(aboveTail != nullptr) {
-            aboveTail = nullptr;
-        }
-        rwHead = belowRequest->track();
-        delete belowNode;
-        return belowRequest;
-    }
-    rwHead = request->track();
-    delete aboveNode;
-    return request;
-
-
 }
 
 //Used in testing
@@ -116,7 +144,7 @@ void CLookUpQueue::changeRwHead(int track){
 }
 
 bool CLookUpQueue::empty() {
-    return head == nullptr;
+    return aboveHead == nullptr || belowHead == nullptr;
 }
 
 void CLookUpQueue::print() {
@@ -127,10 +155,18 @@ void CLookUpQueue::print() {
         cur->request()->print();
 }
 
+//Deconstructor change this
 CLookUpQueue::~CLookUpQueue() {
-    while( head != nullptr ) {
-        CLookUpQueueNode *node = head;
-        head = node->next();
+    while( aboveHead != nullptr ) {
+        CLookUpQueueNode *node = aboveHead;
+        aboveHead = node->next();
+        delete node;
+    }
+    while( belowHead != nullptr ) {
+        CLookUpQueueNode *node = belowHead;
+        belowHead = node->next();
         delete node;
     }
 }
+
+

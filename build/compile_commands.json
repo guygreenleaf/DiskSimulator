@@ -1,0 +1,107 @@
+[
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\fcfs.x.dir\\FCFS_Queue\\main.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\FCFS_Queue\\main.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/main.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\fcfs.x.dir\\FCFS_Queue\\FCFSQueue.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\FCFS_Queue\\FCFSQueue.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueue.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\fcfs.x.dir\\FCFS_Queue\\FCFSQueueNode.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\FCFS_Queue\\FCFSQueueNode.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueueNode.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\fcfs.x.dir\\CommonFiles\\Request.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CommonFiles\\Request.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\fcfs.x.dir\\EventDriver\\EventNode.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\EventDriver\\EventNode.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\lu.x.dir\\LookUp_Queue\\main.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\LookUp_Queue\\main.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/main.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\lu.x.dir\\CommonFiles\\Request.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CommonFiles\\Request.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\lu.x.dir\\LookUp_Queue\\LookUpQueue.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\LookUp_Queue\\LookUpQueue.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/LookUpQueue.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\lu.x.dir\\LookUp_Queue\\LookUpQueueNode.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\LookUp_Queue\\LookUpQueueNode.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/LookUpQueueNode.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\st.x.dir\\ST_Queue\\main.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\ST_Queue\\main.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/main.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\st.x.dir\\CommonFiles\\Request.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CommonFiles\\Request.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\st.x.dir\\ST_Queue\\STQueue.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\ST_Queue\\STQueue.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueue.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\st.x.dir\\ST_Queue\\STQueueNode.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\ST_Queue\\STQueueNode.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\pu.x.dir\\PickUp_Queue\\main.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\PickUp_Queue\\main.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/main.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\pu.x.dir\\CommonFiles\\Request.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CommonFiles\\Request.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\pu.x.dir\\PickUp_Queue\\PickUpQueue.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\PickUp_Queue\\PickUpQueue.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/PickUpQueue.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\pu.x.dir\\PickUp_Queue\\PickUpQueueNode.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\PickUp_Queue\\PickUpQueueNode.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/PickUpQueueNode.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\clu.x.dir\\CLookUp_Queue\\main.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CLookUp_Queue\\main.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/main.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\clu.x.dir\\CommonFiles\\Request.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CommonFiles\\Request.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\clu.x.dir\\CLookUp_Queue\\CLookUpQueue.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CLookUp_Queue\\CLookUpQueue.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueue.cpp"
+},
+{
+  "directory": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\mingw64\\bin\\G__~1.EXE   -g -std=gnu++17 -o CMakeFiles\\clu.x.dir\\CLookUp_Queue\\CLookUpQueueNode.cpp.obj -c C:\\Users\\yaweh\\Desktop\\SSU\\Courses\\CS315\\DiskSim\\CLookUp_Queue\\CLookUpQueueNode.cpp",
+  "file": "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.cpp"
+}
+]

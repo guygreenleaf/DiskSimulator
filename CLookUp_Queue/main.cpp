@@ -52,6 +52,26 @@ int main(int argc, char *argv[]) {
     CLookUpQueue *bigQueue = createCLookUpQueueFromInputFile(argc, argv);
 
     bigQueue->print();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+
+
 //    Request *testReq = new Request(290, 49, 3);
 //    Request *test2Req = new Request(210, 62, 4);
 //    bigQueue->addRequest(testReq, 42, 0);
