@@ -13,12 +13,14 @@ class Request;
 class LookUpQueue: public Queue {
 
 public:
-    LookUpQueue(): head(nullptr), tail(nullptr) {}
+    LookUpQueue();
 
     virtual void addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector);
 
     virtual Request *getRequest();
 
+    LookUpQueueNode *addToOrderedList(LookUpQueueNode *listNode, Request *req);
+    LookUpQueueNode *addToOrderedListTwo(LookUpQueueNode *listNode, Request *req);
     int currHead();
     void changeRwHead(int track);
     virtual bool empty();
@@ -26,7 +28,7 @@ public:
     virtual ~LookUpQueue();
 
 private:
-    LookUpQueueNode *head, *tail;
+    LookUpQueueNode *aboveHead, *belowHead;
     int rwHead;
 };
 

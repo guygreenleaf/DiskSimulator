@@ -4,7 +4,7 @@ Attended tutoring with Soren - discussed general concepts relating to the projec
 
 No help given
 
-Implementation is all original code, no external websites/code used. Approximately 120 hours spent in total on this phase.
+Implementation is all original code, no external websites/code used.
 
 All features required for this submission phase have been implemented to the best of my ability.
 
@@ -23,11 +23,6 @@ As mentioned in lectures and labs, this phase of the project only writes output 
 
 An example of compiling and running each queue:
 
-Let's say that DiskSim.zip is sitting in the current working directory:
-
-$ unzip DiskSim.zip
-
-$ cd DiskSim
 
 1. Compile and run FCFS queue
 

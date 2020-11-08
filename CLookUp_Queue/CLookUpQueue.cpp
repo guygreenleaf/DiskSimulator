@@ -13,7 +13,7 @@
 //this function will sweep in increasing order to the furthest inward track from the r/w head,
 //then return to the outer most request without picking things up and travel back up to the request closest but less than
 //the first request that was serviced, grabbing every incoming request on the way back up.
-//This can be done with TWO queues, and I realized this after my initial submission, where in the first
+//This can be done with TWO linked lists, and I realized this after my initial submission, where in the first
 //"draft" I was using a very long (200+ line) addRequest function that was a mess of if-else and while loops.
 
 //Example:
@@ -52,34 +52,45 @@ CLookUpQueueNode *CLookUpQueue::addToOrderedList(CLookUpQueueNode *listNode, Req
         currHead = rNode;
     }
     else {
+        //Check if the next node is null, while it's not:
         while (currNode->next() != nullptr) {
+            //if the current node's track is less than or equal to the request node's track AND the next node's track
+            //is greater than or equal to the request node's track, insert it into the list ast the next node from currNode.
             if (currNode->request()->track() <= rNode->request()->track() && currNode->next()->request()->track() >= rNode->request()->track()) {
                 rNode->next(currNode->next());
                 currNode->next(rNode);
                 break;
             }
+
+
+            //If we're at the head AND the request node's track is less than the current head's track, make the request node
+            //the new head.
             if (currNode == currHead && rNode->request()->track() < currHead->request()->track()) {
                 rNode->next(currHead);
                 currHead = rNode;
                 break;
             }
+            //Maintain FCFS property if the current node's request track is equal to the request node's track.
             if(rNode->request()->track() == currNode->request()->track()){
                 rNode->next(currNode->next());
                 currNode->next(rNode);
                 break;
             }
+            //If all of the above cases fail to trigger, go to the next node and try again.
             currNode = currNode->next();
         }
 
+        //If the next node is nullptr AND we're at the head (only 1 node in list):
         if (currNode->next() == nullptr && currNode == currHead) {
+            //Determine which place to put the incoming request node
             if (currNode->request()->track() > req->track()) {
                 rNode->next(currNode);
                 currHead = rNode;
                 return currHead;
             } else
                 currNode->next(rNode);
-
         }
+        //If we're at the end of a list with more than one node, insert the request as the next node
         if (currNode->next() == nullptr) {
             currNode->next(rNode);
         }
@@ -102,7 +113,7 @@ void CLookUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSec
 
 
 Request *CLookUpQueue::getRequest() {
-
+//If the aboveHead list has reached a nullptr, check the belowHead list
     if( aboveHead == nullptr ) {
         if(belowHead != nullptr) {
             aboveHead = nullptr;
@@ -119,6 +130,7 @@ Request *CLookUpQueue::getRequest() {
         }
 
     }
+    //If the aboveHead list has a request in it, return and delete the it.
     else if(aboveHead != nullptr) {
         CLookUpQueueNode *aboveNode = aboveHead;
         Request *request = aboveNode->request();
@@ -144,9 +156,10 @@ void CLookUpQueue::changeRwHead(int track){
 }
 
 bool CLookUpQueue::empty() {
-    return aboveHead == nullptr || belowHead == nullptr;
+    return aboveHead == nullptr && belowHead == nullptr;
 }
 
+//Print the above list, and then the below
 void CLookUpQueue::print() {
     for(auto cur = aboveHead; cur; cur = cur->next() )
         cur->request()->print();

@@ -7,7 +7,7 @@
 
 
 
-//This was definitely a step above STQueue.
+
 void PickUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
 
     PickUpQueueNode *currNode = head;

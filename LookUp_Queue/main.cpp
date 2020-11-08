@@ -39,11 +39,10 @@ LookUpQueue *createLookUpQueueFromInputFile( int argc, char *argv[] ) {
 
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
         auto *request = new Request(time, track, sector);
-        queue->addRequest(request, 50, 0);
+        queue->addRequest(request, 43, 0);
         //Optional r/w head simulation
         testHeadPosMovingFromStart = track;
     }
-
     return queue;
 }
 
@@ -53,14 +52,17 @@ int main(int argc, char *argv[]) {
     LookUpQueue *bigQueue = createLookUpQueueFromInputFile(argc, argv);
 
     bigQueue->print();
-    Request *testReq = new Request(290, 49, 3);
-    Request *test2Req = new Request(210, 62, 4);
-    bigQueue->addRequest(testReq, 95, 0);
-    bigQueue->addRequest(test2Req, 95, 0);
-    std::cout << "Testing addrequest for new requests" << std::endl;
-    bigQueue->print();
+//    Request *testReq = new Request(290, 49, 3);
+//    Request *test2Req = new Request(210, 62, 4);
+//    bigQueue->addRequest(testReq, 95, 0);
+//    bigQueue->addRequest(test2Req, 95, 0);
+//    std::cout << "Testing addrequest for new requests" << std::endl;
+//    bigQueue->print();
+//
+//    std::cout << "Further testing:" << std::endl;
 
-    //Further testing
+      //Further testing
+
 //    Request *newReq = new Request(823, 79, 3);
 //    bigQueue->addRequest(newReq, 0, 0);
 //    std::cout << "new request added" << std::endl;
@@ -68,6 +70,9 @@ int main(int argc, char *argv[]) {
 //    bigQueue->getRequest();
 //    bigQueue->getRequest();
 //    bigQueue->getRequest();
+//    bigQueue->getRequest();
+//    bigQueue->getRequest();
+
 //    std::cout << "test print" << std::endl;
 //    bigQueue->print();
 

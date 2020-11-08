@@ -17,7 +17,7 @@ public:
     CLookUpQueue();
 
     virtual void addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector);
-    CLookUpQueueNode* aboveOrBelow(CLookUpQueueNode *listNode, Request *req);
+
     virtual Request *getRequest();
     CLookUpQueueNode *addToOrderedList(CLookUpQueueNode *listNode, Request *req);
     int currHead();
