@@ -1,45 +1,50 @@
-
-
 #ifndef EventDriver_EventNode_HPP
 #define EventDriver_EventNode_HPP
 
+#include "DiskDoneEvent.hpp"
+#include "TimerEvent.hpp"
+#include <stdlib.h>
+#include <iostream>
+
 class TimerEvent;
-class RequestEvent;
+class Request;
 class DiskDoneEvent;
 
 
 class EventNode {
 public:
     EventNode(): timerEvent(nullptr), requestEvent(nullptr), ddoneEvent(nullptr),
-                 isTimer(false), isRequest(false), isDDone(false) {}
+                 isTimer(false), isRequest(false), isDDone(false), _next(nullptr) {}
 
-    void addTimer(TimerEvent *timer) {
-        timerEvent = timer;
-        isTimer = true;
-    }
+    void addTimer(TimerEvent *timer);
 
-    void addRequest(RequestEvent *request) {
-        requestEvent = request;
-        isRequest = true;
-    }
+    void addRequest(Request *request);
 
-    void addDiskDone(DiskDoneEvent *dDone) {
-        ddoneEvent = dDone;
-        isDDone = true;
-    }
+    void addDiskDone(DiskDoneEvent *dDone);
 
-    TimerEvent *getTimer() { return timerEvent; }
-    RequestEvent *getRequest() { return requestEvent; }
-    DiskDoneEvent *getDiskDone() { return ddoneEvent; }
+    double getEventTime();
 
-    bool isTimerEvent()    { return isTimer; }
-    bool isRequestEvent()  { return isRequest; }
-    bool isDiskDoneEvent() { return isDDone; }
+    EventNode *next();
+    void next(EventNode *node);
+
+    TimerEvent *getTimer();
+    Request *getRequest();
+    DiskDoneEvent *getDiskDone();
+
+
+    bool isTimerEvent();
+    bool isRequestEvent();
+    bool isDiskDoneEvent();
+
+
+    void testPrint();
+
 
 private: 
     TimerEvent *timerEvent; 
-    RequestEvent *requestEvent;
+    Request *requestEvent;
     DiskDoneEvent *ddoneEvent;
+    EventNode *_next;
     bool isTimer, isRequest, isDDone;
 };
 

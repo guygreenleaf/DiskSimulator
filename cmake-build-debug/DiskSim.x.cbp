@@ -153,6 +153,48 @@
 					<DistClean command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="simulation.x">
+				<Option output="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/simulation.x.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 simulation.x"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simulation.x/fast">
+				<Option output="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/simulation.x.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/mingw-w64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 simulation.x/fast"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="pu.x">
 				<Option output="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/pu.x.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug"/>
@@ -249,15 +291,19 @@
 			</Target>
 		</Build>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueue.cpp">
+			<Option target="simulation.x"/>
 			<Option target="clu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueue.hpp">
+			<Option target="simulation.x"/>
 			<Option target="clu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.cpp">
+			<Option target="simulation.x"/>
 			<Option target="clu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/CLookUpQueueNode.hpp">
+			<Option target="simulation.x"/>
 			<Option target="clu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CLookUp_Queue/main.cpp">
@@ -267,6 +313,7 @@
 			<Option target="fcfs.x"/>
 			<Option target="lu.x"/>
 			<Option target="st.x"/>
+			<Option target="simulation.x"/>
 			<Option target="pu.x"/>
 			<Option target="clu.x"/>
 		</Unit>
@@ -274,55 +321,83 @@
 			<Option target="fcfs.x"/>
 			<Option target="lu.x"/>
 			<Option target="st.x"/>
+			<Option target="simulation.x"/>
 			<Option target="pu.x"/>
 			<Option target="clu.x"/>
 		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.cpp">
+			<Option target="simulation.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.hpp">
+			<Option target="simulation.x"/>
+		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.cpp">
-			<Option target="fcfs.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.hpp">
-			<Option target="fcfs.x"/>
+			<Option target="simulation.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.cpp">
+			<Option target="simulation.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp">
+			<Option target="simulation.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/TimerEvent.hpp">
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueue.cpp">
 			<Option target="fcfs.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueue.hpp">
 			<Option target="fcfs.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueueNode.cpp">
 			<Option target="fcfs.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueueNode.hpp">
 			<Option target="fcfs.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/main.cpp">
 			<Option target="fcfs.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/LookUpQueue.cpp">
 			<Option target="lu.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/LookUpQueue.hpp">
 			<Option target="lu.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/LookUpQueueNode.cpp">
 			<Option target="lu.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/LookUpQueueNode.hpp">
 			<Option target="lu.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/LookUp_Queue/main.cpp">
 			<Option target="lu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/PickUpQueue.cpp">
+			<Option target="simulation.x"/>
 			<Option target="pu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/PickUpQueue.hpp">
+			<Option target="simulation.x"/>
 			<Option target="pu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/PickUpQueueNode.cpp">
+			<Option target="simulation.x"/>
 			<Option target="pu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/PickUpQueueNode.hpp">
+			<Option target="simulation.x"/>
 			<Option target="pu.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/PickUp_Queue/main.cpp">
@@ -330,18 +405,31 @@
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueue.cpp">
 			<Option target="st.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueue.hpp">
 			<Option target="st.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.cpp">
 			<Option target="st.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.hpp">
 			<Option target="st.x"/>
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/main.cpp">
 			<Option target="st.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.cpp">
+			<Option target="simulation.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.hpp">
+			<Option target="simulation.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/main.cpp">
+			<Option target="simulation.x"/>
 		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

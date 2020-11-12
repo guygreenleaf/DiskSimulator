@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #include "../CommonFiles/Request.hpp"
-#include "../EventDriver/EventNode.hpp"
+
 #include "STQueue.hpp"
 
 STQueue *createSTQueueFromInputFile( int argc, char *argv[] ) {

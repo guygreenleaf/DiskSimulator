@@ -8,6 +8,7 @@ class Request;
 
 class LookUpQueueNode {
 public:
+
     LookUpQueueNode(Request *req);
     LookUpQueueNode *next();
     void next(LookUpQueueNode *node);

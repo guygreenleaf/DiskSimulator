@@ -8,7 +8,6 @@
 #include <cstdlib>
 #include <unistd.h>
 #include "../CommonFiles/Request.hpp"
-#include "../EventDriver/EventNode.hpp"
 #include "CLookUpQueue.hpp"
 
 
