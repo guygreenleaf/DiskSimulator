@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 DiskDoneEvent:: DiskDoneEvent(float currTime, Request *req, Disk *currDisk){
-    timeDone = abs(currDisk->getTrack() - req->track()) * 3 + sectorDistance(req, currDisk) * 0.1 + 0.1 + currTime;
+    timeDone = abs(currDisk->getTrack() - req->track()) * 3 + sectorDistance(req, currDisk)  + 1 + currTime;
     queueType = currDisk->getName();
 }
 

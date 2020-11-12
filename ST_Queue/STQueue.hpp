@@ -28,7 +28,7 @@ public:
 
 private:
     STQueueNode *head, *tail;
-    int rwHead;
+//    int rwHead;
 };
 
 

@@ -29,7 +29,7 @@ public:
 
 private:
     LookUpQueueNode *aboveHead, *belowHead;
-    int rwHead;
+//    int rwHead;
 };
 
 

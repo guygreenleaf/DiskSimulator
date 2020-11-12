@@ -72,7 +72,7 @@ int main(int argc, char *argv[]){
 
     //Start of simulation
     eQueue->addRequest(testReq /*add a request to the event queue*/);
-//    eQueue->addTimerEvent(testTimer);
+    eQueue->addTimerEvent(testTimer);
     eQueue->print();
     std::cout << "Simulation started" << std::endl;
     while(!eQueue->isEmpty()){
@@ -84,6 +84,7 @@ int main(int argc, char *argv[]){
         if(event->isRequestEvent()){
             fcfsDisk->processRequest(event->getRequest(), eQueue);
             stDisk->processRequest(event->getRequest(), eQueue);
+
             puDisk->processRequest(event->getRequest(), eQueue);
             lookupDisk->processRequest(event->getRequest(), eQueue);
             clookDisk->processRequest(event->getRequest(), eQueue);
@@ -99,23 +100,37 @@ int main(int argc, char *argv[]){
 //                2. Event is a timer event:
 //                    -Ask each disk to provide the number of entires in its wait queue
 //                    If eQueue is NOT empty, add a new timer event to it.;
+            if(!eQueue->isEmpty()){
+                eQueue->setTime(event->getEventTime());
+                TimerEvent *timer = new TimerEvent(event->getTimer()->getTime() + 50);
+                eQueue->addTimerEvent(timer);
+            }
+            else
+                eQueue->setTime(event->getEventTime());
         }
 
+        //DISK DONES ARENT TRIGGERING NEW DISK DONES WHEN PUSHING NEW SERVICES INTO DISKS
+        //FIX THIS SHIT QUICK BITCH
         else if(event->isDiskDoneEvent()){
             if(event->getDiskDone()->getType() == "FCFS") {
-                fcfsDisk->processDiskDone();
+                fcfsDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
+                std::cout << "DDONE FOR FCFS\n";
             }
             else if(event->getDiskDone()->getType() == "ST") {
-                stDisk->processDiskDone();
+                stDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
+                std::cout << "DDONE FOR ST\n";
             }
             else if(event->getDiskDone()->getType() == "PICKUP") {
-                puDisk->processDiskDone();
+                puDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
+                std::cout << "DDONE FOR PICKUP\n";
             }
             else if(event->getDiskDone()->getType() == "LOOKUP") {
-                lookupDisk->processDiskDone();
+                lookupDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
+                std::cout << "DDONE FOR LOOKUP\n";
             }
             else if(event->getDiskDone()->getType() == "CLOOK") {
-                clookDisk->processDiskDone();
+                clookDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
+                std::cout << "DDONE FOR CLOOK\n";
             }
         }
 //                3. event is a disk-done event:
@@ -126,6 +141,7 @@ int main(int argc, char *argv[]){
 //
     }
     std::cout << "Simulation complete" << std::endl;
+    std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
 
 
     //When timer event goes off and we get the current size of a disks' wait queue, we can store those in vectors and shit

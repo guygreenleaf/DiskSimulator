@@ -28,7 +28,7 @@ public:
 
 private:
     CLookUpQueueNode *aboveHead, *belowHead;
-    int rwHead;
+//    int rwHead;
 };
 
 

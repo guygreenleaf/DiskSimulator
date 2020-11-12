@@ -153,7 +153,7 @@ Request *PickUpQueue::getRequest() {
     PickUpQueueNode *stQueueNode = head;
     Request *request = stQueueNode->request();
     //Since we move to the track, set the rwHead to that track.
-    rwHead = request->track();
+//    rwHead = request->track();
     head = head->next();
     if( head == nullptr )
         tail = nullptr;
@@ -161,15 +161,15 @@ Request *PickUpQueue::getRequest() {
     return request;
 }
 
-//Used in testing
-int PickUpQueue::currHead(){
-    return rwHead;
-}
-
-//Used in testing
-void PickUpQueue::changeRwHead(int track){
-    rwHead = track;
-}
+////Used in testing
+//int PickUpQueue::currHead(){
+//    return rwHead;
+//}
+//
+////Used in testing
+//void PickUpQueue::changeRwHead(int track){
+//    rwHead = track;
+//}
 
 bool PickUpQueue::empty() {
     return head == nullptr;

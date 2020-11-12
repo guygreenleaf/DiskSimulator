@@ -120,7 +120,7 @@ Request *CLookUpQueue::getRequest() {
             CLookUpQueueNode *belowNode = belowHead;
             Request *belowRequest = belowNode->request();
             belowHead = belowHead->next();
-            rwHead = belowRequest->track();
+//            rwHead = belowRequest->track();
             delete belowNode;
             return belowRequest;
         }
@@ -135,7 +135,7 @@ Request *CLookUpQueue::getRequest() {
         CLookUpQueueNode *aboveNode = aboveHead;
         Request *request = aboveNode->request();
         aboveHead = aboveHead->next();
-        rwHead = request->track();
+//        rwHead = request->track();
         delete aboveNode;
         return request;
     }
@@ -145,15 +145,15 @@ Request *CLookUpQueue::getRequest() {
     }
 }
 
-//Used in testing
-int CLookUpQueue::currHead(){
-    return rwHead;
-}
-
-//Used in testing
-void CLookUpQueue::changeRwHead(int track){
-    rwHead = track;
-}
+////Used in testing
+//int CLookUpQueue::currHead(){
+//    return rwHead;
+//}
+//
+////Used in testing
+//void CLookUpQueue::changeRwHead(int track){
+//    rwHead = track;
+//}
 
 bool CLookUpQueue::empty() {
     return aboveHead == nullptr && belowHead == nullptr;

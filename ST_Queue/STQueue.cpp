@@ -47,8 +47,15 @@ void STQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) 
         //Check if the head is not null and the head == tail (This is after the first node is inserted into the queue).
         //If this is true, set the incoming request node to the tail.
         if(head != nullptr && head == tail){
-            tail->next(rNode);
-            tail = rNode;
+            if(rNode->request()->track() == cRWHeadTrack){
+                rNode->next(currNode);
+                head = rNode;
+                tail = currNode;
+            }
+            else {
+                tail->next(rNode);
+                tail = rNode;
+            }
         }
     }
 }
@@ -68,15 +75,15 @@ Request *STQueue::getRequest() {
     return request;
 }
 
-//Used in testing
-int STQueue::currHead(){
-    return rwHead;
-}
-
-//Used in testing
-void STQueue::changeRwHead(int track){
-    rwHead = track;
-}
+////Used in testing
+//int STQueue::currHead(){
+//    return rwHead;
+//}
+//
+////Used in testing
+//void STQueue::changeRwHead(int track){
+//    rwHead = track;
+//}
 
 bool STQueue::empty() {
     return head == nullptr;

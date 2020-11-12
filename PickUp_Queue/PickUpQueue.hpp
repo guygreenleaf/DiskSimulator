@@ -28,7 +28,7 @@ public:
 
 private:
     PickUpQueueNode *head, *tail;
-    int rwHead;
+//    int rwHead;
 };
 
 
