@@ -54,6 +54,11 @@ void EventQueue::addTimerEvent(TimerEvent *aTimer ) {
     }
     else{
         while (currNode->next() != nullptr) {
+            if(timerNode->getEventTime() < currNode->getEventTime() && currNode == trackHead){
+                timerNode->next(currNode);
+                head = timerNode;
+                break;
+            }
             if(timerNode->getEventTime() >= currNode->getEventTime() && timerNode->getEventTime() <= currNode->next()->getEventTime()){
                 timerNode->next(currNode->next());
                 currNode->next(timerNode);
@@ -87,6 +92,11 @@ void EventQueue::addDiskDoneEvent(DiskDoneEvent *dDoneEvent){
     }
     else{
         while (currNode->next() != nullptr) {
+            if(ddNode->getEventTime() < currNode->getEventTime() && currNode == trackHead){
+                ddNode->next(currNode);
+                head = ddNode;
+                break;
+            }
             if(ddNode->getEventTime() >= currNode->getEventTime() && ddNode->getEventTime() <= currNode->next()->getEventTime()){
                 ddNode->next(currNode->next());
                 currNode->next(ddNode);
@@ -117,8 +127,8 @@ EventNode *EventQueue:: getEvent(){
         exit(1);
     }
     EventNode *evNode = head;
-    EventNode *returnThis = evNode;
-    EventNode *delNode = head;
+//    EventNode *returnThis = evNode;
+//    EventNode *delNode = head;
     head = head->next();
 //    delete delNode;
     return evNode;

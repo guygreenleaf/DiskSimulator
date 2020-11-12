@@ -38,6 +38,10 @@ std::vector<Request *>generateRequestVector(int argc, char *argv[]){
     return reqs;
 }
 
+//KEEP NUMBER OF TIMES IT HAS BEEN INTERUPTED(given a timer event) <---TRACK NUMBER OF THIS IN DISK
+//How many times has it received processTimer? Use cumulative variable to store number of entries in queue
+//At end, divide cum number of entires in queue by number of times it was interrupted.
+
 int main(int argc, char *argv[]){
 
     //vector to initially hold requests
@@ -145,5 +149,10 @@ int main(int argc, char *argv[]){
 
 
     //When timer event goes off and we get the current size of a disks' wait queue, we can store those in vectors and shit
+    //Timer event - gets # of entries in the queue in each disk, store in variable in Disk class
+    //I.e. FCFS - timer goes off - how many entries? 5...
+    //Okay, timer event goes off again with 10 entries in it: 15
+    //Now say we get to end, divide 15 by two
 
+    //
 }

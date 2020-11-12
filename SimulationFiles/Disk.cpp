@@ -58,7 +58,9 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
 
 void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddone) {
     setState(false);
-    evQueue->setTime(ddone->getTimeDone());
+    if(ddone->getTimeDone() >= evQueue->getTime()) {
+        evQueue->setTime(ddone->getTimeDone());
+    }
 
     if(!accessWaitQueue()->empty()){
         Request *processedRequest = accessWaitQueue()->getRequest();
