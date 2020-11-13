@@ -26,13 +26,13 @@ public:
     bool isEmpty();
     void print();
 
-    double getTime();
-    void setTime(double timeSet);
+    float getTime();
+    void setTime(float timeSet);
     ~EventQueue(){};
 
 private:
     EventNode *head;
-    double currentTime = 0;
+    float currentTime = 0;
 };
 
 #endif //DISKSIM_X_EVENTQUEUE_H

@@ -1,0 +1,8 @@
+SUMMARY REPORT
+ Name       TimeInSystem           WaitTime             ServiceTime              NumInQueue
+        Min    Max    Avg      Min    Max    Avg      Min   Max    Avg          Max      Avg
+FCFS  239.40 1112.70 643.82   0.00  1019.40  523.01
+ST  239.40 1112.70 643.82   0.00  1019.40  523.01
+PICKUP  239.40 806.70 393.58   0.00   565.80  303.37
+CLOOK  212.40 691.60 496.47   0.00   629.20  425.17
+LOOK  212.40 464.60 358.43   0.00   444.60  306.33

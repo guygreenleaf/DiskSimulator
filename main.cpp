@@ -49,6 +49,7 @@ int main(int argc, char *argv[]){
     timerWaitQueues << "TIMER REPORT\n" << "TIME" << std::setw(15) << "FCFS" << std::setw(20) << "SAME TRACK" << std::setw(15) << "PICKUP" << std::setw(15) << "C-LOOK" << std::setw(15) << "LOOK" << std::endl;
 
 
+
                                                                                                                                                                         //vector to initially hold requests
     std::vector<Request *> reqVec = generateRequestVector(argc, argv);
 
@@ -123,8 +124,6 @@ int main(int argc, char *argv[]){
 //            lookupDisk->hasJob();
 //            clookDisk->hasJob();
 
-
-
             timerWaitQueues << event->getEventTime() << std::setw(15) << fcfsDisk->getnumJobs() << std::setw(20) << stDisk->getnumJobs() << std::setw(15) << puDisk->getnumJobs() << std::setw(15) << clookDisk->getnumJobs() << std::setw(15) << lookupDisk->getnumJobs() << std::endl;
 
 
@@ -172,6 +171,18 @@ int main(int argc, char *argv[]){
     std::cout << "Simulation complete" << std::endl;
     std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
     timerWaitQueues.close();
+
+    std::ofstream summaryStream;
+    summaryStream.open("SUMMARY.txt");
+    summaryStream << "SUMMARY REPORT\n" << std::setw(5) << "Name" << std::setw(19) << "TimeInSystem" << std::setw(19) << "WaitTime" << std::setw(24) << "ServiceTime" << std::setw(24) << "NumInQueue" << std::endl;
+    summaryStream << std::setw(11) << "Min" << std::setw(7) << "Max" << std::setw(7) << "Avg" << std::setw(9) << "Min" << std::setw(7) << "Max" << std::setw(7) << "Avg" << std::setw(9) << "Min" << std::setw(6) << "Max" << std::setw(7) << "Avg" << std::setw(13) << "Max" << std::setw(9) << "Avg" << std::endl;
+    summaryStream << "FCFS"            << std::fixed << std::setprecision(2) <<  std::setw(8) << fcfsDisk->getMinTimeInSys() << std::setw(8) << fcfsDisk->getMaxTimeInSys() << std::setw(7) << fcfsDisk->getAvgTimeInSys() << std::setw(7) << fcfsDisk->getMinWaitTime() << std::setw(9) << fcfsDisk->getMaxWaitTime() << std::setw(8) << fcfsDisk->getAvgWaitTime() << std::endl;
+    summaryStream << "ST"            << std::fixed << std::setprecision(2) << std::setw(8) << stDisk->getMinTimeInSys() << std::setw(8) << stDisk->getMaxTimeInSys() << std::setw(7) << stDisk->getAvgTimeInSys() << std::setw(7) << stDisk->getMinWaitTime() << std::setw(9) << stDisk->getMaxWaitTime() << std::setw(8) << stDisk->getAvgWaitTime() << std::endl;
+    summaryStream << "PICKUP"            << std::fixed << std::setprecision(2) << std::setw(8) << puDisk->getMinTimeInSys() << std::setw(7) << puDisk->getMaxTimeInSys() << std::setw(7) << puDisk->getAvgTimeInSys() << std::setw(7) << puDisk->getMinWaitTime() << std::setw(9) << puDisk->getMaxWaitTime() << std::setw(8) << puDisk->getAvgWaitTime() <<  std::endl;
+    summaryStream << "CLOOK"            << std::fixed << std::setprecision(2) << std::setw(8) << clookDisk->getMinTimeInSys() << std::setw(7) << clookDisk->getMaxTimeInSys() << std::setw(7) << clookDisk->getAvgTimeInSys() << std::setw(7) << clookDisk->getMinWaitTime() << std::setw(9) << clookDisk->getMaxWaitTime() << std::setw(8) << clookDisk->getAvgWaitTime() << std::endl;
+    summaryStream << "LOOK"            << std::fixed << std::setprecision(2) << std::setw(8) << lookupDisk->getMinTimeInSys() << std::setw(7) << lookupDisk->getMaxTimeInSys() << std::setw(7) << lookupDisk->getAvgTimeInSys() << std::setw(7) << lookupDisk->getMinWaitTime() << std::setw(9) << lookupDisk->getMaxWaitTime() << std::setw(8) << lookupDisk->getAvgWaitTime() << std::endl;
+
+    summaryStream.close();
 
 
     //When timer event goes off and we get the current size of a disks' wait queue, we can store those in vectors and shit

@@ -3,6 +3,7 @@
 //
 
 #include "Disk.hpp"
+#include <cmath>
 
 
 Disk::Disk(Queue *wait, std::string nameOfThisDisk){
@@ -60,26 +61,55 @@ void Disk::setState(bool set) {
 void Disk::processRequest(Request *req, EventQueue *evQueue) {
     totalRequestsProcessed++;
 
+
     if(accessWaitQueue()->empty() && !getState()){
         numJobs++;
         evQueue->setTime(req->time());
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), req, this);
         evQueue->addDiskDoneEvent(newDDone);
-        track = req->track();
-        sector = req->sector()+1;
+        if(track == 0 && sector == 0){
+            minWaitTime = evQueue->getTime() - req->time();
+        }
+
         cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - req->time();
+
+
+        if(minWaitTime > evQueue->getTime() - req->time()){
+            minWaitTime = evQueue->getTime() - req->time();
+        }
+        if(maxWaitTime < evQueue->getTime() - req->time()){
+            maxWaitTime = evQueue->getTime() - req->time();
+        }
 
 
         if(newDDone->getTimeDone() - req->time() > maxTimeInSys){
             maxTimeInSys = newDDone->getTimeDone()-req->time();
 
         }
+
         if(minTimeInSys == 0){
             minTimeInSys = newDDone->getTimeDone() - req->time();
         }
+
         if(minTimeInSys > newDDone->getTimeDone() - req->time()){
             minTimeInSys = newDDone->getTimeDone() - req->time();
         }
+
+        if(maxServeTime < maxTimeInSys - maxWaitTime){
+            maxServeTime = maxTimeInSys - maxWaitTime;
+        }
+
+        if(track == 0 && sector ==0){
+            minServeTime = (newDDone->getTimeDone() - req->time()) - (req->time() - evQueue->getTime());
+        }
+
+//        if(minServeTime > (newDDone->getTimeDone() - req->time()) - (evQueue->getTime() - req->time())){
+//            minServeTime = (newDDone->getTimeDone() - req->time()) - (req->time() - evQueue->getTime());
+//        }
+
+
+        track = req->track();
+        sector = req->sector()+1;
 
 //        evQueue->setTime(req->time());
         setState(true);
@@ -103,17 +133,41 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
 
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), processedRequest, this);
         cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - processedRequest->time();
+        cumulativeWaitTime = cumulativeWaitTime + evQueue->getTime() - processedRequest->time();
+
         if(newDDone->getTimeDone()-processedRequest->time() > maxTimeInSys){
             maxTimeInSys = newDDone->getTimeDone() - processedRequest->time();
+        }
+
+        if(maxWaitTime < evQueue->getTime() - processedRequest->time()){
+            maxWaitTime = evQueue->getTime() - processedRequest->time();
         }
 
         if(minTimeInSys == 0){
             minTimeInSys = newDDone->getTimeDone() - processedRequest->time();
         }
+
         if(minTimeInSys > newDDone->getTimeDone() - processedRequest->time()){
             minTimeInSys = newDDone->getTimeDone() - processedRequest->time();
         }
 
+
+
+        if(maxServeTime < maxTimeInSys - maxWaitTime){
+            maxServeTime = maxTimeInSys - maxWaitTime;
+        }
+
+//        if(track == 0 && sector ==0){
+//            minServeTime = maxTimeInSys - maxWaitTime;
+//        }
+
+//        if(minServeTime > (newDDone->getTimeDone() - processedRequest->time()) - (evQueue->getTime() - processedRequest->time())){
+//            minServeTime = (newDDone->getTimeDone() - processedRequest->time()) - (processedRequest->time() - evQueue->getTime());
+//        }
+//       LEFT OFF HERE FIGURE THIS SHIT OUT HOMEBOY
+        if(minServeTime > maxTimeInSys - maxWaitTime){
+            minServeTime = maxTimeInSys - maxWaitTime;
+        }
 
         evQueue->addDiskDoneEvent(newDDone);
 
@@ -141,3 +195,28 @@ void Disk::hasJob() {
     }
 }
 
+float Disk:: getMaxTimeInSys(){
+    return maxTimeInSys;
+}
+
+float Disk::getMinTimeInSys() {
+    return minTimeInSys;
+}
+
+float Disk::getAvgTimeInSys() {
+    return avgTimeInSys;
+}
+
+
+float Disk::getMinWaitTime() {
+    return  minWaitTime;
+}
+
+float Disk::getMaxWaitTime() {
+    return maxWaitTime;
+}
+
+float Disk::getAvgWaitTime() {
+    avgWaitTime = cumulativeWaitTime/totalRequestsProcessed;
+    return avgWaitTime;
+}

@@ -40,6 +40,18 @@ public:
     void setnumTimers();
     void hasJob();
 
+    float getMaxTimeInSys();
+
+    float getMinTimeInSys();
+
+    float getAvgTimeInSys();
+
+    float getMinWaitTime();
+
+    float getMaxWaitTime();
+
+    float getAvgWaitTime();
+
 private:
     bool isProcessing;
     int track, sector;
@@ -50,12 +62,17 @@ private:
 
     int numTimers;
 
-    int maxTimeInSys, minTimeInSys=0, avgTimeInSys;
-    int minWaitTime, maxWaitTime, avgWaitTime;
-    int maxNumInQueue, avgNumInWaitQueue;
+    float maxTimeInSys=0, minTimeInSys=0, avgTimeInSys=0;
+    float minWaitTime=0, maxWaitTime=0, avgWaitTime;
+    float maxNumInQueue, avgNumInWaitQueue;
+    float currTimeInSys = 0;
+
+    float maxServeTime, minServeTime, avgServeTime;
 
     int totalRequestsProcessed = 0;
-    int cumulativeTimeInSystem = 0;
+    float cumulativeTimeInSystem = 0;
+
+    float cumulativeWaitTime = 0;
 
 };
 

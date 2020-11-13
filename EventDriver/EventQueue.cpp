@@ -140,9 +140,9 @@ void EventQueue::print(){
     }
 }
 
-void EventQueue::setTime(double timeSet){currentTime = timeSet;}
+void EventQueue::setTime(float timeSet){currentTime = timeSet;}
 
-double EventQueue::getTime(){return currentTime;}
+float EventQueue::getTime(){return currentTime;}
 
 bool EventQueue::isEmpty() {
     if(head == nullptr){
