@@ -11,16 +11,16 @@ Disk::Disk(Queue *wait, std::string nameOfThisDisk){
     track = 0;
     sector = 0;
     isProcessing = false;
-    sizeOfWaitQueue = 0;
+    numJobs = 0;
     numTimers = 0;
 }
 
-int Disk::getSizeOfWaitQueue(){
-    return sizeOfWaitQueue;
+int Disk::getnumJobs(){
+    return numJobs;
 }
 
-void Disk::setSizeofWaitQueue(int newSize){
-    sizeOfWaitQueue = newSize + sizeOfWaitQueue;
+void Disk::setnumJobs(int newSize){
+    numJobs = newSize + numJobs;
 }
 
 int Disk::getnumTimers(){
@@ -60,17 +60,18 @@ void Disk::setState(bool set) {
 void Disk::processRequest(Request *req, EventQueue *evQueue) {
 
     if(accessWaitQueue()->empty() && !getState()){
+        numJobs++;
         evQueue->setTime(req->time());
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), req, this);
         evQueue->addDiskDoneEvent(newDDone);
         track = req->track();
         sector = req->sector()+1;
-        evQueue->setTime(req->time());
+//        evQueue->setTime(req->time());
         setState(true);
     }
     else if(getState()){
         accessWaitQueue()->addRequest(req, track, sector);
-        sizeOfWaitQueue++;
+        numJobs++;
         evQueue->setTime(req->time());
     }
 }
@@ -84,18 +85,30 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
     if(!accessWaitQueue()->empty()){
         Request *processedRequest = accessWaitQueue()->getRequest();
 
-        track = processedRequest->track();
-        sector = processedRequest->sector() +1 ;
-        sizeOfWaitQueue--;
-
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), processedRequest, this);
 
         evQueue->addDiskDoneEvent(newDDone);
+
+        track = processedRequest->track();
+        sector = processedRequest->sector() +1 ;
+        numJobs--;
+
+
 //        evQueue->setTime(accessWaitQueue()->getRequest()->time());
         setState(true);
     }
     else if (accessWaitQueue()->empty() && isProcessing){
         setState(false);
+//        numJobs = 0;
+    }
+    else if(accessWaitQueue()->empty() && !isProcessing){
+        numJobs = 0;
+    }
+}
+
+void Disk::hasJob() {
+    if(isProcessing){
+        numJobs++;
     }
 }
 

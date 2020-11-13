@@ -15,6 +15,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <iomanip>
 
 std::vector<Request *>generateRequestVector(int argc, char *argv[]){
     std::vector<Request *> reqs;
@@ -32,7 +33,7 @@ std::vector<Request *>generateRequestVector(int argc, char *argv[]){
         exit(1);
     }
     while(inputStream >> time && inputStream >> track && inputStream >> sector) {
-        auto *request = new Request(time, track, sector);
+        auto *request = new Request(time/10, track, sector);
         reqs.push_back(request);
     }
     return reqs;
@@ -77,7 +78,7 @@ int main(int argc, char *argv[]){
 
 
 
-    Request *testReq = new Request(196, 79, 23);
+    Request *testReq = new Request(19.6, 79, 23);
     TimerEvent *testTimer = new TimerEvent(50);
 
     //Start of simulation
@@ -116,7 +117,15 @@ int main(int argc, char *argv[]){
             lookupDisk->setnumTimers();
             clookDisk->setnumTimers();
 
-            timerWaitQueues << event->getEventTime() << std::setw(15) << fcfsDisk->getSizeOfWaitQueue() << std::setw(20) << stDisk->getSizeOfWaitQueue() << std::setw(15) << puDisk->getSizeOfWaitQueue() << std::setw(15) << clookDisk->getSizeOfWaitQueue() << std::setw(15) << lookupDisk->getSizeOfWaitQueue() << std::endl;
+//            fcfsDisk->hasJob();
+//            stDisk->hasJob();
+//            puDisk->hasJob();
+//            lookupDisk->hasJob();
+//            clookDisk->hasJob();
+
+
+
+            timerWaitQueues << event->getEventTime() << std::setw(15) << fcfsDisk->getnumJobs() << std::setw(20) << stDisk->getnumJobs() << std::setw(15) << puDisk->getnumJobs() << std::setw(15) << clookDisk->getnumJobs() << std::setw(15) << lookupDisk->getnumJobs() << std::endl;
 
 
             if(!eQueue->isEmpty()){

@@ -31,13 +31,14 @@ public:
      void setState(bool set);
      bool getState();
 
-    int getSizeOfWaitQueue();
+    int getnumJobs();
 
-    void setSizeofWaitQueue(int newSize);
+    void setnumJobs(int newSize);
 
     int getnumTimers();
 
     void setnumTimers();
+    void hasJob();
 
 private:
     bool isProcessing;
@@ -45,7 +46,7 @@ private:
     Queue *waitQueue;
     std::string nameOfDisk;
 
-    int sizeOfWaitQueue;
+    int numJobs;
 
     int numTimers;
 };
