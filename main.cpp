@@ -168,6 +168,7 @@ int main(int argc, char *argv[]){
 //                    disk->processDiskDoneEvent(eQueue, ....);
 //
     }
+
     std::cout << "Simulation complete" << std::endl;
     std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
     timerWaitQueues.close();

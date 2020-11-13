@@ -58,6 +58,7 @@ void Disk::setState(bool set) {
 
 
 void Disk::processRequest(Request *req, EventQueue *evQueue) {
+    totalRequestsProcessed++;
 
     if(accessWaitQueue()->empty() && !getState()){
         numJobs++;
@@ -66,6 +67,20 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
         evQueue->addDiskDoneEvent(newDDone);
         track = req->track();
         sector = req->sector()+1;
+        cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - req->time();
+
+
+        if(newDDone->getTimeDone() - req->time() > maxTimeInSys){
+            maxTimeInSys = newDDone->getTimeDone()-req->time();
+
+        }
+        if(minTimeInSys == 0){
+            minTimeInSys = newDDone->getTimeDone() - req->time();
+        }
+        if(minTimeInSys > newDDone->getTimeDone() - req->time()){
+            minTimeInSys = newDDone->getTimeDone() - req->time();
+        }
+
 //        evQueue->setTime(req->time());
         setState(true);
     }
@@ -78,6 +93,7 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
 
 void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddone) {
     setState(false);
+
     if(ddone->getTimeDone() >= evQueue->getTime()) {
         evQueue->setTime(ddone->getTimeDone());
     }
@@ -86,6 +102,18 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
         Request *processedRequest = accessWaitQueue()->getRequest();
 
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), processedRequest, this);
+        cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - processedRequest->time();
+        if(newDDone->getTimeDone()-processedRequest->time() > maxTimeInSys){
+            maxTimeInSys = newDDone->getTimeDone() - processedRequest->time();
+        }
+
+        if(minTimeInSys == 0){
+            minTimeInSys = newDDone->getTimeDone() - processedRequest->time();
+        }
+        if(minTimeInSys > newDDone->getTimeDone() - processedRequest->time()){
+            minTimeInSys = newDDone->getTimeDone() - processedRequest->time();
+        }
+
 
         evQueue->addDiskDoneEvent(newDDone);
 
@@ -104,6 +132,7 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
     else if(accessWaitQueue()->empty() && !isProcessing){
         numJobs = 0;
     }
+    avgTimeInSys = cumulativeTimeInSystem / totalRequestsProcessed;
 }
 
 void Disk::hasJob() {

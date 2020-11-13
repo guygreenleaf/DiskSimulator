@@ -49,6 +49,14 @@ private:
     int numJobs;
 
     int numTimers;
+
+    int maxTimeInSys, minTimeInSys=0, avgTimeInSys;
+    int minWaitTime, maxWaitTime, avgWaitTime;
+    int maxNumInQueue, avgNumInWaitQueue;
+
+    int totalRequestsProcessed = 0;
+    int cumulativeTimeInSystem = 0;
+
 };
 
 #endif //DISKSIM_X_DISK_HPP
