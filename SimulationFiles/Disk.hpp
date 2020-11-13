@@ -52,6 +52,12 @@ public:
 
     float getAvgWaitTime();
 
+    float getMinServTime();
+    float getMaxServeTime();
+    float getAvgServeTime();
+    void findMaxInQueue();
+    float getMaxInQueue();
+
 private:
     bool isProcessing;
     int track, sector;
@@ -71,8 +77,10 @@ private:
 
     int totalRequestsProcessed = 0;
     float cumulativeTimeInSystem = 0;
-
     float cumulativeWaitTime = 0;
+    float cumulativeServiceTime = 0;
+
+
 
 };
 

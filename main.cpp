@@ -136,8 +136,7 @@ int main(int argc, char *argv[]){
                 eQueue->setTime(event->getEventTime());
         }
 
-        //DISK DONES ARENT TRIGGERING NEW DISK DONES WHEN PUSHING NEW SERVICES INTO DISKS
-        //FIX THIS SHIT QUICK BITCH
+
         else if(event->isDiskDoneEvent()){
             if(event->getDiskDone()->getType() == "FCFS") {
                 fcfsDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
@@ -168,21 +167,30 @@ int main(int argc, char *argv[]){
 //
     }
 
+//    fcfsDisk->getAvgServeTime();
+//    stDisk->getAvgServeTime();
+//    lookupDisk->getAvgServeTime();
+//    clookDisk->getAvgServeTime();
+//    puDisk->getAvgServeTime();
+
     std::cout << "Simulation complete" << std::endl;
     std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
+    std::cout << "Generating Summary Files......" << std::endl;
     timerWaitQueues.close();
 
     std::ofstream summaryStream;
     summaryStream.open("SUMMARY.txt");
     summaryStream << "SUMMARY REPORT\n" << std::setw(5) << "Name" << std::setw(19) << "TimeInSystem" << std::setw(19) << "WaitTime" << std::setw(24) << "ServiceTime" << std::setw(24) << "NumInQueue" << std::endl;
     summaryStream << std::setw(11) << "Min" << std::setw(7) << "Max" << std::setw(7) << "Avg" << std::setw(9) << "Min" << std::setw(7) << "Max" << std::setw(7) << "Avg" << std::setw(9) << "Min" << std::setw(6) << "Max" << std::setw(7) << "Avg" << std::setw(13) << "Max" << std::setw(9) << "Avg" << std::endl;
-    summaryStream << "FCFS"            << std::fixed << std::setprecision(2) <<  std::setw(8) << fcfsDisk->getMinTimeInSys() << std::setw(8) << fcfsDisk->getMaxTimeInSys() << std::setw(7) << fcfsDisk->getAvgTimeInSys() << std::setw(7) << fcfsDisk->getMinWaitTime() << std::setw(9) << fcfsDisk->getMaxWaitTime() << std::setw(8) << fcfsDisk->getAvgWaitTime() << std::endl;
-    summaryStream << "ST"            << std::fixed << std::setprecision(2) << std::setw(8) << stDisk->getMinTimeInSys() << std::setw(8) << stDisk->getMaxTimeInSys() << std::setw(7) << stDisk->getAvgTimeInSys() << std::setw(7) << stDisk->getMinWaitTime() << std::setw(9) << stDisk->getMaxWaitTime() << std::setw(8) << stDisk->getAvgWaitTime() << std::endl;
-    summaryStream << "PICKUP"            << std::fixed << std::setprecision(2) << std::setw(8) << puDisk->getMinTimeInSys() << std::setw(7) << puDisk->getMaxTimeInSys() << std::setw(7) << puDisk->getAvgTimeInSys() << std::setw(7) << puDisk->getMinWaitTime() << std::setw(9) << puDisk->getMaxWaitTime() << std::setw(8) << puDisk->getAvgWaitTime() <<  std::endl;
-    summaryStream << "CLOOK"            << std::fixed << std::setprecision(2) << std::setw(8) << clookDisk->getMinTimeInSys() << std::setw(7) << clookDisk->getMaxTimeInSys() << std::setw(7) << clookDisk->getAvgTimeInSys() << std::setw(7) << clookDisk->getMinWaitTime() << std::setw(9) << clookDisk->getMaxWaitTime() << std::setw(8) << clookDisk->getAvgWaitTime() << std::endl;
-    summaryStream << "LOOK"            << std::fixed << std::setprecision(2) << std::setw(8) << lookupDisk->getMinTimeInSys() << std::setw(7) << lookupDisk->getMaxTimeInSys() << std::setw(7) << lookupDisk->getAvgTimeInSys() << std::setw(7) << lookupDisk->getMinWaitTime() << std::setw(9) << lookupDisk->getMaxWaitTime() << std::setw(8) << lookupDisk->getAvgWaitTime() << std::endl;
+    summaryStream << "FCFS"            << std::fixed << std::setprecision(2) <<  std::setw(8) << fcfsDisk->getMinTimeInSys() << std::setw(8) << fcfsDisk->getMaxTimeInSys() << std::setw(7) << fcfsDisk->getAvgTimeInSys() << std::setw(7) << fcfsDisk->getMinWaitTime() << std::setw(9) << fcfsDisk->getMaxWaitTime() << std::setw(8) << fcfsDisk->getAvgWaitTime() << std::setw(8) << fcfsDisk->getMinServTime() << std::setw(8) << fcfsDisk->getMaxServeTime() << std::setw(8) << fcfsDisk->getAvgServeTime() << std::setw(8) << fcfsDisk->getMaxInQueue() << std::endl;
+    summaryStream << "ST"            << std::fixed << std::setprecision(2) << std::setw(10) << stDisk->getMinTimeInSys() << std::setw(8) << stDisk->getMaxTimeInSys() << std::setw(7) << stDisk->getAvgTimeInSys() << std::setw(7) << stDisk->getMinWaitTime() << std::setw(9) << stDisk->getMaxWaitTime() << std::setw(8) << stDisk->getAvgWaitTime() << std::setw(8) << stDisk->getMinServTime() << std::setw(8) << stDisk->getMaxServeTime() << std::setw(8) << stDisk->getAvgServeTime()  << std::setw(8) << stDisk->getMaxInQueue() <<  std::endl;
+    summaryStream << "PICKUP"            << std::fixed << std::setprecision(2) << std::setw(7) << puDisk->getMinTimeInSys() << std::setw(7) << puDisk->getMaxTimeInSys() << std::setw(7) << puDisk->getAvgTimeInSys() << std::setw(7) << puDisk->getMinWaitTime() << std::setw(9) << puDisk->getMaxWaitTime() << std::setw(8) << puDisk->getAvgWaitTime() << std::setw(8) << puDisk->getMinServTime() << std::setw(8) << puDisk->getMaxServeTime() << std::setw(8) << puDisk->getAvgServeTime() << std::setw(8) << puDisk->getMaxInQueue() <<   std::endl;
+    summaryStream << "CLOOK"            << std::fixed << std::setprecision(2) << std::setw(8) << clookDisk->getMinTimeInSys() << std::setw(7) << clookDisk->getMaxTimeInSys() << std::setw(7) << clookDisk->getAvgTimeInSys() << std::setw(7) << clookDisk->getMinWaitTime() << std::setw(9) << clookDisk->getMaxWaitTime() << std::setw(8) << clookDisk->getAvgWaitTime() <<  std::setw(8) << clookDisk->getMinServTime() << std::setw(8) << clookDisk->getMaxServeTime() << std::setw(8) << clookDisk->getAvgServeTime() << std::setw(8) << clookDisk->getMaxInQueue() << std::endl;
+    summaryStream << "LOOK"            << std::fixed << std::setprecision(2) << std::setw(9) << lookupDisk->getMinTimeInSys() << std::setw(7) << lookupDisk->getMaxTimeInSys() << std::setw(7) << lookupDisk->getAvgTimeInSys() << std::setw(7) << lookupDisk->getMinWaitTime() << std::setw(9) << lookupDisk->getMaxWaitTime() << std::setw(8) << lookupDisk->getAvgWaitTime() <<  std::setw(8) << lookupDisk->getMinServTime() << std::setw(8) << lookupDisk->getMaxServeTime() << std::setw(8) <<  lookupDisk->getAvgServeTime() << std::setw(8) << lookupDisk->getMaxInQueue() << std::endl;
 
     summaryStream.close();
+
+    std::cout << "Summary files successfully generated.";
 
 
     //When timer event goes off and we get the current size of a disks' wait queue, we can store those in vectors and shit
