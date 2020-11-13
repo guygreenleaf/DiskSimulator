@@ -43,8 +43,12 @@ std::vector<Request *>generateRequestVector(int argc, char *argv[]){
 //At end, divide cum number of entires in queue by number of times it was interrupted.
 
 int main(int argc, char *argv[]){
+    std::ofstream timerWaitQueues;
+    timerWaitQueues.open("TimerWaitQueues.txt");
+    timerWaitQueues << "TIMER REPORT\n" << "TIME" << std::setw(15) << "FCFS" << std::setw(20) << "SAME TRACK" << std::setw(15) << "PICKUP" << std::setw(15) << "C-LOOK" << std::setw(15) << "LOOK" << std::endl;
 
-    //vector to initially hold requests
+
+                                                                                                                                                                        //vector to initially hold requests
     std::vector<Request *> reqVec = generateRequestVector(argc, argv);
 
     Queue *fcfs = new FCFSQueue();
@@ -71,7 +75,9 @@ int main(int argc, char *argv[]){
 
     EventQueue *eQueue = new EventQueue();
 
-    Request *testReq = new Request(10, 5, 20);
+
+
+    Request *testReq = new Request(196, 79, 23);
     TimerEvent *testTimer = new TimerEvent(50);
 
     //Start of simulation
@@ -104,6 +110,15 @@ int main(int argc, char *argv[]){
 //                2. Event is a timer event:
 //                    -Ask each disk to provide the number of entires in its wait queue
 //                    If eQueue is NOT empty, add a new timer event to it.;
+            fcfsDisk->setnumTimers();
+            stDisk->setnumTimers();
+            puDisk->setnumTimers();
+            lookupDisk->setnumTimers();
+            clookDisk->setnumTimers();
+
+            timerWaitQueues << event->getEventTime() << std::setw(15) << fcfsDisk->getSizeOfWaitQueue() << std::setw(20) << stDisk->getSizeOfWaitQueue() << std::setw(15) << puDisk->getSizeOfWaitQueue() << std::setw(15) << clookDisk->getSizeOfWaitQueue() << std::setw(15) << lookupDisk->getSizeOfWaitQueue() << std::endl;
+
+
             if(!eQueue->isEmpty()){
                 eQueue->setTime(event->getEventTime());
                 TimerEvent *timer = new TimerEvent(event->getTimer()->getTime() + 50);
@@ -146,6 +161,7 @@ int main(int argc, char *argv[]){
     }
     std::cout << "Simulation complete" << std::endl;
     std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
+    timerWaitQueues.close();
 
 
     //When timer event goes off and we get the current size of a disks' wait queue, we can store those in vectors and shit

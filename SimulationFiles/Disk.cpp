@@ -11,6 +11,24 @@ Disk::Disk(Queue *wait, std::string nameOfThisDisk){
     track = 0;
     sector = 0;
     isProcessing = false;
+    sizeOfWaitQueue = 0;
+    numTimers = 0;
+}
+
+int Disk::getSizeOfWaitQueue(){
+    return sizeOfWaitQueue;
+}
+
+void Disk::setSizeofWaitQueue(int newSize){
+    sizeOfWaitQueue = newSize + sizeOfWaitQueue;
+}
+
+int Disk::getnumTimers(){
+    return numTimers;
+}
+
+void Disk::setnumTimers(){
+    numTimers++;
 }
 
 std::string Disk::getName(){
@@ -52,6 +70,7 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
     }
     else if(getState()){
         accessWaitQueue()->addRequest(req, track, sector);
+        sizeOfWaitQueue++;
         evQueue->setTime(req->time());
     }
 }
@@ -67,12 +86,16 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
 
         track = processedRequest->track();
         sector = processedRequest->sector() +1 ;
+        sizeOfWaitQueue--;
 
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), processedRequest, this);
 
         evQueue->addDiskDoneEvent(newDDone);
 //        evQueue->setTime(accessWaitQueue()->getRequest()->time());
         setState(true);
+    }
+    else if (accessWaitQueue()->empty() && isProcessing){
+        setState(false);
     }
 }
 

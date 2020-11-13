@@ -31,12 +31,23 @@ public:
      void setState(bool set);
      bool getState();
 
+    int getSizeOfWaitQueue();
+
+    void setSizeofWaitQueue(int newSize);
+
+    int getnumTimers();
+
+    void setnumTimers();
 
 private:
     bool isProcessing;
     int track, sector;
     Queue *waitQueue;
     std::string nameOfDisk;
+
+    int sizeOfWaitQueue;
+
+    int numTimers;
 };
 
 #endif //DISKSIM_X_DISK_HPP
