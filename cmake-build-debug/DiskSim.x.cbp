@@ -343,6 +343,12 @@
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp">
 			<Option target="simulation.x"/>
 		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.cpp">
+			<Option target="simulation.x"/>
+		</Unit>
+		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.hpp">
+			<Option target="simulation.x"/>
+		</Unit>
 		<Unit filename="C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/TimerEvent.hpp">
 			<Option target="simulation.x"/>
 		</Unit>

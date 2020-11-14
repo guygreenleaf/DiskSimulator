@@ -40,6 +40,9 @@ CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/Event
 CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/TimerEvent.hpp
 CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../SimulationFiles/Disk.hpp
 
+CMakeFiles/simulation.x.dir/EventDriver/QueueReport.cpp.obj: ../EventDriver/QueueReport.cpp
+CMakeFiles/simulation.x.dir/EventDriver/QueueReport.cpp.obj: ../EventDriver/QueueReport.hpp
+
 CMakeFiles/simulation.x.dir/FCFS_Queue/FCFSQueue.cpp.obj: ../CommonFiles/Queue.hpp
 CMakeFiles/simulation.x.dir/FCFS_Queue/FCFSQueue.cpp.obj: ../CommonFiles/Request.hpp
 CMakeFiles/simulation.x.dir/FCFS_Queue/FCFSQueue.cpp.obj: ../FCFS_Queue/FCFSQueue.cpp
@@ -92,6 +95,7 @@ CMakeFiles/simulation.x.dir/main.cpp.obj: ../CommonFiles/Request.hpp
 CMakeFiles/simulation.x.dir/main.cpp.obj: ../EventDriver/DiskDoneEvent.hpp
 CMakeFiles/simulation.x.dir/main.cpp.obj: ../EventDriver/EventNode.hpp
 CMakeFiles/simulation.x.dir/main.cpp.obj: ../EventDriver/EventQueue.hpp
+CMakeFiles/simulation.x.dir/main.cpp.obj: ../EventDriver/QueueReport.hpp
 CMakeFiles/simulation.x.dir/main.cpp.obj: ../EventDriver/TimerEvent.hpp
 CMakeFiles/simulation.x.dir/main.cpp.obj: ../FCFS_Queue/FCFSQueue.hpp
 CMakeFiles/simulation.x.dir/main.cpp.obj: ../FCFS_Queue/FCFSQueueNode.hpp

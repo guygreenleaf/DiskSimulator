@@ -11,11 +11,14 @@
 #include "PickUp_Queue/PickUpQueue.hpp"
 #include "SimulationFiles/Disk.hpp"
 #include "EventDriver/EventQueue.hpp"
+#include "EventDriver/QueueReport.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <iomanip>
+
+
 
 std::vector<Request *>generateRequestVector(int argc, char *argv[]){
     std::vector<Request *> reqs;
@@ -44,13 +47,39 @@ std::vector<Request *>generateRequestVector(int argc, char *argv[]){
 //At end, divide cum number of entires in queue by number of times it was interrupted.
 
 int main(int argc, char *argv[]){
+
+    std::vector<QueueReport *> fcfsReports;
+
     std::ofstream timerWaitQueues;
     timerWaitQueues.open("TimerWaitQueues.txt");
     timerWaitQueues << "TIMER REPORT\n" << "TIME" << std::setw(15) << "FCFS" << std::setw(20) << "SAME TRACK" << std::setw(15) << "PICKUP" << std::setw(15) << "C-LOOK" << std::setw(15) << "LOOK" << std::endl;
 
+    std::ofstream fcfsReport;
+    fcfsReport.open("FCFS_output.txt");
+    fcfsReport << "FCFS REPORT\n" << "#" << std::setw(6) << "Trac" << std::setw(6) << "Sec" << std::setw(9) << "Entr" << std::setw(10) << "Init" << std::setw(8) << "Comp" << std::setw(8) << "Wait" << std::setw(8) << "Serv" << std::setw(10) << "TmInSys" << std::endl;
+
+    std::ofstream stReport;
+    stReport.open("ST_output.txt");
+    stReport << "ST REPORT\n" << "#" << std::setw(6) << "Trac" << std::setw(6) << "Sec" << std::setw(9) << "Entr" << std::setw(10) << "Init" << std::setw(8) << "Comp" << std::setw(8) << "Wait" << std::setw(8) << "Serv" << std::setw(10) << "TmInSys" << std::endl;
+
+    std::ofstream pickupReport;
+    pickupReport.open("PICKUP_output.txt");
+    pickupReport << "PICK_UP REPORT\n" << "#" << std::setw(6) << "Trac" << std::setw(6) << "Sec" << std::setw(9) << "Entr" << std::setw(10) << "Init" << std::setw(8) << "Comp" << std::setw(8) << "Wait" << std::setw(8) << "Serv" << std::setw(10) << "TmInSys" << std::endl;
 
 
-                                                                                                                                                                        //vector to initially hold requests
+    std::ofstream lookupReport;
+    lookupReport.open("LOOK_output.txt");
+    lookupReport << "LOOK REPORT\n" << "#" << std::setw(6) << "Trac" << std::setw(6) << "Sec" << std::setw(9) << "Entr" << std::setw(10) << "Init" << std::setw(8) << "Comp" << std::setw(8) << "Wait" << std::setw(8) << "Serv" << std::setw(10) << "TmInSys" << std::endl;
+
+
+    std::ofstream clookReport;
+    clookReport.open("CLOOK_output.txt");
+    clookReport << "C_LOOK REPORT\n" << "#" << std::setw(6) << "Trac" << std::setw(6) << "Sec" << std::setw(9) << "Entr" << std::setw(10) << "Init" << std::setw(8) << "Comp" << std::setw(8) << "Wait" << std::setw(8) << "Serv" << std::setw(10) << "TmInSys" << std::endl;
+
+
+
+
+    //vector to initially hold requests
     std::vector<Request *> reqVec = generateRequestVector(argc, argv);
 
     Queue *fcfs = new FCFSQueue();
@@ -79,11 +108,12 @@ int main(int argc, char *argv[]){
 
 
 
-    Request *testReq = new Request(19.6, 79, 23);
+//    Request *testReq = new Request(19.6, 79, 23);
     TimerEvent *testTimer = new TimerEvent(50);
 
     //Start of simulation
-    eQueue->addRequest(testReq /*add a request to the event queue*/);
+    eQueue->addRequest(reqVec.front());
+    reqVec.erase(reqVec.begin());
     eQueue->addTimerEvent(testTimer);
     eQueue->print();
     std::cout << "Simulation started" << std::endl;
@@ -94,7 +124,16 @@ int main(int argc, char *argv[]){
 
 //        //Process the event:
         if(event->isRequestEvent()){
+
             fcfsDisk->processRequest(event->getRequest(), eQueue);
+            //WRONG WRONG WRONG
+            DiskDoneEvent *useForReport = new DiskDoneEvent(eQueue->getTime(), event->getRequest(), fcfsDisk);
+            QueueReport *fcfsRep = new QueueReport(1, event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), useForReport->getTimeDone() - (useForReport->getTimeDone() - event->getRequest()->time()), event->getRequest()->time() + (eQueue->getTime() - event->getRequest()->time()), (useForReport->getTimeDone() - event->getRequest()->time()) - ((useForReport->getTimeDone() - event->getRequest()->time()) - (eQueue->getTime() - event->getRequest()->time())), (useForReport->getTimeDone() - event->getRequest()->time())  -  (eQueue->getTime() - event->getRequest()->time()), useForReport->getTimeDone() - event->getRequest()->time());
+            fcfsReports.push_back(fcfsRep);
+
+//            QueueReport *fcfsRep = new QueueReport(1, event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), useForReport->getTimeDone(), eQueue->getTime() - event->getRequest()->time(), (useForReport->getTimeDone() - event->getRequest()->time()) - (eQueue->getTime() - event->getRequest()->time()), useForReport->getTimeDone() - event->getRequest()->time());
+
+
             stDisk->processRequest(event->getRequest(), eQueue);
 
             puDisk->processRequest(event->getRequest(), eQueue);
@@ -186,13 +225,19 @@ int main(int argc, char *argv[]){
     summaryStream.open("SUMMARY.txt");
     summaryStream << "SUMMARY REPORT\n" << std::setw(5) << "Name" << std::setw(19) << "TimeInSystem" << std::setw(19) << "WaitTime" << std::setw(24) << "ServiceTime" << std::setw(24) << "NumInQueue" << std::endl;
     summaryStream << std::setw(11) << "Min" << std::setw(7) << "Max" << std::setw(7) << "Avg" << std::setw(9) << "Min" << std::setw(7) << "Max" << std::setw(7) << "Avg" << std::setw(9) << "Min" << std::setw(6) << "Max" << std::setw(7) << "Avg" << std::setw(13) << "Max" << std::setw(9) << "Avg" << std::endl;
-    summaryStream << "FCFS"            << std::fixed << std::setprecision(2) <<  std::setw(8) << fcfsDisk->getMinTimeInSys() << std::setw(8) << fcfsDisk->getMaxTimeInSys() << std::setw(7) << fcfsDisk->getAvgTimeInSys() << std::setw(7) << fcfsDisk->getMinWaitTime() << std::setw(9) << fcfsDisk->getMaxWaitTime() << std::setw(8) << fcfsDisk->getAvgWaitTime() << std::setw(8) << fcfsDisk->getMinServTime() << std::setw(8) << fcfsDisk->getMaxServeTime() << std::setw(8) << fcfsDisk->getAvgServeTime() << std::setw(8) << fcfsDisk->getMaxInQueue() << std::setw(8) << fcfsDisk->getAvgRequests() << std::endl;
-    summaryStream << "ST"            << std::fixed << std::setprecision(2) << std::setw(10) << stDisk->getMinTimeInSys() << std::setw(8) << stDisk->getMaxTimeInSys() << std::setw(7) << stDisk->getAvgTimeInSys() << std::setw(7) << stDisk->getMinWaitTime() << std::setw(9) << stDisk->getMaxWaitTime() << std::setw(8) << stDisk->getAvgWaitTime() << std::setw(8) << stDisk->getMinServTime() << std::setw(8) << stDisk->getMaxServeTime() << std::setw(8) << stDisk->getAvgServeTime()  << std::setw(8) << stDisk->getMaxInQueue() <<  std::setw(8) << stDisk->getAvgRequests() <<  std::endl;
-    summaryStream << "PICKUP"            << std::fixed << std::setprecision(2) << std::setw(7) << puDisk->getMinTimeInSys() << std::setw(7) << puDisk->getMaxTimeInSys() << std::setw(7) << puDisk->getAvgTimeInSys() << std::setw(7) << puDisk->getMinWaitTime() << std::setw(9) << puDisk->getMaxWaitTime() << std::setw(8) << puDisk->getAvgWaitTime() << std::setw(8) << puDisk->getMinServTime() << std::setw(8) << puDisk->getMaxServeTime() << std::setw(8) << puDisk->getAvgServeTime() << std::setw(8) << puDisk->getMaxInQueue() <<  std::setw(8) << puDisk->getAvgRequests() << std::endl;
-    summaryStream << "CLOOK"            << std::fixed << std::setprecision(2) << std::setw(8) << clookDisk->getMinTimeInSys() << std::setw(7) << clookDisk->getMaxTimeInSys() << std::setw(7) << clookDisk->getAvgTimeInSys() << std::setw(7) << clookDisk->getMinWaitTime() << std::setw(9) << clookDisk->getMaxWaitTime() << std::setw(8) << clookDisk->getAvgWaitTime() <<  std::setw(8) << clookDisk->getMinServTime() << std::setw(8) << clookDisk->getMaxServeTime() << std::setw(8) << clookDisk->getAvgServeTime() << std::setw(8) << clookDisk->getMaxInQueue() << std::setw(8) << clookDisk->getAvgRequests() << std::endl;
-    summaryStream << "LOOK"            << std::fixed << std::setprecision(2) << std::setw(9) << lookupDisk->getMinTimeInSys() << std::setw(7) << lookupDisk->getMaxTimeInSys() << std::setw(7) << lookupDisk->getAvgTimeInSys() << std::setw(7) << lookupDisk->getMinWaitTime() << std::setw(9) << lookupDisk->getMaxWaitTime() << std::setw(8) << lookupDisk->getAvgWaitTime() <<  std::setw(8) << lookupDisk->getMinServTime() << std::setw(8) << lookupDisk->getMaxServeTime() << std::setw(8) <<  lookupDisk->getAvgServeTime() << std::setw(8) << lookupDisk->getMaxInQueue() << std::setw(8) << lookupDisk->getAvgRequests() << std::endl;
+    summaryStream << "FCFS" << std::fixed << std::setprecision(2) <<  std::setw(8) << fcfsDisk->getMinTimeInSys() << std::setw(8) << fcfsDisk->getMaxTimeInSys() << std::setw(7) << fcfsDisk->getAvgTimeInSys() << std::setw(7) << fcfsDisk->getMinWaitTime() << std::setw(9) << fcfsDisk->getMaxWaitTime() << std::setw(8) << fcfsDisk->getAvgWaitTime() << std::setw(8) << fcfsDisk->getMinServTime() << std::setw(8) << fcfsDisk->getMaxServeTime() << std::setw(8) << fcfsDisk->getAvgServeTime() << std::setw(8) << fcfsDisk->getMaxInQueue() << std::setw(8) << fcfsDisk->getAvgRequests() << std::endl;
+    summaryStream << "ST" << std::fixed << std::setprecision(2) << std::setw(10) << stDisk->getMinTimeInSys() << std::setw(8) << stDisk->getMaxTimeInSys() << std::setw(7) << stDisk->getAvgTimeInSys() << std::setw(7) << stDisk->getMinWaitTime() << std::setw(9) << stDisk->getMaxWaitTime() << std::setw(8) << stDisk->getAvgWaitTime() << std::setw(8) << stDisk->getMinServTime() << std::setw(8) << stDisk->getMaxServeTime() << std::setw(8) << stDisk->getAvgServeTime()  << std::setw(8) << stDisk->getMaxInQueue() <<  std::setw(8) << stDisk->getAvgRequests() <<  std::endl;
+    summaryStream << "PICKUP" << std::fixed << std::setprecision(2) << std::setw(7) << puDisk->getMinTimeInSys() << std::setw(7) << puDisk->getMaxTimeInSys() << std::setw(7) << puDisk->getAvgTimeInSys() << std::setw(7) << puDisk->getMinWaitTime() << std::setw(9) << puDisk->getMaxWaitTime() << std::setw(8) << puDisk->getAvgWaitTime() << std::setw(8) << puDisk->getMinServTime() << std::setw(8) << puDisk->getMaxServeTime() << std::setw(8) << puDisk->getAvgServeTime() << std::setw(8) << puDisk->getMaxInQueue() <<  std::setw(8) << puDisk->getAvgRequests() << std::endl;
+    summaryStream << "CLOOK" << std::fixed << std::setprecision(2) << std::setw(8) << clookDisk->getMinTimeInSys() << std::setw(7) << clookDisk->getMaxTimeInSys() << std::setw(7) << clookDisk->getAvgTimeInSys() << std::setw(7) << clookDisk->getMinWaitTime() << std::setw(9) << clookDisk->getMaxWaitTime() << std::setw(8) << clookDisk->getAvgWaitTime() <<  std::setw(8) << clookDisk->getMinServTime() << std::setw(8) << clookDisk->getMaxServeTime() << std::setw(8) << clookDisk->getAvgServeTime() << std::setw(8) << clookDisk->getMaxInQueue() << std::setw(8) << clookDisk->getAvgRequests() << std::endl;
+    summaryStream << "LOOK" << std::fixed << std::setprecision(2) << std::setw(9) << lookupDisk->getMinTimeInSys() << std::setw(7) << lookupDisk->getMaxTimeInSys() << std::setw(7) << lookupDisk->getAvgTimeInSys() << std::setw(7) << lookupDisk->getMinWaitTime() << std::setw(9) << lookupDisk->getMaxWaitTime() << std::setw(8) << lookupDisk->getAvgWaitTime() <<  std::setw(8) << lookupDisk->getMinServTime() << std::setw(8) << lookupDisk->getMaxServeTime() << std::setw(8) <<  lookupDisk->getAvgServeTime() << std::setw(8) << lookupDisk->getMaxInQueue() << std::setw(8) << lookupDisk->getAvgRequests() << std::endl;
 
     summaryStream.close();
+
+    fcfsReport.close();
+    stReport.close();
+    pickupReport.close();
+    lookupReport.close();
+    clookReport.close();
 
     std::cout << "Summary files successfully generated.";
 

@@ -417,6 +417,33 @@ EventDriver/EventQueue.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\simulation.x.dir\build.make CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.s
 .PHONY : EventDriver/EventQueue.cpp.s
 
+EventDriver/QueueReport.obj: EventDriver/QueueReport.cpp.obj
+
+.PHONY : EventDriver/QueueReport.obj
+
+# target to build an object file
+EventDriver/QueueReport.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\simulation.x.dir\build.make CMakeFiles/simulation.x.dir/EventDriver/QueueReport.cpp.obj
+.PHONY : EventDriver/QueueReport.cpp.obj
+
+EventDriver/QueueReport.i: EventDriver/QueueReport.cpp.i
+
+.PHONY : EventDriver/QueueReport.i
+
+# target to preprocess a source file
+EventDriver/QueueReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\simulation.x.dir\build.make CMakeFiles/simulation.x.dir/EventDriver/QueueReport.cpp.i
+.PHONY : EventDriver/QueueReport.cpp.i
+
+EventDriver/QueueReport.s: EventDriver/QueueReport.cpp.s
+
+.PHONY : EventDriver/QueueReport.s
+
+# target to generate assembly for a file
+EventDriver/QueueReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\simulation.x.dir\build.make CMakeFiles/simulation.x.dir/EventDriver/QueueReport.cpp.s
+.PHONY : EventDriver/QueueReport.cpp.s
+
 FCFS_Queue/FCFSQueue.obj: FCFS_Queue/FCFSQueue.cpp.obj
 
 .PHONY : FCFS_Queue/FCFSQueue.obj
@@ -854,6 +881,9 @@ help:
 	@echo ... EventDriver/EventQueue.obj
 	@echo ... EventDriver/EventQueue.i
 	@echo ... EventDriver/EventQueue.s
+	@echo ... EventDriver/QueueReport.obj
+	@echo ... EventDriver/QueueReport.i
+	@echo ... EventDriver/QueueReport.s
 	@echo ... FCFS_Queue/FCFSQueue.obj
 	@echo ... FCFS_Queue/FCFSQueue.i
 	@echo ... FCFS_Queue/FCFSQueue.s

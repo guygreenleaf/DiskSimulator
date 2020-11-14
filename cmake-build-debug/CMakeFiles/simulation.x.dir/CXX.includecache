@@ -20,12 +20,6 @@ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Queue.hpp
 
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.hpp
 
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.cpp
-DiskDoneEvent.hpp
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.hpp
-cstdlib
--
-
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.hpp
 string
 -
@@ -40,10 +34,6 @@ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp
 ../EventDriver/EventNode.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.hpp
 
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.cpp
-EventNode.hpp
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.hpp
-
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.hpp
 DiskDoneEvent.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.hpp
@@ -54,12 +44,6 @@ stdlib.h
 iostream
 -
 
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.cpp
-EventQueue.hpp
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp
-../SimulationFiles/Disk.hpp
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.hpp
-
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp
 EventNode.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.hpp
@@ -69,6 +53,8 @@ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Queue.hpp
 TimerEvent.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/TimerEvent.hpp
+
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.hpp
 
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/TimerEvent.hpp
 string
@@ -122,12 +108,6 @@ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.hpp
 
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.hpp
 
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.cpp
-Disk.hpp
-C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.hpp
-cmath
--
-
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.hpp
 stdlib.h
 -
@@ -161,6 +141,8 @@ SimulationFiles/Disk.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.hpp
 EventDriver/EventQueue.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp
+EventDriver/QueueReport.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.hpp
 vector
 -
 iostream

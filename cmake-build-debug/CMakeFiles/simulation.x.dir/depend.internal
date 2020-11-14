@@ -40,6 +40,9 @@ CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/TimerEvent.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/SimulationFiles/Disk.hpp
+CMakeFiles/simulation.x.dir/EventDriver/QueueReport.cpp.obj
+ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.cpp
+ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.hpp
 CMakeFiles/simulation.x.dir/FCFS_Queue/FCFSQueue.cpp.obj
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Queue.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.hpp
@@ -93,6 +96,7 @@ CMakeFiles/simulation.x.dir/main.cpp.obj
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp
+ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/TimerEvent.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueue.hpp
  C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/FCFS_Queue/FCFSQueueNode.hpp

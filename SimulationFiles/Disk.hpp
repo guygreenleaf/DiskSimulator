@@ -83,6 +83,9 @@ private:
     float cumulativeServiceTime = 0;
     float cumulativeRequestsProcessed = 0;
 
+    int trackReqNum = 0;
+
+
 
 
 };
