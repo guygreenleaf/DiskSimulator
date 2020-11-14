@@ -74,6 +74,7 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
         cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - req->time();
 
 
+
         if(minWaitTime > evQueue->getTime() - req->time()){
             minWaitTime = evQueue->getTime() - req->time();
         }
@@ -111,6 +112,7 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
         }
         cumulativeServiceTime = cumulativeServiceTime + (newDDone->getTimeDone() - req->time()) - (evQueue->getTime() - req->time());
         findMaxInQueue();
+
         track = req->track();
         sector = req->sector()+1;
 
@@ -120,6 +122,7 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
     else if(getState()){
         accessWaitQueue()->addRequest(req, track, sector);
         numJobs++;
+
         findMaxInQueue();
         evQueue->setTime(req->time());
     }
@@ -138,6 +141,7 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), processedRequest, this);
         cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - processedRequest->time();
         cumulativeWaitTime = cumulativeWaitTime + evQueue->getTime() - processedRequest->time();
+
 
         if(newDDone->getTimeDone()-processedRequest->time() > maxTimeInSys){
             maxTimeInSys = newDDone->getTimeDone() - processedRequest->time();
@@ -248,4 +252,13 @@ float Disk::getAvgWaitTime() {
 
 float Disk::getMaxInQueue() {
     return maxNumInQueue;
+}
+
+void Disk::addCumulativeRequests(){
+    cumulativeRequestsProcessed = cumulativeRequestsProcessed + numJobs;
+}
+
+float Disk::getAvgRequests(){
+    avgNumInWaitQueue = cumulativeRequestsProcessed/numTimers;
+    return avgNumInWaitQueue;
 }

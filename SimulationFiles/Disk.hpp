@@ -57,6 +57,8 @@ public:
     float getAvgServeTime();
     void findMaxInQueue();
     float getMaxInQueue();
+    void addCumulativeRequests();
+    float getAvgRequests();
 
 private:
     bool isProcessing;
@@ -79,6 +81,7 @@ private:
     float cumulativeTimeInSystem = 0;
     float cumulativeWaitTime = 0;
     float cumulativeServiceTime = 0;
+    float cumulativeRequestsProcessed = 0;
 
 
 
