@@ -17,4 +17,15 @@ QueueReport::QueueReport(int numInQueueOrder, int track, int sector, float entry
     serv = servTime;
     timInSys = timeInSys;
 }
+QueueReport::QueueReport(){
+    numInQueue = 0;
+    trac = 0;
+    sec = 0;
+    entr = 0;
+    init = 0;
+    comp = 0;
+    wait = 0;
+    serv = 0;
+    timInSys = 0;
+};
 

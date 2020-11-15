@@ -19,6 +19,7 @@ CMakeFiles/simulation.x.dir/EventDriver/DiskDoneEvent.cpp.obj: ../EventDriver/Di
 CMakeFiles/simulation.x.dir/EventDriver/DiskDoneEvent.cpp.obj: ../EventDriver/DiskDoneEvent.hpp
 CMakeFiles/simulation.x.dir/EventDriver/DiskDoneEvent.cpp.obj: ../EventDriver/EventNode.hpp
 CMakeFiles/simulation.x.dir/EventDriver/DiskDoneEvent.cpp.obj: ../EventDriver/EventQueue.hpp
+CMakeFiles/simulation.x.dir/EventDriver/DiskDoneEvent.cpp.obj: ../EventDriver/QueueReport.hpp
 CMakeFiles/simulation.x.dir/EventDriver/DiskDoneEvent.cpp.obj: ../EventDriver/TimerEvent.hpp
 CMakeFiles/simulation.x.dir/EventDriver/DiskDoneEvent.cpp.obj: ../SimulationFiles/Disk.hpp
 
@@ -28,6 +29,7 @@ CMakeFiles/simulation.x.dir/EventDriver/EventNode.cpp.obj: ../EventDriver/DiskDo
 CMakeFiles/simulation.x.dir/EventDriver/EventNode.cpp.obj: ../EventDriver/EventNode.cpp
 CMakeFiles/simulation.x.dir/EventDriver/EventNode.cpp.obj: ../EventDriver/EventNode.hpp
 CMakeFiles/simulation.x.dir/EventDriver/EventNode.cpp.obj: ../EventDriver/EventQueue.hpp
+CMakeFiles/simulation.x.dir/EventDriver/EventNode.cpp.obj: ../EventDriver/QueueReport.hpp
 CMakeFiles/simulation.x.dir/EventDriver/EventNode.cpp.obj: ../EventDriver/TimerEvent.hpp
 CMakeFiles/simulation.x.dir/EventDriver/EventNode.cpp.obj: ../SimulationFiles/Disk.hpp
 
@@ -37,6 +39,7 @@ CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/DiskD
 CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/EventNode.hpp
 CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/EventQueue.cpp
 CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/EventQueue.hpp
+CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/QueueReport.hpp
 CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../EventDriver/TimerEvent.hpp
 CMakeFiles/simulation.x.dir/EventDriver/EventQueue.cpp.obj: ../SimulationFiles/Disk.hpp
 
@@ -84,6 +87,7 @@ CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../CommonFiles/Request
 CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../EventDriver/DiskDoneEvent.hpp
 CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../EventDriver/EventNode.hpp
 CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../EventDriver/EventQueue.hpp
+CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../EventDriver/QueueReport.hpp
 CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../EventDriver/TimerEvent.hpp
 CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../SimulationFiles/Disk.cpp
 CMakeFiles/simulation.x.dir/SimulationFiles/Disk.cpp.obj: ../SimulationFiles/Disk.hpp

@@ -121,6 +121,8 @@ C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventQueue.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/EventNode.hpp
 ../EventDriver/DiskDoneEvent.hpp
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/DiskDoneEvent.hpp
+../EventDriver/QueueReport.hpp
+C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/EventDriver/QueueReport.hpp
 
 C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/main.cpp
 CommonFiles/Request.hpp

@@ -11,6 +11,7 @@
 #include "../EventDriver/EventQueue.hpp"
 #include "../EventDriver/EventNode.hpp"
 #include "../EventDriver/DiskDoneEvent.hpp"
+#include "../EventDriver/QueueReport.hpp"
 
 class EventQueue;
 class DiskDoneEvent;
@@ -21,7 +22,7 @@ public:
      Disk(Queue *waitQueue, std::string nameOfThisDisk);
     //Return type is our decision for this:
      void processRequest(Request *req, EventQueue *evQueue);
-     void processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddone);
+     QueueReport *processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddone);
 
      std::string getName();
      int getTrack();

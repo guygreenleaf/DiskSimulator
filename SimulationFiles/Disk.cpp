@@ -137,7 +137,9 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
     }
 }
 
-void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddone) {
+QueueReport *Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddone) {
+    QueueReport *Reporter = new QueueReport();
+
     setState(false);
 
     if(ddone->getTimeDone() >= evQueue->getTime()) {
@@ -145,11 +147,25 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
     }
 
     if(!accessWaitQueue()->empty()){
+        Reporter->init = evQueue->getTime();
+
         Request *processedRequest = accessWaitQueue()->getRequest();
+
+        Reporter->numInQueue = processedRequest->reqTracker;
+        Reporter->trac = processedRequest->track();
+        Reporter->sec = processedRequest->sector();
+        Reporter->entr = processedRequest->time();
 
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), processedRequest, this);
         cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - processedRequest->time();
         cumulativeWaitTime = cumulativeWaitTime + evQueue->getTime() - processedRequest->time();
+
+        Reporter->comp = newDDone->getTimeDone();
+        Reporter->timInSys = Reporter->comp - Reporter->entr;
+        Reporter->wait = Reporter->init - Reporter->entr;
+        Reporter->serv = Reporter->comp - Reporter->init;
+
+
 
 
 
@@ -194,6 +210,8 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
     }
     findMaxInQueue();
     avgTimeInSys = cumulativeTimeInSystem / totalRequestsProcessed;
+
+    return Reporter;
 }
 
 void Disk:: findMaxInQueue(){
