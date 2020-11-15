@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 11/10/2020.
+// Created by Guy on 11/10/2020.
 //
 
 #include "CommonFiles/Request.hpp"
@@ -17,7 +17,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <iomanip>
-#include <algorithm>
+
 
 
 
@@ -44,41 +44,10 @@ std::vector<Request *>generateRequestVector(int argc, char *argv[]){
     return reqs;
 }
 
-Queue *createQueueFromInputFile( int argc, char *argv[] ) {
-
-    if( argc != 2) {
-        std::cout << "usage: " << argv[0] << " nameOfAnInputFile\n";
-        exit(1);
-    }
-
-    std::ifstream inputStream;
-    inputStream.open(argv[1], std::ios::in);
-    if( ! inputStream.is_open()) {
-        std::cout << "Unable top open " << argv[1] << ". Terminating...";
-        perror("Error when attempting to open the input file.");
-        exit(1);
-    }
-
-    auto *queue = new LookUpQueue();
-
-    int time, track, sector;
-    int currTrack = 95;
-    int testHeadPosZero = 0;
-    int testHeadPosOverMax = 98;
-    int testHeadPosMovingFromStart = 79;
-
-    while(inputStream >> time && inputStream >> track && inputStream >> sector) {
-        auto *request = new Request(time, track, sector);
-        queue->addRequest(request, 79, 0);
-        //Optional r/w head simulation
-        testHeadPosMovingFromStart = track;
-    }
-    return queue;
-}
 
 //KEEP NUMBER OF TIMES IT HAS BEEN INTERUPTED(given a timer event) <---TRACK NUMBER OF THIS IN DISK
 //How many times has it received processTimer? Use cumulative variable to store number of entries in queue
-//At end, divide cum number of entires in queue by number of times it was interrupted.
+//At end, divide cum number of entries in queue by number of times it was interrupted.
 
 int main(int argc, char *argv[]){
 
@@ -126,13 +95,10 @@ int main(int argc, char *argv[]){
     Queue *lu = new LookUpQueue();
     Queue *clu = new CLookUpQueue();
 
-    Queue *newIdea = new PickUpQueue;
-    for(auto i : reqVec){
-        newIdea->addRequest(i, reqVec.at(0)->track(), reqVec.at(0)->sector());
-    }
-
-
-
+//    Queue *newIdea = new PickUpQueue;
+//    for(auto i : reqVec){
+//        newIdea->addRequest(i, reqVec.at(0)->track(), reqVec.at(0)->sector());
+//    }
 
     //Need to create other disks as well
     Disk *fcfsDisk = new Disk(fcfs, "FCFS");
@@ -153,13 +119,12 @@ int main(int argc, char *argv[]){
 
 
 
-//    Request *testReq = new Request(19.6, 79, 23);
-    TimerEvent *testTimer = new TimerEvent(50);
+    TimerEvent *startTimer = new TimerEvent(50);
 
     //Start of simulation
     eQueue->addRequest(reqVec.front());
     reqVec.erase(reqVec.begin());
-    eQueue->addTimerEvent(testTimer);
+    eQueue->addTimerEvent(startTimer);
     eQueue->print();
     std::cout << "Simulation started" << std::endl;
     while(!eQueue->isEmpty()){
@@ -180,22 +145,6 @@ int main(int argc, char *argv[]){
                 QueueReport *fcfsRep = new QueueReport(fcfsDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), event->getRequest()->time(),useForReportInit->getTimeDone(), 0, useForReportInit->getTimeDone() - event->getRequest()->time(), useForReportInit->getTimeDone() - event->getRequest()->time());
                 fcfsReports.push_back(fcfsRep);
             }
-//            else{
-//                DiskDoneEvent *ddOther = new DiskDoneEvent(fcfsReports.at(fcfsReports.size()-1)->comp, event->getRequest(),fcfsReports.at(fcfsReports.size()-1)->trac, fcfsReports.at(fcfsReports.size()-1)->sec);
-//                QueueReport *fcfsRep = new QueueReport(fcfsDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), fcfsReports.at(fcfsReports.size()-1)->comp,ddOther->getTimeDone(), fcfsReports.at(fcfsReports.size()-1)->comp - event->getRequest()->time(), (ddOther->getTimeDone() - event->getRequest()->time()) - (fcfsReports.at(fcfsReports.size()-1)->comp - event->getRequest()->time()),   ddOther->getTimeDone() - event->getRequest()->time());
-//                fcfsReports.push_back(fcfsRep);
-//
-//            }
-//            std::cout << fcfsReports.at(fcfsReports.size()-1)->comp
-
-
-            //WRONG WRONG WRONG
-//
-//            QueueReport *fcfsRep = new QueueReport(1, event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), useForReport->getTimeDone() - (useForReport->getTimeDone() - event->getRequest()->time()), event->getRequest()->time() + (eQueue->getTime() - event->getRequest()->time()), (useForReport->getTimeDone() - event->getRequest()->time()) - ((useForReport->getTimeDone() - event->getRequest()->time()) - (eQueue->getTime() - event->getRequest()->time())), (useForReport->getTimeDone() - event->getRequest()->time())  -  (eQueue->getTime() - event->getRequest()->time()), useForReport->getTimeDone() - event->getRequest()->time());
-//            fcfsReports.push_back(fcfsRep);
-
-//            QueueReport *fcfsRep = new QueueReport(1, event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), useForReport->getTimeDone(), eQueue->getTime() - event->getRequest()->time(), (useForReport->getTimeDone() - event->getRequest()->time()) - (eQueue->getTime() - event->getRequest()->time()), useForReport->getTimeDone() - event->getRequest()->time());
-
 
             stDisk->processRequest(event->getRequest(), eQueue);
             stDisk->getReqTrackNumber(stDisk->accessWaitQueue()->getReqTracker());
@@ -204,12 +153,6 @@ int main(int argc, char *argv[]){
                 QueueReport *stRep = new QueueReport(stDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), event->getRequest()->time(),useForReportInit->getTimeDone(), 0, useForReportInit->getTimeDone() - event->getRequest()->time(), useForReportInit->getTimeDone() - event->getRequest()->time());
                 stReports.push_back(stRep);
             }
-//            else{
-//                DiskDoneEvent *ddOther = new DiskDoneEvent(stReports.at(stReports.size()-1)->comp, event->getRequest(),stReports.at(stReports.size()-1)->trac, stReports.at(stReports.size()-1)->sec);
-//                QueueReport *stRep = new QueueReport(stDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), stReports.at(stReports.size()-1)->comp,ddOther->getTimeDone(), stReports.at(stReports.size()-1)->comp - event->getRequest()->time(), (ddOther->getTimeDone() - event->getRequest()->time()) - (stReports.at(stReports.size()-1)->comp - event->getRequest()->time()),   ddOther->getTimeDone() - event->getRequest()->time());
-//                stReports.push_back(stRep);
-//
-//            }
 
 
             puDisk->processRequest(event->getRequest(), eQueue);
@@ -219,11 +162,7 @@ int main(int argc, char *argv[]){
                 QueueReport *puRep = new QueueReport(puDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), event->getRequest()->time(),useForReportInit->getTimeDone(), 0, useForReportInit->getTimeDone() - event->getRequest()->time(), useForReportInit->getTimeDone() - event->getRequest()->time());
                 pickupReports.push_back(puRep);
             }
-//            else{
-//                DiskDoneEvent *ddOther = new DiskDoneEvent(pickupReports.at(pickupReports.size()-1)->comp, event->getRequest(),pickupReports.at(pickupReports.size()-1)->trac, pickupReports.at(pickupReports.size()-1)->sec);
-//                QueueReport *puRep = new QueueReport(puDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), pickupReports.at(pickupReports.size()-1)->comp,ddOther->getTimeDone(), pickupReports.at(pickupReports.size()-1)->comp - event->getRequest()->time(), (ddOther->getTimeDone() - event->getRequest()->time()) - (pickupReports.at(pickupReports.size()-1)->comp - event->getRequest()->time()),   ddOther->getTimeDone() - event->getRequest()->time());
-//                pickupReports.push_back(puRep);
-//            }
+
 
 
             lookupDisk->processRequest(event->getRequest(), eQueue);
@@ -263,11 +202,7 @@ int main(int argc, char *argv[]){
             lookupDisk->setnumTimers();
             clookDisk->setnumTimers();
 
-//            fcfsDisk->hasJob();
-//            stDisk->hasJob();
-//            puDisk->hasJob();
-//            lookupDisk->hasJob();
-//            clookDisk->hasJob();
+
 
             timerWaitQueues << event->getEventTime() << std::setw(15) << fcfsDisk->getnumJobs() << std::setw(20) << stDisk->getnumJobs() << std::setw(15) << puDisk->getnumJobs() << std::setw(15) << clookDisk->getnumJobs() << std::setw(15) << lookupDisk->getnumJobs() << std::endl;
             fcfsDisk->addCumulativeRequests();
@@ -331,11 +266,6 @@ int main(int argc, char *argv[]){
 //
     }
 
-//    fcfsDisk->getAvgServeTime();
-//    stDisk->getAvgServeTime();
-//    lookupDisk->getAvgServeTime();
-//    clookDisk->getAvgServeTime();
-//    puDisk->getAvgServeTime();
 
     std::cout << "Simulation complete" << std::endl;
     std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
@@ -353,8 +283,6 @@ int main(int argc, char *argv[]){
     summaryStream << "LOOK" << std::fixed << std::setprecision(2) << std::setw(9) << lookupDisk->getMinTimeInSys() << std::setw(7) << lookupDisk->getMaxTimeInSys() << std::setw(7) << lookupDisk->getAvgTimeInSys() << std::setw(7) << lookupDisk->getMinWaitTime() << std::setw(9) << lookupDisk->getMaxWaitTime() << std::setw(8) << lookupDisk->getAvgWaitTime() <<  std::setw(8) << lookupDisk->getMinServTime() << std::setw(8) << lookupDisk->getMaxServeTime() << std::setw(8) <<  lookupDisk->getAvgServeTime() << std::setw(8) << lookupDisk->getMaxInQueue() << std::setw(8) << lookupDisk->getAvgRequests() << std::endl;
 
     summaryStream.close();
-
-
 
 
     for(auto & i : fcfsReports){
@@ -377,20 +305,10 @@ int main(int argc, char *argv[]){
         clookReport << i->numInQueue << std::setw(4) << i->trac << std::setw(7) << i->sec << std::setw(10) << i->entr << std::setw(8) << i->init << std::setw(9) << i->comp << std::setw(10) << i->wait << std::setw(10) << i->serv << std::setw(10) << i->timInSys <<  std::endl;
     }
 
-
     fcfsReport.close();
     stReport.close();
     pickupReport.close();
     lookupReport.close();
     clookReport.close();
     std::cout << "Summary files successfully generated.";
-
-
-    //When timer event goes off and we get the current size of a disks' wait queue, we can store those in vectors and shit
-    //Timer event - gets # of entries in the queue in each disk, store in variable in Disk class
-    //I.e. FCFS - timer goes off - how many entries? 5...
-    //Okay, timer event goes off again with 10 entries in it: 15
-    //Now say we get to end, divide 15 by two
-
-    //
 }

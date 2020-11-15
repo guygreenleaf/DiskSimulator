@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 11/6/2020.
+// Created by Guy on 11/6/2020.
 //
 
 #ifndef DISKSIM_X_EVENTQUEUE_H

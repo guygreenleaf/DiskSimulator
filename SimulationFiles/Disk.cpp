@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 11/10/2020.
+// Created by Guy on 11/10/2020.
 //
 
 #include "Disk.hpp"
@@ -77,8 +77,6 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
 
         cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - req->time();
 
-
-
         if(minWaitTime > evQueue->getTime() - req->time()){
             minWaitTime = evQueue->getTime() - req->time();
         }
@@ -108,24 +106,18 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
             minServeTime = (newDDone->getTimeDone() - req->time()) - (req->time() - evQueue->getTime());
         }
 
-//        if(minServeTime > (newDDone->getTimeDone() - req->time()) - (evQueue->getTime() - req->time())){
-//            minServeTime = (newDDone->getTimeDone() - req->time()) - (req->time() - evQueue->getTime());
-//        }
+
         if((newDDone->getTimeDone() - req->time()) - (evQueue->getTime() - req->time()) < minServeTime ){
             minServeTime = (newDDone->getTimeDone() - req->time()) - (evQueue->getTime() - req->time());
         }
         cumulativeServiceTime = cumulativeServiceTime + (newDDone->getTimeDone() - req->time()) - (evQueue->getTime() - req->time());
         findMaxInQueue();
 
-//        accessWaitQueue()->
+
         track = req->track();
         sector = req->sector()+1;
 
 
-//        req->setTracker(req->reqTracker++);
-//        trackReqNum = req->reqTracker;
-
-//        evQueue->setTime(req->time());
         setState(true);
     }
     else if(getState()){
@@ -196,14 +188,12 @@ QueueReport *Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEv
         track = processedRequest->track();
         sector = processedRequest->sector() +1 ;
         numJobs--;
-//
 
-//        evQueue->setTime(accessWaitQueue()->getRequest()->time());
         setState(true);
     }
     else if (accessWaitQueue()->empty() && isProcessing){
         setState(false);
-//        numJobs = 0;
+
     }
     else if(accessWaitQueue()->empty() && !isProcessing){
         numJobs = 0;

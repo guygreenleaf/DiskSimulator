@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 11/11/2020.
+// Created by Guy on 11/11/2020.
 //
 
 #ifndef DISKSIM_X_TIMEREVENT_HPP
@@ -20,8 +20,6 @@ public:
         return time;
     }
 
-    //Implement later
-    void summaryFunction();
 
 private:
 

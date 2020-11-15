@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 11/13/2020.
+// Created by Guy on 11/13/2020.
 //
 
 #ifndef DISKSIM_X_QUEUEREPORT_HPP
@@ -10,10 +10,6 @@ public:
     QueueReport(int numInQueueOrder, int track, int sector, float entry, float initTime, float complete, float waitTime, float servTime, float timeInSys);
     QueueReport();
 
-    bool operator < (const QueueReport& qr) const
-    {
-        return (comp < qr.comp);
-    }
 
     float comp;
     int trac;

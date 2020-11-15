@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 11/9/2020.
+// Created by Guy on 11/9/2020.
 //
 
 #include "EventQueue.hpp"
@@ -127,10 +127,9 @@ EventNode *EventQueue:: getEvent(){
         exit(1);
     }
     EventNode *evNode = head;
-//    EventNode *returnThis = evNode;
-//    EventNode *delNode = head;
+
     head = head->next();
-//    delete delNode;
+
     return evNode;
 }
 

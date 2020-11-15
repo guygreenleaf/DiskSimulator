@@ -1,5 +1,5 @@
 //
-// Created by yaweh on 11/10/2020.
+// Created by Guy on 11/10/2020.
 //
 
 #ifndef DISKSIM_X_DISK_HPP
