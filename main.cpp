@@ -173,6 +173,21 @@ int main(int argc, char *argv[]){
 
 
             puDisk->processRequest(event->getRequest(), eQueue);
+            puDisk->getReqTrackNumber(puDisk->accessWaitQueue()->getReqTracker());
+            if(puDisk->getState() && puDisk->getTotalReqProcessed() == 1){
+                DiskDoneEvent *UseForReportOther = new DiskDoneEvent(eQueue->getTime(), event->getRequest(), puDisk);
+                QueueReport *puRep = new QueueReport(puDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), event->getRequest()->time(),useForReportInit->getTimeDone(), 0, useForReportInit->getTimeDone() - event->getRequest()->time(), useForReportInit->getTimeDone() - event->getRequest()->time());
+                pickupReports.push_back(puRep);
+            }
+            else{
+                DiskDoneEvent *ddOther = new DiskDoneEvent(pickupReports.at(pickupReports.size()-1)->comp, event->getRequest(),pickupReports.at(pickupReports.size()-1)->trac, pickupReports.at(pickupReports.size()-1)->sec);
+                QueueReport *puRep = new QueueReport(puDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), pickupReports.at(pickupReports.size()-1)->comp,ddOther->getTimeDone(), pickupReports.at(pickupReports.size()-1)->comp - event->getRequest()->time(), (ddOther->getTimeDone() - event->getRequest()->time()) - (pickupReports.at(pickupReports.size()-1)->comp - event->getRequest()->time()),   ddOther->getTimeDone() - event->getRequest()->time());
+                pickupReports.push_back(puRep);
+
+            }
+
+
+
             lookupDisk->processRequest(event->getRequest(), eQueue);
             clookDisk->processRequest(event->getRequest(), eQueue);
             if(!reqVec.empty()){
@@ -277,6 +292,7 @@ int main(int argc, char *argv[]){
 
     std::sort(fcfsReports.begin(), fcfsReports.end());
     std::sort(stReports.begin(), stReports.end());
+    std::sort(pickupReports.begin(), pickupReports.end());
     std::cout << "Summary files successfully generated.";
 
 

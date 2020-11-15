@@ -9,7 +9,8 @@
 
 
 void PickUpQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
-
+    reqTracker++;
+    request->setTracker(reqTracker);
     PickUpQueueNode *currNode = head;
 
     PickUpQueueNode *rNode = new PickUpQueueNode(request);
