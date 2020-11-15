@@ -174,28 +174,13 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
         }
         cumulativeServiceTime = cumulativeServiceTime + (newDDone->getTimeDone() - processedRequest->time()) - (evQueue->getTime() - processedRequest->time());
         findMaxInQueue();
-//        if(maxServeTime < maxTimeInSys - maxWaitTime){
-//            maxServeTime = maxTimeInSys - maxWaitTime;
-//        }
-
-//        if(track == 0 && sector ==0){
-//            minServeTime = maxTimeInSys - maxWaitTime;
-//        }
-
-//        if(minServeTime > (newDDone->getTimeDone() - processedRequest->time()) - (evQueue->getTime() - processedRequest->time())){
-//            minServeTime = (newDDone->getTimeDone() - processedRequest->time()) - (processedRequest->time() - evQueue->getTime());
-//        }
-
-//        if(minServeTime > maxTimeInSys - maxWaitTime){
-//            minServeTime = maxTimeInSys - maxWaitTime;
-//        }
 
         evQueue->addDiskDoneEvent(newDDone);
 
         track = processedRequest->track();
         sector = processedRequest->sector() +1 ;
         numJobs--;
-
+//
 
 //        evQueue->setTime(accessWaitQueue()->getRequest()->time());
         setState(true);

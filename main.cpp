@@ -17,6 +17,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <iomanip>
+#include <algorithm>
 
 
 
@@ -41,6 +42,38 @@ std::vector<Request *>generateRequestVector(int argc, char *argv[]){
         reqs.push_back(request);
     }
     return reqs;
+}
+
+Queue *createQueueFromInputFile( int argc, char *argv[] ) {
+
+    if( argc != 2) {
+        std::cout << "usage: " << argv[0] << " nameOfAnInputFile\n";
+        exit(1);
+    }
+
+    std::ifstream inputStream;
+    inputStream.open(argv[1], std::ios::in);
+    if( ! inputStream.is_open()) {
+        std::cout << "Unable top open " << argv[1] << ". Terminating...";
+        perror("Error when attempting to open the input file.");
+        exit(1);
+    }
+
+    auto *queue = new LookUpQueue();
+
+    int time, track, sector;
+    int currTrack = 95;
+    int testHeadPosZero = 0;
+    int testHeadPosOverMax = 98;
+    int testHeadPosMovingFromStart = 79;
+
+    while(inputStream >> time && inputStream >> track && inputStream >> sector) {
+        auto *request = new Request(time, track, sector);
+        queue->addRequest(request, 79, 0);
+        //Optional r/w head simulation
+        testHeadPosMovingFromStart = track;
+    }
+    return queue;
 }
 
 //KEEP NUMBER OF TIMES IT HAS BEEN INTERUPTED(given a timer event) <---TRACK NUMBER OF THIS IN DISK
@@ -92,6 +125,13 @@ int main(int argc, char *argv[]){
     Queue *pu = new PickUpQueue();
     Queue *lu = new LookUpQueue();
     Queue *clu = new CLookUpQueue();
+
+    Queue *newIdea = new PickUpQueue;
+    for(auto i : reqVec){
+        newIdea->addRequest(i, reqVec.at(0)->track(), reqVec.at(0)->sector());
+    }
+
+
 
 
     //Need to create other disks as well
@@ -183,12 +223,12 @@ int main(int argc, char *argv[]){
                 DiskDoneEvent *ddOther = new DiskDoneEvent(pickupReports.at(pickupReports.size()-1)->comp, event->getRequest(),pickupReports.at(pickupReports.size()-1)->trac, pickupReports.at(pickupReports.size()-1)->sec);
                 QueueReport *puRep = new QueueReport(puDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), pickupReports.at(pickupReports.size()-1)->comp,ddOther->getTimeDone(), pickupReports.at(pickupReports.size()-1)->comp - event->getRequest()->time(), (ddOther->getTimeDone() - event->getRequest()->time()) - (pickupReports.at(pickupReports.size()-1)->comp - event->getRequest()->time()),   ddOther->getTimeDone() - event->getRequest()->time());
                 pickupReports.push_back(puRep);
-
             }
 
 
-
             lookupDisk->processRequest(event->getRequest(), eQueue);
+
+
             clookDisk->processRequest(event->getRequest(), eQueue);
             if(!reqVec.empty()){
                 eQueue->addRequest(reqVec.front());

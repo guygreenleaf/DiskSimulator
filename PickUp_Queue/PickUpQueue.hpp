@@ -30,7 +30,7 @@ public:
 
 private:
     PickUpQueueNode *head, *tail;
-    int reqTracker;
+    int reqTracker=0;
 //    int rwHead;
 };
 

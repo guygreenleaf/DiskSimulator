@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/CommonFiles/Request.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/CommonFiles/Request.cpp.o"
-  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/ST_Queue/STQueue.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/ST_Queue/STQueue.cpp.o"
-  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/ST_Queue/STQueueNode.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/ST_Queue/STQueueNode.cpp.o"
-  "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/ST_Queue/main.cpp" "/Users/guygreenleaf/Desktop/SSU/cs315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/ST_Queue/main.cpp.o"
+  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/CommonFiles/Request.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/CommonFiles/Request.cpp.obj"
+  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueue.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/ST_Queue/STQueue.cpp.obj"
+  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/STQueueNode.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/ST_Queue/STQueueNode.cpp.obj"
+  "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/ST_Queue/main.cpp" "C:/Users/yaweh/Desktop/SSU/Courses/CS315/DiskSim/cmake-build-debug/CMakeFiles/st.x.dir/ST_Queue/main.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

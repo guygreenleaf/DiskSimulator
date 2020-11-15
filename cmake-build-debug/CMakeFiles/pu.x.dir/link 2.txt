@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/pu.x.dir/PickUp_Queue/main.cpp.o CMakeFiles/pu.x.dir/CommonFiles/Request.cpp.o CMakeFiles/pu.x.dir/PickUp_Queue/PickUpQueue.cpp.o CMakeFiles/pu.x.dir/PickUp_Queue/PickUpQueueNode.cpp.o  -o pu.x 
