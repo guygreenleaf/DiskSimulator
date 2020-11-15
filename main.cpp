@@ -20,7 +20,7 @@
 
 
 
-
+//Generate a vector to hold all requests from input file to issue them out as need be during simulation
 std::vector<Request *>generateRequestVector(int argc, char *argv[]){
     std::vector<Request *> reqs;
     int track, sector;
@@ -125,10 +125,10 @@ int main(int argc, char *argv[]){
     eQueue->addRequest(reqVec.front());
     reqVec.erase(reqVec.begin());
     eQueue->addTimerEvent(startTimer);
-    eQueue->print();
-    std::cout << "Simulation started" << std::endl;
+//    eQueue->print();
+//    std::cout << "Simulation started" << std::endl;
     while(!eQueue->isEmpty()){
-        std::cout << "Working..." << std::endl;
+//        std::cout << "Working..." << std::endl;
 //        Get the next event, whatever it may be
         EventNode *event = eQueue->getEvent();
 
@@ -192,10 +192,12 @@ int main(int argc, char *argv[]){
 //                1. Event is a request event
 //                    a.) Give this to every disk using processRequest
 
-        else if(event->isTimerEvent()){
+
 //                2. Event is a timer event:
 //                    -Ask each disk to provide the number of entires in its wait queue
 //                    If eQueue is NOT empty, add a new timer event to it.;
+        else if(event->isTimerEvent()){
+
             fcfsDisk->setnumTimers();
             stDisk->setnumTimers();
             puDisk->setnumTimers();
@@ -221,55 +223,57 @@ int main(int argc, char *argv[]){
         }
 
 
+            //                3. event is a disk-done event:
+//                    -Event node has access to the disk whose disk-done event is being removed
+//                    from the event queue. i.e. you have a pointer to the disk
+//                    -KEY: Make DiskDone return a report on the request that was processed!
+//
+//                    disk->processDiskDoneEvent(eQueue, ....);
+//
         else if(event->isDiskDoneEvent()){
             if(event->getDiskDone()->getType() == "FCFS") {
                 QueueReport *reps = fcfsDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
                 if(reps->numInQueue != 0) {
                     fcfsReports.push_back(reps);
                 }
-                std::cout << "DDONE FOR FCFS\n";
+//                std::cout << "DDONE FOR FCFS\n";
             }
             else if(event->getDiskDone()->getType() == "ST") {
                 QueueReport *reps = stDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
                 if(reps->numInQueue != 0) {
                     stReports.push_back(reps);
                 }
-                std::cout << "DDONE FOR ST\n";
+//                std::cout << "DDONE FOR ST\n";
             }
             else if(event->getDiskDone()->getType() == "PICKUP") {
                 QueueReport *reps = puDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
                 if(reps->numInQueue != 0) {
                     pickupReports.push_back(reps);
                 }
-                std::cout << "DDONE FOR PICKUP\n";
+//                std::cout << "DDONE FOR PICKUP\n";
             }
             else if(event->getDiskDone()->getType() == "LOOKUP") {
                 QueueReport *reps = lookupDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
                 if(reps->numInQueue != 0) {
                     lookupReports.push_back(reps);
                 }
-                std::cout << "DDONE FOR LOOKUP\n";
+//                std::cout << "DDONE FOR LOOKUP\n";
             }
             else if(event->getDiskDone()->getType() == "CLOOK") {
                 QueueReport *reps = clookDisk->processDiskDone(event->getRequest(), eQueue, event->getDiskDone());
                 if(reps->numInQueue != 0) {
                     clookReports.push_back(reps);
                 }
-                std::cout << "DDONE FOR CLOOK\n";
+//                std::cout << "DDONE FOR CLOOK\n";
             }
         }
-//                3. event is a disk-done event:
-//                    -Event node has access to the disk whose disk-done event is being removed
-//                    from the event queue. i.e. you have a pointer to the disk
-//
-//                    disk->processDiskDoneEvent(eQueue, ....);
-//
+
     }
 
 
-    std::cout << "Simulation complete" << std::endl;
-    std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
-    std::cout << "Generating Summary Files......" << std::endl;
+//    std::cout << "Simulation complete" << std::endl;
+//    std::cout << "Simulation time: " << eQueue->getTime() << " milliseconds" << std::endl;
+//    std::cout << "Generating Summary Files......" << std::endl;
     timerWaitQueues.close();
 
     std::ofstream summaryStream;
@@ -310,5 +314,5 @@ int main(int argc, char *argv[]){
     pickupReport.close();
     lookupReport.close();
     clookReport.close();
-    std::cout << "Summary files successfully generated.";
+//    std::cout << "Summary files successfully generated.";
 }

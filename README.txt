@@ -8,6 +8,39 @@ Implementation is all original code, no external websites/code used.
 
 All features required for this submission phase have been implemented to the best of my ability.
 
+
+------------------------------------------------Phase  2--------------------------------------------------------------------------------------------
+
+This was by far the most challenging and stress inducing project I have done in my CS career thus far. I've dumped over 250+ hours into making this work.
+There have been many changes and about 70 different git branches with differing ideas on how to implement the required features efficiently and effectively.
+I have modified some of the originally provided files - things in the CommonFiles folder - to provide further functionality.
+I have added multiple classes and files in order to support the multitude of features this project brings forth.
+Within the different files you may find relevant comments, notes to myself, or things that have been commented out that were only used in testing.
+
+Output files are generated and the program has been tested with multiple types of request input files. Nothing is written to std::out.
+
+This project can be compiled and ran in the following way:
+
+
+Let's say we've unzipped DiskSim.zip and cd into the DiskSim directory.
+
+Use this command:
+
+g++ -std=c++17 main.cpp SimulationFiles/Disk.cpp EventDriver/EventQueue.cpp EventDriver/EventNode.cpp EventDriver/DiskDoneEvent.cpp EventDriver/TimerEvent.hpp CommonFiles/Request.cpp FCFS_Queue/FCFSQueue.cpp FCFS_Queue/FCFSQueueNode.cpp ST_Queue/STQueue.cpp ST_Queue/STQueueNode.cpp LookUp_Queue/LookUpQueue.cpp LookUp_Queue/LookUpQueueNode.cpp CLookUp_Queue/CLookUpQueue.cpp CLookUp_Queue/CLookUpQueueNode.cpp PickUp_Queue/PickUpQueueNode.cpp PickUp_Queue/PickUpQueue.cpp EventDriver/QueueReport.cpp
+
+to generate an a.out file.
+
+You can then run this program by passing an input file:
+
+./a.out sim.txt
+
+Reports are generated in the DiskSim directory.
+
+
+
+
+--------------------------------------------------Phase  1------------------------------------------------------------------------------------------
+
 I have included multiple files for testing (The main one being sim.txt), as well as a few things in the main.cpp files that have been commented out.
 Once I figured out how the random request function was being used, I started doing my own testing with changing the
 read/write head, inserting new requests, getting requests from the queues, etc etc.  These tests are detailed in the main.cpp files
