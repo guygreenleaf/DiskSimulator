@@ -13,6 +13,8 @@ int Request::sector() { return _sector; }
 
 double Request::time() { return _time; }
 
+void Request::setTracker(int newTrackerNum) {reqTracker = newTrackerNum;}
+
 void Request::print() {
     std::cout << time() << " " << track() << " " << sector() << std::endl;
 }

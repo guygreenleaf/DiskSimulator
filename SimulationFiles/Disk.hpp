@@ -57,12 +57,19 @@ public:
     float getAvgServeTime();
     void findMaxInQueue();
     float getMaxInQueue();
+    int getReqTrackNumber(int reqNumber);
+    int getTotalReqProcessed();
     void addCumulativeRequests();
     float getAvgRequests();
+
+    void setDDoneNext(DiskDoneEvent *ddevent);
+
+    DiskDoneEvent *getDDoneNext();
 
 private:
     bool isProcessing;
     int track, sector;
+    int reqTrackNumber;
     Queue *waitQueue;
     std::string nameOfDisk;
 
@@ -72,10 +79,10 @@ private:
 
     float maxTimeInSys=0, minTimeInSys=0, avgTimeInSys=0;
     float minWaitTime=0, maxWaitTime=0, avgWaitTime;
-    float maxNumInQueue, avgNumInWaitQueue;
+    float maxNumInQueue=0, avgNumInWaitQueue;
     float currTimeInSys = 0;
 
-    float maxServeTime, minServeTime, avgServeTime;
+    float maxServeTime=0, minServeTime, avgServeTime=0;
 
     int totalRequestsProcessed = 0;
     float cumulativeTimeInSystem = 0;
@@ -85,6 +92,8 @@ private:
 
     int trackReqNum = 0;
 
+
+    DiskDoneEvent *ddoneNext;
 
 
 

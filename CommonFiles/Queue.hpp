@@ -11,8 +11,11 @@ class Queue {
 public:
     virtual void addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) = 0;
     virtual Request *getRequest() = 0;
+    virtual void incReqTracker() = 0;
+    virtual int getReqTracker() = 0;
     virtual bool empty() = 0;
     virtual void print() = 0;
+
     virtual ~Queue() {}
 
 };

@@ -25,10 +25,13 @@ public:
     void changeRwHead(int track);
     virtual bool empty();
     virtual void print();
+    virtual void incReqTracker();
+    virtual int getReqTracker();
     virtual ~LookUpQueue();
 
 private:
     LookUpQueueNode *aboveHead, *belowHead;
+    int reqTracker;
 //    int rwHead;
 };
 

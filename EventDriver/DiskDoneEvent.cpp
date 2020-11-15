@@ -10,10 +10,33 @@ DiskDoneEvent:: DiskDoneEvent(float currTime, Request *req, Disk *currDisk){
     queueType = currDisk->getName();
  }
 
+ DiskDoneEvent:: DiskDoneEvent(float theTime, Request *requ, int track, int sector){
+    timeDone = ((abs(requ->track()-track))*3) + (sectorDistance2(requ,sector) *0.1) + 0.1 + theTime;
+}
+
+
+
 float DiskDoneEvent::sectorDistance(Request *req, Disk *currDisk){
     float rotDist = 0;
     float currSect = currDisk->getSector();
     float reqSect = req->sector();
+
+    while(currSect != reqSect){
+        if(currSect == 30){
+            currSect = 0;
+            rotDist++;
+            continue;
+        }
+        currSect++;
+        rotDist++;
+    }
+    return rotDist;
+}
+
+float DiskDoneEvent::sectorDistance2(Request *requ, int sector){
+    float rotDist = 0;
+    float currSect = sector;
+    float reqSect = requ->sector();
 
     while(currSect != reqSect){
         if(currSect == 30){

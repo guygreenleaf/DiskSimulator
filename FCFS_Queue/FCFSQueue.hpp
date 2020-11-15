@@ -21,10 +21,16 @@ public:
     virtual Request *getRequest();
     virtual bool empty();
     virtual void print();
+    virtual void incReqTracker();
+    virtual int getReqTracker();
     virtual ~FCFSQueue();
+
+
 
 private:
     FCFSQueueNode *head, *tail;
+    int reqTracker=0;
+
 };
 
 

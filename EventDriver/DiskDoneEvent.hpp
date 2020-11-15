@@ -19,8 +19,10 @@ class DiskDoneEvent{
 public:
     DiskDoneEvent(float currTime, Request *req, Disk *currDisk);
 
-    float sectorDistance(Request *req, Disk *currDisk);
+    DiskDoneEvent(float theTime, Request *requ, int track, int sector);
 
+    float sectorDistance(Request *req, Disk *currDisk);
+    float sectorDistance2(Request *requ, int sector);
     float getTimeDone(){
         return timeDone;
     }

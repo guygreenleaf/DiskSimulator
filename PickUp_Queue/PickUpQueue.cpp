@@ -187,3 +187,10 @@ PickUpQueue::~PickUpQueue() {
         delete node;
     }
 }
+int PickUpQueue::getReqTracker(){
+    return reqTracker;
+}
+
+void PickUpQueue::incReqTracker(){
+    reqTracker++;
+}

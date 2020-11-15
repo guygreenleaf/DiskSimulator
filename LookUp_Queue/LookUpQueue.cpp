@@ -178,6 +178,14 @@ void LookUpQueue::print() {
         cur->request()->print();
 }
 
+void LookUpQueue::incReqTracker(){
+    reqTracker++;
+}
+
+int LookUpQueue::getReqTracker(){
+    return reqTracker;
+}
+
 LookUpQueue::~LookUpQueue() {
     while( aboveHead != nullptr ) {
         LookUpQueueNode *node = aboveHead;

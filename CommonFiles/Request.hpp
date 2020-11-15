@@ -12,11 +12,14 @@ public:
     int track();
     int sector();
     double time();
+    void setTracker(int newTrackerNum);
+    int reqTracker=0;
     void print();
 
 private:
     double _time;
     int _track, _sector;
+
 
 };
 

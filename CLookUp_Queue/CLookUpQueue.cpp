@@ -168,6 +168,14 @@ void CLookUpQueue::print() {
         cur->request()->print();
 }
 
+void CLookUpQueue::incReqTracker(){
+    reqTracker++;
+}
+
+int CLookUpQueue::getReqTracker(){
+    return reqTracker;
+}
+
 //Deconstructor change this
 CLookUpQueue::~CLookUpQueue() {
     while( aboveHead != nullptr ) {

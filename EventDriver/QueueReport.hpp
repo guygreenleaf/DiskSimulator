@@ -9,14 +9,18 @@ class QueueReport{
 public:
     QueueReport(int numInQueueOrder, int track, int sector, float entry, float initTime, float complete, float waitTime, float servTime, float timeInSys);
 
+    bool operator < (const QueueReport& qr) const
+    {
+        return (comp < qr.comp);
+    }
 
-private:
-    int numInQueue;
+    float comp;
     int trac;
     int sec;
+private:
+    int numInQueue;
     float entr;
     float init;
-    float comp;
     float wait;
     float serv;
     float timInSys;

@@ -94,6 +94,14 @@ void STQueue::print() {
         cur->request()->print();
 }
 
+void STQueue::incReqTracker(){
+    reqTracker++;
+}
+
+int STQueue::getReqTracker(){
+    return reqTracker;
+}
+
 STQueue::~STQueue() {
     while( head != nullptr ) {
         STQueueNode *node = head;

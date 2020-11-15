@@ -6,6 +6,10 @@
 #include "../CommonFiles/Request.hpp"
 
 void FCFSQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector) {
+
+    reqTracker++;
+    request->setTracker(reqTracker);
+
     FCFSQueueNode *rNode = new FCFSQueueNode(request);
     if( empty() ) {
         head = tail = rNode;
@@ -13,6 +17,7 @@ void FCFSQueue::addRequest(Request *request, int cRWHeadTrack, int cRWHeadSector
         tail->next(rNode);
         tail = rNode;
     }
+
 }
 
 Request *FCFSQueue::getRequest() {
@@ -36,6 +41,14 @@ bool FCFSQueue::empty() {
 void FCFSQueue::print() {
     for(auto cur = head; cur; cur = cur->next() )
         cur->request()->print();
+}
+
+void FCFSQueue::incReqTracker(){
+    reqTracker++;
+}
+
+int FCFSQueue::getReqTracker(){
+    return reqTracker;
 }
 
 FCFSQueue::~FCFSQueue() {

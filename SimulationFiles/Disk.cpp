@@ -61,12 +61,16 @@ void Disk::setState(bool set) {
 void Disk::processRequest(Request *req, EventQueue *evQueue) {
     totalRequestsProcessed++;
 
-
     if(accessWaitQueue()->empty() && !getState()){
         numJobs++;
         evQueue->setTime(req->time());
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), req, this);
         evQueue->addDiskDoneEvent(newDDone);
+
+        accessWaitQueue()->incReqTracker();
+        req->setTracker(accessWaitQueue()->getReqTracker());
+
+
         if(track == 0 && sector == 0){
             minWaitTime = evQueue->getTime() - req->time();
         }
@@ -113,8 +117,13 @@ void Disk::processRequest(Request *req, EventQueue *evQueue) {
         cumulativeServiceTime = cumulativeServiceTime + (newDDone->getTimeDone() - req->time()) - (evQueue->getTime() - req->time());
         findMaxInQueue();
 
+//        accessWaitQueue()->
         track = req->track();
         sector = req->sector()+1;
+
+
+//        req->setTracker(req->reqTracker++);
+//        trackReqNum = req->reqTracker;
 
 //        evQueue->setTime(req->time());
         setState(true);
@@ -141,6 +150,7 @@ void Disk::processDiskDone(Request *req, EventQueue *evQueue, DiskDoneEvent *ddo
         DiskDoneEvent *newDDone = new DiskDoneEvent(evQueue->getTime(), processedRequest, this);
         cumulativeTimeInSystem = cumulativeTimeInSystem + newDDone->getTimeDone() - processedRequest->time();
         cumulativeWaitTime = cumulativeWaitTime + evQueue->getTime() - processedRequest->time();
+
 
 
         if(newDDone->getTimeDone()-processedRequest->time() > maxTimeInSys){
@@ -261,4 +271,20 @@ void Disk::addCumulativeRequests(){
 float Disk::getAvgRequests(){
     avgNumInWaitQueue = cumulativeRequestsProcessed/numTimers;
     return avgNumInWaitQueue;
+}
+
+int Disk::getReqTrackNumber(int reqNumber){
+    reqTrackNumber = reqNumber;
+    return reqTrackNumber;
+
+}
+
+int Disk::getTotalReqProcessed(){return totalRequestsProcessed;}
+
+void Disk::setDDoneNext(DiskDoneEvent *ddEvent) {
+    ddoneNext = ddEvent;
+}
+
+DiskDoneEvent *Disk::getDDoneNext(){
+    return ddoneNext;
 }

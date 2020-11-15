@@ -22,7 +22,8 @@
 
 std::vector<Request *>generateRequestVector(int argc, char *argv[]){
     std::vector<Request *> reqs;
-    int time, track, sector;
+    int track, sector;
+    float time;
 
     if( argc != 2) {
         std::cout << "usage: " << argv[0] << " nameOfAnInputFile\n";
@@ -49,6 +50,10 @@ std::vector<Request *>generateRequestVector(int argc, char *argv[]){
 int main(int argc, char *argv[]){
 
     std::vector<QueueReport *> fcfsReports;
+    std::vector<QueueReport *> stReports;
+    std::vector<QueueReport *> pickupReports;
+    std::vector<QueueReport *> lookupReports;
+    std::vector<QueueReport *> clookReports;
 
     std::ofstream timerWaitQueues;
     timerWaitQueues.open("TimerWaitQueues.txt");
@@ -125,16 +130,47 @@ int main(int argc, char *argv[]){
 //        //Process the event:
         if(event->isRequestEvent()){
 
+            DiskDoneEvent *useForReportInit = new DiskDoneEvent(event->getRequest()->time(), event->getRequest(),fcfsDisk);
+
             fcfsDisk->processRequest(event->getRequest(), eQueue);
+            fcfsDisk->getReqTrackNumber(fcfsDisk->accessWaitQueue()->getReqTracker());
+
+            if(fcfsDisk->getState() && fcfsDisk->getTotalReqProcessed() == 1){
+                DiskDoneEvent *UseForReportOther = new DiskDoneEvent(eQueue->getTime(), event->getRequest(), fcfsDisk);
+                QueueReport *fcfsRep = new QueueReport(fcfsDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), event->getRequest()->time(),useForReportInit->getTimeDone(), 0, useForReportInit->getTimeDone() - event->getRequest()->time(), useForReportInit->getTimeDone() - event->getRequest()->time());
+                fcfsReports.push_back(fcfsRep);
+            }
+            else{
+                DiskDoneEvent *ddOther = new DiskDoneEvent(fcfsReports.at(fcfsReports.size()-1)->comp, event->getRequest(),fcfsReports.at(fcfsReports.size()-1)->trac, fcfsReports.at(fcfsReports.size()-1)->sec);
+                QueueReport *fcfsRep = new QueueReport(fcfsDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), fcfsReports.at(fcfsReports.size()-1)->comp,ddOther->getTimeDone(), fcfsReports.at(fcfsReports.size()-1)->comp - event->getRequest()->time(), (ddOther->getTimeDone() - event->getRequest()->time()) - (fcfsReports.at(fcfsReports.size()-1)->comp - event->getRequest()->time()),   ddOther->getTimeDone() - event->getRequest()->time());
+                fcfsReports.push_back(fcfsRep);
+
+            }
+//            std::cout << fcfsReports.at(fcfsReports.size()-1)->comp
+
+
             //WRONG WRONG WRONG
-            DiskDoneEvent *useForReport = new DiskDoneEvent(eQueue->getTime(), event->getRequest(), fcfsDisk);
-            QueueReport *fcfsRep = new QueueReport(1, event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), useForReport->getTimeDone() - (useForReport->getTimeDone() - event->getRequest()->time()), event->getRequest()->time() + (eQueue->getTime() - event->getRequest()->time()), (useForReport->getTimeDone() - event->getRequest()->time()) - ((useForReport->getTimeDone() - event->getRequest()->time()) - (eQueue->getTime() - event->getRequest()->time())), (useForReport->getTimeDone() - event->getRequest()->time())  -  (eQueue->getTime() - event->getRequest()->time()), useForReport->getTimeDone() - event->getRequest()->time());
-            fcfsReports.push_back(fcfsRep);
+//
+//            QueueReport *fcfsRep = new QueueReport(1, event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), useForReport->getTimeDone() - (useForReport->getTimeDone() - event->getRequest()->time()), event->getRequest()->time() + (eQueue->getTime() - event->getRequest()->time()), (useForReport->getTimeDone() - event->getRequest()->time()) - ((useForReport->getTimeDone() - event->getRequest()->time()) - (eQueue->getTime() - event->getRequest()->time())), (useForReport->getTimeDone() - event->getRequest()->time())  -  (eQueue->getTime() - event->getRequest()->time()), useForReport->getTimeDone() - event->getRequest()->time());
+//            fcfsReports.push_back(fcfsRep);
 
 //            QueueReport *fcfsRep = new QueueReport(1, event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), useForReport->getTimeDone(), eQueue->getTime() - event->getRequest()->time(), (useForReport->getTimeDone() - event->getRequest()->time()) - (eQueue->getTime() - event->getRequest()->time()), useForReport->getTimeDone() - event->getRequest()->time());
 
 
             stDisk->processRequest(event->getRequest(), eQueue);
+            stDisk->getReqTrackNumber(stDisk->accessWaitQueue()->getReqTracker());
+            if(stDisk->getState() && stDisk->getTotalReqProcessed() == 1){
+                DiskDoneEvent *UseForReportOther = new DiskDoneEvent(eQueue->getTime(), event->getRequest(), stDisk);
+                QueueReport *stRep = new QueueReport(stDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), event->getRequest()->time(),useForReportInit->getTimeDone(), 0, useForReportInit->getTimeDone() - event->getRequest()->time(), useForReportInit->getTimeDone() - event->getRequest()->time());
+                stReports.push_back(stRep);
+            }
+            else{
+                DiskDoneEvent *ddOther = new DiskDoneEvent(stReports.at(stReports.size()-1)->comp, event->getRequest(),stReports.at(stReports.size()-1)->trac, stReports.at(stReports.size()-1)->sec);
+                QueueReport *stRep = new QueueReport(stDisk->accessWaitQueue()->getReqTracker(), event->getRequest()->track(), event->getRequest()->sector(), event->getRequest()->time(), stReports.at(stReports.size()-1)->comp,ddOther->getTimeDone(), stReports.at(stReports.size()-1)->comp - event->getRequest()->time(), (ddOther->getTimeDone() - event->getRequest()->time()) - (stReports.at(stReports.size()-1)->comp - event->getRequest()->time()),   ddOther->getTimeDone() - event->getRequest()->time());
+                stReports.push_back(stRep);
+
+            }
+
 
             puDisk->processRequest(event->getRequest(), eQueue);
             lookupDisk->processRequest(event->getRequest(), eQueue);
@@ -239,6 +275,8 @@ int main(int argc, char *argv[]){
     lookupReport.close();
     clookReport.close();
 
+    std::sort(fcfsReports.begin(), fcfsReports.end());
+    std::sort(stReports.begin(), stReports.end());
     std::cout << "Summary files successfully generated.";
 
 
