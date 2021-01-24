@@ -1,12 +1,3 @@
-Guy Greenleaf
-
-Attended tutoring with Soren - discussed general concepts relating to the project
-
-No help given
-
-Implementation is all original code, no external websites/code used.
-
-All features required for this submission phase have been implemented to the best of my ability.
 
 I have included multiple files for testing (The main one being sim.txt), as well as a few things in the main.cpp files that have been commented out.
 Once I figured out how the random request function was being used, I started doing my own testing with changing the
