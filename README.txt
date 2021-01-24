@@ -10,8 +10,6 @@ These different queues can be compiled in the following manner:
 I have zipped up the entirety of the DiskSim folder.  Once this is unzipped, we can go into the the DiskSim directory and compile different
 queues independently from each other.
 
-As mentioned in lectures and labs, this phase of the project only writes output to STDOUT, no additional files are generated.
-
 An example of compiling and running each queue:
 
 
