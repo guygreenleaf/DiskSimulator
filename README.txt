@@ -1,19 +1,9 @@
-Guy Greenleaf
 
-Attended tutoring with Soren - discussed general concepts relating to the project
-
-No help given
-
-Implementation is all original code, no external websites/code used.
-
-All features required for this submission phase have been implemented to the best of my ability.
 
 
 ------------------------------------------------Phase  2--------------------------------------------------------------------------------------------
 
-This was by far the most challenging and stress inducing project I have done in my CS career thus far. I've dumped over 250+ hours into making this work.
-There have been many changes and about 70 different git branches with differing ideas on how to implement the required features efficiently and effectively.
-I have modified some of the originally provided files - things in the CommonFiles folder - to provide further functionality.
+
 I have added multiple classes and files in order to support the multitude of features this project brings forth.
 Within the different files you may find relevant comments, notes to myself, or things that have been commented out that were only used in testing.
 
